@@ -3,11 +3,12 @@ import * as express from 'express'
 import * as exphbs from 'express-handlebars'
 import * as logger from 'morgan'
 import * as path from 'path'
-import {initRestApi} from "./routes/api";
+
 
 // Import routes.
-import HomeRouter from './routes/HomeRouter'
-
+import HomeRouter from './routes/web/HomeRouter'
+import facultiesCrudRouter from './routes/api/v1/facultiesCrudRouter'
+import councilCrudRouter from './routes/api/v1/councilsCrudRouter'
 /**
  * Creates and configures an ExpressJS web server.
  *
@@ -15,7 +16,7 @@ import HomeRouter from './routes/HomeRouter'
  */
 class App {
   // Member variables.
-  public express: express.Application
+  public express: express.Application;
 
   /**
    * Creates an instance of an express App.
@@ -23,8 +24,8 @@ class App {
    * @memberOf App
    */
   constructor() {
-    this.express = express()
-    this.middleware()
+    this.express = express();
+    this.middleware();
     this.routes()
   }
 
@@ -32,20 +33,20 @@ class App {
     Configures Express middlewares.
   */
   private middleware(): void {
-    this.express.use(logger('dev'))
-    this.express.use(bodyParser.json())
-    this.express.use(bodyParser.urlencoded({ extended: false }))
+    this.express.use(logger('dev'));
+    this.express.use(bodyParser.json());
+    this.express.use(bodyParser.urlencoded({ extended: false }));
     // this.express.use(express.static(path.join(__dirname, 'public')))
-    this.express.use(express.static('public'))
+    this.express.use(express.static('public'));
 
     // Handlebars
-    this.express.set('views', 'client/views')
+    this.express.set('views', 'client/views');
     this.express.engine('.hbs', exphbs({
       defaultLayout: 'main',
       extname: '.hbs',
       layoutsDir: 'client/views/layouts',
       partialsDir: 'client/views/partials'
-    }))
+    }));
     this.express.set('view engine', '.hbs')
   }
 
@@ -53,10 +54,19 @@ class App {
     Configure API endpoints.
   */
   private routes(): void {
-    const router = express.Router()
+    const router = express.Router();
 
-    initRestApi(this.express);
-    this.express.use('/', HomeRouter)
+    /*
+      Web routes
+     */
+    this.express.use('/', HomeRouter);
+
+    /*
+      API routes
+     */
+    this.express.use('/api/v1/faculties', facultiesCrudRouter);
+    this.express.use('/api/v1/faculties', councilCrudRouter);
+
   }
 
 }
