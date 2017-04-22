@@ -1,11 +1,11 @@
 import { NextFunction, Request, Response, Router } from 'express'
 import * as _ from 'lodash';
-import { onError } from "./onError";
-import { onSuccess } from "./onSuccess";
-import {findOneCouncil} from "../../../queries/findOneCouncil";
-import {createCouncil} from "../../../queries/createCouncil";
-import {deleteCouncil} from "../../../queries/deleteCouncil";
-import {updateCouncil} from "../../../queries/updateCouncil";
+import {onError} from "./onError";
+import {onSuccess} from "./onSuccess";
+import {findOneCouncil} from "../../../queries/council/findOneCouncil";
+import {createCouncil} from "../../../queries/council/createCouncil";
+import {deleteCouncil} from "../../../queries/council/deleteCouncil";
+import {updateCouncil} from "../../../queries/council/updateCouncil";
 import {databaseErrorHandler} from "./databaseErrorHandler";
 
 class councilsCrudRouter {

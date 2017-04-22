@@ -1,12 +1,12 @@
 import { NextFunction, Request, Response, Router } from 'express'
 import * as _ from 'lodash';
-import { findAllFaculties } from "../../../queries/findAllFaculties";
+import { findAllFaculties } from "../../../queries/faculty/findAllFaculties";
 import { onError } from "./onError";
 import { onSuccess } from "./onSuccess";
-import {findOneFaculty} from "../../../queries/findOneFaculty";
-import {createFaculty} from "../../../queries/createFaculty";
-import {deleteFaculty} from "../../../queries/deleteFaculty";
-import {updateFaculty} from "../../../queries/updateFaculty";
+import {findOneFaculty} from "../../../queries/faculty/findOneFaculty";
+import {createFaculty} from "../../../queries/faculty/createFaculty";
+import {deleteFaculty} from "../../../queries/faculty/deleteFaculty";
+import {updateFaculty} from "../../../queries/faculty/updateFaculty";
 import {databaseErrorHandler} from "./databaseErrorHandler";
 
 class facultiesCrudRouter {

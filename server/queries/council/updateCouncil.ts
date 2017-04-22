@@ -1,4 +1,4 @@
-import {CouncilModel} from "../model/model";
+import {CouncilModel} from "../../model/model";
 
 export function updateCouncil(id: number, props: any) {
 
