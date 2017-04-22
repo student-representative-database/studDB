@@ -1,0 +1,10 @@
+.vagrant/
+public/*
+!public/.keep
+dist/*
+!dist/.keep
+*.log
+node_modules/
+.vscode/*
+#.env
+.idea
