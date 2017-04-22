@@ -9,6 +9,7 @@ import * as path from 'path'
 import HomeRouter from './routes/web/HomeRouter'
 import facultiesCrudRouter from './routes/api/v1/CRUDfacultiesRouter'
 import councilCrudRouter from './routes/api/v1/CRUDcouncilsRouter'
+import usersCrudRouter from './routes/api/v1/CRUDusersRouter'
 /**
  * Creates and configures an ExpressJS web server.
  *
@@ -66,6 +67,7 @@ class App {
      */
     this.express.use('/api/v1/faculties', facultiesCrudRouter);
     this.express.use('/api/v1/faculties', councilCrudRouter);
+    this.express.use('/api/v1/users', usersCrudRouter);
 
   }
 
