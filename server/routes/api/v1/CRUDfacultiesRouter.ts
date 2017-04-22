@@ -4,10 +4,12 @@ import { findAllFaculties } from "../../../queries/findAllFaculties";
 import { onError } from "./onError";
 import { onSuccess } from "./onSuccess";
 import {findOneFaculty} from "../../../queries/findOneFaculty";
+import {createFaculty} from "../../../queries/createFaculty";
+import {deleteFaculty} from "../../../queries/deleteFaculty";
+import {updateFaculty} from "../../../queries/updateFaculty";
 import {databaseErrorHandler} from "./databaseErrorHandler";
-import {createCouncil} from "../../../queries/createCouncil";
 
-class councilsCrudRouter {
+class facultiesCrudRouter {
   public router: Router;
 
   constructor() {
@@ -22,7 +24,6 @@ class councilsCrudRouter {
    //      *                  403 - If not logged in.
    //      *                  404 - If snippet is not found.
    //      */
-
   public getAll(req: Request, res: Response, next: NextFunction) {
     findAllFaculties()
         .then(_.partial(onSuccess, res))
@@ -36,35 +37,31 @@ class councilsCrudRouter {
   }
 
   public create(req: Request, res: Response, next: NextFunction) {
-    const facultyId = req.params.facultyId;
-    createCouncil(facultyId, req.body)
+    createFaculty(req.body)
         .then(_.partial(onSuccess, res))
         .catch(_.partial(databaseErrorHandler, res))
-        .catch(_.partial(onError, res, `Could not create council`));
+        .catch( _.partial(onError, res, `Could not create faculty`) );
   }
 
   public delete(req: Request, res: Response, next: NextFunction) {
-    findOneFaculty(req.params.id)
+    deleteFaculty(req.params.id)
         .then(_.partial(onSuccess, res))
-        .catch(_.partial(onError, res, "Delete council failed"));
+        .catch(_.partial(onError, res, "Delete faculty failed"));
   }
 
   public patch(req: Request, res: Response, next: NextFunction) {
-    findOneFaculty(req.params.id)
+    updateFaculty(req.params.id, req.body)
         .then(_.partial(onSuccess, res))
-        .catch(_.partial(onError, res, "Update council failed"));
+        .catch(_.partial(onError, res, "Update faculty failed"));
   }
 
-
   public init() {
-    //this.router.get('/:facultyId', this.getAll);
-    this.router.post('/:facultyId', this.create);
-    //this.router.get('/:id', this.getOne);
-    //this.router.delete('/:id', this.delete);
-    //this.router.patch('/:id', this.patch);
-
-
+    this.router.get('/', this.getAll);
+    this.router.post('/', this.create);
+    this.router.get('/:id', this.getOne);
+    this.router.delete('/:id', this.delete);
+    this.router.patch('/:id', this.patch);
   }
 }
 
-export default new councilsCrudRouter().router
+export default new facultiesCrudRouter().router

@@ -1,7 +1,6 @@
 import {CouncilModel} from "../model/model";
-const hri = require('human-readable-ids').hri;
 
-export function updateCouncil(id: string, props: any) {
+export function updateCouncil(id: number, props: any) {
 
     return CouncilModel.update(
         props,
@@ -9,6 +8,4 @@ export function updateCouncil(id: string, props: any) {
             where: {id}
         }
     );
-
-
 }

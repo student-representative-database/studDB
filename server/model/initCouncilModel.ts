@@ -3,7 +3,18 @@ import {Sequelize} from 'sequelize';
 
 export function initCouncilModel(sequelize: Sequelize) {
     return sequelize.define('Council', {
-        name: ORM.STRING,
-        facultyId: ORM.INTEGER,
+        id: {
+            type: ORM.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
+        },
+        name: {
+            type: ORM.STRING,
+            allowNull: false
+        },
+        facultyId: {
+            type:ORM.INTEGER,
+            allowNull: false
+        }
     });
 }

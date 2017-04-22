@@ -4,6 +4,15 @@ import {Sequelize} from 'sequelize';
 
 export function initFacultyModel(sequelize: Sequelize) {
     return sequelize.define('Faculty', {
-        name: ORM.STRING,
+        id: {
+            type: ORM.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
+        },
+        name: {
+            type: ORM.STRING,
+            unique: true,
+            allowNull: false
+        }
     })
 }

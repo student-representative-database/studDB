@@ -18,6 +18,6 @@ FacultyModel.hasMany(CouncilModel, {foreignKey: 'facultyId'});
 CouncilModel.belongsTo(FacultyModel, {foreignKey: 'facultyId'});
 
 // sequelize.sync({
-//     // Seqelize forces overwrite of current models in DB in they are changed in code.
+//     // Seqelize forces overwrite of current models in DB in they are changed in code and all rows are removed.
 //     force:true
 // });

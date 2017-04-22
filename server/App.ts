@@ -7,8 +7,8 @@ import * as path from 'path'
 
 // Import routes.
 import HomeRouter from './routes/web/HomeRouter'
-import facultiesCrudRouter from './routes/api/v1/facultiesCrudRouter'
-import councilCrudRouter from './routes/api/v1/councilsCrudRouter'
+import facultiesCrudRouter from './routes/api/v1/CRUDfacultiesRouter'
+import councilCrudRouter from './routes/api/v1/CRUDcouncilsRouter'
 /**
  * Creates and configures an ExpressJS web server.
  *

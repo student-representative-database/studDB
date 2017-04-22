@@ -1,13 +1,14 @@
 import { NextFunction, Request, Response, Router } from 'express'
 import * as _ from 'lodash';
-import { findAllFaculties } from "../../../queries/findAllFaculties";
 import { onError } from "./onError";
 import { onSuccess } from "./onSuccess";
-import {findOneFaculty} from "../../../queries/findOneFaculty";
-import {createFaculty} from "../../../queries/createFaculty";
+import {findOneCouncil} from "../../../queries/findOneCouncil";
+import {createCouncil} from "../../../queries/createCouncil";
+import {deleteCouncil} from "../../../queries/deleteCouncil";
+import {updateCouncil} from "../../../queries/updateCouncil";
 import {databaseErrorHandler} from "./databaseErrorHandler";
 
-class facultiesCrudRouter {
+class councilsCrudRouter {
   public router: Router;
 
   constructor() {
@@ -22,47 +23,40 @@ class facultiesCrudRouter {
    //      *                  403 - If not logged in.
    //      *                  404 - If snippet is not found.
    //      */
-  public getAll(req: Request, res: Response, next: NextFunction) {
-    findAllFaculties()
+
+  public getOne(req: Request, res: Response, next: NextFunction) {
+    findOneCouncil(req.params.councilId)
         .then(_.partial(onSuccess, res))
         .catch(_.partial(onError, res, "Find all faculties failed"));
   }
 
-  public getOne(req: Request, res: Response, next: NextFunction) {
-    findOneFaculty(req.params.id)
-        .then(_.partial(onSuccess, res))
-        .catch(_.partial(onError, res, "Find one faculty failed"));
-  }
-
   public create(req: Request, res: Response, next: NextFunction) {
-    createFaculty(req.body)
+    const facultyId = req.params.facultyId;
+    createCouncil(facultyId, req.body)
         .then(_.partial(onSuccess, res))
         .catch(_.partial(databaseErrorHandler, res))
-        .catch( _.partial(onError, res, `Could not create faculty`) );
+        .catch(_.partial(onError, res, `Could not create council`));
   }
 
   public delete(req: Request, res: Response, next: NextFunction) {
-    findOneFaculty(req.params.id)
+    deleteCouncil(req.params.councilId)
         .then(_.partial(onSuccess, res))
-        .catch(_.partial(onError, res, "Delete faculty failed"));
+        .catch(_.partial(onError, res, "Delete council failed"));
   }
 
   public patch(req: Request, res: Response, next: NextFunction) {
-    findOneFaculty(req.params.id)
+    updateCouncil(req.params.councilId, req.body)
         .then(_.partial(onSuccess, res))
-        .catch(_.partial(onError, res, "Update faculty failed"));
+        .catch(_.partial(onError, res, "Update council failed"));
   }
 
 
   public init() {
-    this.router.get('/', this.getAll);
-    this.router.post('/', this.create);
-    this.router.get('/:id', this.getOne);
-    this.router.delete('/:id', this.delete);
-    this.router.patch('/:id', this.patch);
-
-
+    this.router.get('/:facultyId/:councilId', this.getOne);
+    this.router.post('/:facultyId', this.create);
+    this.router.delete('/:facultyId/:councilId', this.delete);
+    this.router.patch('/:facultyId/:councilId', this.patch);
   }
 }
 
-export default new facultiesCrudRouter().router
+export default new councilsCrudRouter().router

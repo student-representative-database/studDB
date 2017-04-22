@@ -1,8 +1,4 @@
-
-// tslint:disable-next-line:ordered-imports
 import {Request, Response, RequestHandler, ErrorRequestHandler, NextFunction} from 'express';
-
-
 
 export function apiErrorHandler(
     err: any,
@@ -15,5 +11,4 @@ export function apiErrorHandler(
 
     res.status(500).json({errorCode: 'ERR-001',
         message: 'Internal Server Error'});
-
 }
