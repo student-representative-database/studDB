@@ -1,9 +1,10 @@
 import ORM = require("sequelize");
 import {Sequelize} from 'sequelize';
-import * as bcryptjs from 'bcryptjs';
+//import * as bcryptjs from 'bcryptjs';
+const bcryptjs = require('bcryptjs');
 
 export function initUserModel(sequelize: Sequelize) {
-    let User = sequelize.define('User', {
+    let User = sequelize.define('user', {
             id: {
                 type: ORM.INTEGER,
                 autoIncrement: true,
@@ -35,13 +36,14 @@ export function initUserModel(sequelize: Sequelize) {
                 type: ORM.STRING,
                 allowNull: false
             }
-        }, {
+        }
+        , {
             //Uncomment this Andras
-            // hooks: {
-            //      afterValidate: function(user){
-            //          user.password = bcryptjs.hashSync(user.password, 8)
-            //      }
-            // }
+            hooks: {
+                 beforeCreate: function(user: any){
+                     user.password = bcryptjs.hashSync(user.password, 8)
+                 }
+            }
 
 
             // ,
@@ -56,6 +58,5 @@ export function initUserModel(sequelize: Sequelize) {
             //     },
             // }
         });
-
     return User;
 }
