@@ -37,11 +37,11 @@ export function initUserModel(sequelize: Sequelize) {
             }
         }, {
             //Uncomment this Andras
-            // hooks: {
-            //      afterValidate: function(user){
-            //          user.password = bcryptjs.hashSync(user.password, 8)
-            //      }
-            // }
+            hooks: {
+                 afterValidate: function(user){
+                     user.password = bcryptjs.hashSync(user.password, 8)
+                 }
+            }
 
 
             // ,
