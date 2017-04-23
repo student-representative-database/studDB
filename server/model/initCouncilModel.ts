@@ -1,4 +1,4 @@
-import ORM = require("sequelize");
+import ORM = require('sequelize');
 import {Sequelize} from 'sequelize';
 
 export function initCouncilModel(sequelize: Sequelize) {
@@ -13,7 +13,7 @@ export function initCouncilModel(sequelize: Sequelize) {
             allowNull: false
         },
         facultyId: {
-            type:ORM.INTEGER,
+            type: ORM.INTEGER,
             allowNull: false
         }
     });

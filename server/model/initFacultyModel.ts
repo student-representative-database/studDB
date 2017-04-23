@@ -1,5 +1,5 @@
 
-import * as ORM from "sequelize";
+import * as ORM from 'sequelize';
 import {Sequelize} from 'sequelize';
 
 export function initFacultyModel(sequelize: Sequelize) {

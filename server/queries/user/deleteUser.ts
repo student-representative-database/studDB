@@ -1,4 +1,4 @@
-import {UserModel} from "../../model/model";
+import {UserModel} from '../../model/model';
 
 export function deleteUser(id: number) {
     return UserModel.destroy({

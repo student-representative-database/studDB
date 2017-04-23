@@ -4,7 +4,6 @@ import * as exphbs from 'express-handlebars'
 import * as logger from 'morgan'
 import * as path from 'path'
 
-
 // Import routes.
 import HomeRouter from './routes/web/HomeRouter'
 import facultiesCrudRouter from './routes/api/v1/CRUDfacultiesRouter'

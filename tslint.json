@@ -5,9 +5,13 @@
     ],
     "jsRules": {},
     "rules": {
-        "quotemark": ["single"],
+        "quotemark": [true, "single", "avoid-escape"],
         "semicolon": ["never"],
-        "trailing-comma": ["never"]
+        "trailing-comma": ["never"],
+        "ordered-imports": false,
+        "object-literal-sort-keys": false,
+        "no-console": false,
+        "no-unused-variable": [true]
     },
     "rulesDirectory": []
 }

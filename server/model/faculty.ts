@@ -1,4 +1,4 @@
-import  {Council} from "./council"
+import {Council} from './council'
 
 export interface Faculty {
     readonly id: number,
@@ -15,7 +15,6 @@ export function createFaculty({id, name, Councils}: any): Faculty {
 }
 
 export function createFaculties(data: any[]): Faculty[] {
-    console.log(data);
     return data.map(createFaculty);
 }
 

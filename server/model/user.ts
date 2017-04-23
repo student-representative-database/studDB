@@ -1,4 +1,4 @@
-import  {Council} from "./council"
+import {Council} from './council'
 
 export interface User {
     readonly id: number,
@@ -19,6 +19,5 @@ export function createUser({id, firstName, lastName, email, password}: any): Use
 }
 
 export function createUsers(data: any[]): User[] {
-    console.log(data);
     return data.map(createUser);
 }

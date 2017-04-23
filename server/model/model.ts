@@ -1,9 +1,9 @@
 
-import * as ORM from "sequelize";
+import * as ORM from 'sequelize';
 import {LoggingOptions, Sequelize} from 'sequelize';
-import {initCouncilModel} from "./initCouncilModel";
-import {initFacultyModel} from "./initFacultyModel";
-import {initUserModel} from "./initUserModel";
+import {initCouncilModel} from './initCouncilModel';
+import {initFacultyModel} from './initFacultyModel';
+import {initUserModel} from './initUserModel';
 
 const dbUrl = 'postgres://postgres:postgres@postgres:5432/studDB';
 
@@ -22,5 +22,5 @@ CouncilModel.belongsTo(FacultyModel, {foreignKey: 'facultyId'});
 // SHOULD PROBABLY BE ACTIVE
 // Sequelize forces overwrite of current models in DB in they are changed in code and all rows are removed.
 sequelize.sync({
-    force:true
+    force: true
 });

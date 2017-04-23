@@ -1,4 +1,4 @@
-import {UserModel} from "../../model/model";
+import {UserModel} from '../../model/model';
 
 export function updateUser(id: number, props: any) {
 

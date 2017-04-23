@@ -6,7 +6,6 @@ export function apiErrorHandler(
     res: Response,
     next: NextFunction) {
 
-
     console.error("API error handler triggered", err);
 
     res.status(500).json({errorCode: 'ERR-001',
