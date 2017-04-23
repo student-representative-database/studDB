@@ -1,38 +1,38 @@
-export interface Iuser {
+export interface Iemployee {
     readonly id: number,
     firstName: string,
     lastName: string,
-    phd: boolean,
     phone: string,
     email: string,
     faculty: string,
-    graduationYear: Date
+    position: string,
+    profileUrl: string,
     password: string
 }
 
-export function createUser({
+export function createEmployee({
     id,
     firstName,
     lastName,
-    phd,
     phone,
     email,
     faculty,
-    graduationYear,
-    password}: any): Iuser {
+    position,
+    profileUrl,
+    password}: any): Iemployee {
     return {
         id,
         firstName,
         lastName,
-        phd,
         phone,
         email,
         faculty,
-        graduationYear,
+        position,
+        profileUrl,
         password
     };
 }
 
-export function createUsers(data: any[]): Iuser[] {
-    return data.map(createUser);
+export function createEmployees(data: any[]): Iemployee[] {
+    return data.map(createEmployee);
 }

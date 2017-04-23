@@ -2,14 +2,14 @@ import {NextFunction, Request, Response, Router} from 'express'
 import * as _ from 'lodash';
 import {onError} from './onError';
 import {onSuccess} from './onSuccess';
-import {findOneUser} from '../../../queries/user/findOneUser';
-import {findAllUsers} from '../../../queries/user/findAllUsers';
-import {createUser} from '../../../queries/user/createUser';
-import {deleteUser} from '../../../queries/user/deleteUser';
-import {updateUser} from '../../../queries/user/updateUser';
+import {findOne} from '../../../queries/employee/findOne';
+import {findAll} from '../../../queries/employee/findAll';
+import {createOne} from '../../../queries/employee/createOne';
+import {deleteOne} from '../../../queries/employee/deleteOne';
+import {updateOne} from '../../../queries/employee/updateOne';
 import {databaseErrorHandler} from './databaseErrorHandler';
 
-class CRUDusersRouter {
+class CRUDemployeeRouter {
     public router: Router;
 
     constructor() {
@@ -21,49 +21,49 @@ class CRUDusersRouter {
      * /api/v1/faculties/:id
      *  GET:
      *    description:  Renders the form for updating a snippet.
-     *    responses:    200 - If user is logged in.
+     *    responses:    200 - If employee is logged in.
      *                  403 - If not logged in.
      *                  404 - If snippet is not found.
      */
 
     public getAll(req: Request, res: Response, next: NextFunction) {
-        findAllUsers()
+        findAll()
             .then(_.partial(onSuccess, res))
-            .catch(_.partial(onError, res, 'Find all users failed'));
+            .catch(_.partial(onError, res, 'Find all employees failed'));
     }
 
     public getOne(req: Request, res: Response, next: NextFunction) {
-        findOneUser(req.params.userId)
+        findOne(req.params.Id)
             .then(_.partial(onSuccess, res))
-            .catch(_.partial(onError, res, 'Find one user failed'));
+            .catch(_.partial(onError, res, 'Find one employee failed'));
     }
 
     public create(req: Request, res: Response, next: NextFunction) {
-        createUser(req.body)
+        createOne(req.body)
             .then(_.partial(onSuccess, res))
             .catch(_.partial(databaseErrorHandler, res))
-            .catch(_.partial(onError, res, `Could not create user`));
+            .catch(_.partial(onError, res, `Could not create employee`));
     }
 
     public delete(req: Request, res: Response, next: NextFunction) {
-        deleteUser(req.params.userId)
+        deleteOne(req.params.Id)
             .then(_.partial(onSuccess, res))
-            .catch(_.partial(onError, res, 'Delete user failed'));
+            .catch(_.partial(onError, res, 'Delete employee failed'));
     }
 
     public patch(req: Request, res: Response, next: NextFunction) {
-        updateUser(req.params.userId, req.body)
+        updateOne(req.params.Id, req.body)
             .then(_.partial(onSuccess, res))
-            .catch(_.partial(onError, res, 'Update user failed'));
+            .catch(_.partial(onError, res, 'Update employee failed'));
     }
 
     public init() {
         this.router.get('/', this.getAll);
-        this.router.get('/:userId', this.getOne);
+        this.router.get('/:id', this.getOne);
         this.router.post('/', this.create);
-        this.router.delete('/:userId', this.delete);
-        this.router.patch('/:userId', this.patch);
+        this.router.delete('/:id', this.delete);
+        this.router.patch('/:id', this.patch);
     }
 }
 
-export default new CRUDusersRouter().router
+export default new CRUDemployeeRouter().router

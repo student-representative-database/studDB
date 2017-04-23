@@ -3,13 +3,13 @@ import * as _ from 'lodash';
 import { findAllFaculties } from '../../../queries/faculty/findAllFaculties';
 import { onError } from './onError';
 import { onSuccess } from './onSuccess';
-import {findOneFaculty} from '../../../queries/faculty/findOneFaculty';
-import {createFaculty} from '../../../queries/faculty/createFaculty';
-import {deleteFaculty} from '../../../queries/faculty/deleteFaculty';
-import {updateFaculty} from '../../../queries/faculty/updateFaculty';
-import {databaseErrorHandler} from './databaseErrorHandler';
+import { findOneFaculty } from '../../../queries/faculty/findOneFaculty';
+import { createFaculty } from '../../../queries/faculty/createFaculty';
+import { deleteFaculty } from '../../../queries/faculty/deleteFaculty';
+import { updateFaculty } from '../../../queries/faculty/updateFaculty';
+import { databaseErrorHandler } from './databaseErrorHandler';
 
-class facultiesCrudRouter {
+class CRUDfacultiesRouter {
   public router: Router;
 
   constructor() {
@@ -64,4 +64,4 @@ class facultiesCrudRouter {
   }
 }
 
-export default new facultiesCrudRouter().router
+export default new CRUDfacultiesRouter().router

@@ -4,6 +4,7 @@ import {LoggingOptions, Sequelize} from 'sequelize';
 import {initCouncilModel} from './initCouncilModel';
 import {initFacultyModel} from './initFacultyModel';
 import {initUserModel} from './initUserModel';
+import {initEmployeeModel} from './initEmployeeModel';
 
 const dbUrl = 'postgres://postgres:postgres@postgres:5432/studDB';
 
@@ -14,6 +15,7 @@ const sequelize: Sequelize = new ORM(dbUrl, options);
 export const FacultyModel =  initFacultyModel(sequelize);
 export const CouncilModel =  initCouncilModel(sequelize);
 export const UserModel    =  initUserModel(sequelize);
+export const EmployeeModel    =  initEmployeeModel(sequelize);
 
 FacultyModel.hasMany(CouncilModel, {foreignKey: 'facultyId'});
 CouncilModel.belongsTo(FacultyModel, {foreignKey: 'facultyId'});

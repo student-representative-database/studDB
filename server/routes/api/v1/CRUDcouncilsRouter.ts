@@ -8,7 +8,7 @@ import {deleteCouncil} from '../../../queries/council/deleteCouncil';
 import {updateCouncil} from '../../../queries/council/updateCouncil';
 import {databaseErrorHandler} from './databaseErrorHandler';
 
-class councilsCrudRouter {
+class CRUDcouncilsRouter {
   public router: Router;
 
   constructor() {
@@ -58,4 +58,4 @@ class councilsCrudRouter {
   }
 }
 
-export default new councilsCrudRouter().router
+export default new CRUDcouncilsRouter().router

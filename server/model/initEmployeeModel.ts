@@ -1,10 +1,9 @@
 import ORM = require('sequelize');
 import {Sequelize} from 'sequelize';
 import * as bcryptjs from 'bcryptjs';
-// const bcryptjs = require('bcryptjs');
 
-export function initUserModel(sequelize: Sequelize) {
-  const User = sequelize.define('user', {
+export function initEmployeeModel(sequelize: Sequelize) {
+  const Employee = sequelize.define('employee', {
     id: {
       type: ORM.INTEGER,
       autoIncrement: true,
@@ -26,11 +25,6 @@ export function initUserModel(sequelize: Sequelize) {
         len: [1, 20]
       }
     },
-    phd: {
-      type: ORM.BOOLEAN,
-      allowNull: false,
-      defaultValue: true,
-    },
     phone: {
       type: ORM.STRING,
       allowNull: false
@@ -46,8 +40,12 @@ export function initUserModel(sequelize: Sequelize) {
       type: ORM.STRING,
       allowNull: false
     },
-    graduationYear: {
-      type: ORM.DATE,
+    position: {
+      type: ORM.STRING,
+      allowNull: false
+    },
+    profileUrl: {
+      type: ORM.STRING,
       allowNull: false
     },
     password: {
@@ -57,8 +55,8 @@ export function initUserModel(sequelize: Sequelize) {
   }
     , {
       hooks: {
-        beforeCreate: (user: any) => {
-          user.password = bcryptjs.hashSync(user.password, 8)
+        beforeCreate: (employee: any) => {
+          employee.password = bcryptjs.hashSync(employee.password, 8)
         }
       }
 
@@ -74,5 +72,5 @@ export function initUserModel(sequelize: Sequelize) {
       //     },
       // }
     });
-  return User;
+  return Employee;
 }
