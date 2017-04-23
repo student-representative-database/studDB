@@ -4,7 +4,7 @@ import * as bcryptjs from 'bcryptjs';
 // const bcryptjs = require('bcryptjs');
 
 export function initUserModel(sequelize: Sequelize) {
-  const User = sequelize.define('user', {
+  const User = sequelize.define('User', {
     id: {
       type: ORM.INTEGER,
       autoIncrement: true,

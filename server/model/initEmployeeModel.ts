@@ -3,7 +3,7 @@ import {Sequelize} from 'sequelize';
 import * as bcryptjs from 'bcryptjs';
 
 export function initEmployeeModel(sequelize: Sequelize) {
-  const Employee = sequelize.define('employee', {
+  const Employee = sequelize.define('Employee', {
     id: {
       type: ORM.INTEGER,
       autoIncrement: true,
