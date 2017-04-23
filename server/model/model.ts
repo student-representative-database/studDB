@@ -23,11 +23,13 @@ export const CouncilPositionsModel = initCouncilPositionsModel(sequelize);
 FacultyModel.hasMany(CouncilModel, { foreignKey: 'facultyId' });
 CouncilModel.belongsTo(FacultyModel, { foreignKey: 'facultyId' });
 
-CouncilModel.hasMany(CouncilInstanceModel, { foreignKey: 'councilId' });
+CouncilModel.hasMany(CouncilInstanceModel, { foreignKey: 'councilId'  });
 CouncilInstanceModel.belongsTo(CouncilModel, { foreignKey: 'councilId' });
 
-// CouncilInstanceModel.hasMany(CouncilPositionsModel, { foreignKey: 'councilInstanceId' });
-// CouncilPositionsModel.belongsTo(CouncilInstanceModel, { foreignKey: 'councilInstanceId' });
+CouncilInstanceModel.hasMany(CouncilPositionsModel, { foreignKey: 'year' });
+CouncilPositionsModel.belongsTo(CouncilInstanceModel, { foreignKey: 'councilId' });
+CouncilInstanceModel.hasMany(CouncilPositionsModel, { foreignKey: 'year' });
+CouncilPositionsModel.belongsTo(CouncilInstanceModel, { foreignKey: 'councilId' });
 
 // COMMENT OUT IF YOU DON'T WANT THE DB TO BE OVERWRITTEN AT EVERY RESTART, IF WORKING WITH THE DB MODELS THIS CODE
 // SHOULD PROBABLY BE ACTIVE
@@ -50,9 +52,40 @@ sequelize.sync({
         studentPositions: 2,
         phdPositions: 2
     })
-}).then(() => {
+})
+.then(() => {
+    return CouncilInstanceModel.create({
+        year: 2016,
+        councilId: 1
+    })
+})
+.then(() => {
     return CouncilInstanceModel.create({
         year: 2017,
         councilId: 1
     })
-});
+})
+.then(() => {
+    return CouncilPositionsModel.create({
+        year: 2017,
+        councilId: 1,
+        name: 'Fredrik'
+    })
+})
+.then(() => {
+    return CouncilPositionsModel.create({
+        year: 2017,
+        councilId: 2,
+        name: 'Fredrik'
+    })
+})
+.then(() => {
+    return CouncilInstanceModel.findAll({
+        include: [
+            {
+                model: CouncilPositionsModel
+            }
+        ]
+    })
+})
+.then((res) => console.log(res[1].dataValues));
