@@ -47,24 +47,14 @@ class CRUDemployeeRouter {
     }
 
     public delete(req: Request, res: Response, next: NextFunction) {
-<<<<<<< Updated upstream
-=======
-        /*deleteOne(req.params.Id)
-            .then(_.partial(onSuccess, res))
-            .catch(_.partial(onError, res, 'Delete employee failed'));*/
->>>>>>> Stashed changes
+
         deleteOne(req.params.id, EmployeeModel)
             .then(_.partial(onSuccess, res))
             .catch(_.partial(onError, res, 'Delete employee failed'));
     }
 
     public patch(req: Request, res: Response, next: NextFunction) {
-<<<<<<< Updated upstream
-=======
-        /*updateOne(req.params.Id, req.body)
-            .then(_.partial(onSuccess, res))
-            .catch(_.partial(onError, res, 'Update employee failed'));*/
->>>>>>> Stashed changes
+
         update(req.params.id, req.body, EmployeeModel)
             .then(_.partial(onSuccess, res))
             .catch(_.partial(onError, res, 'Update employee failed'));

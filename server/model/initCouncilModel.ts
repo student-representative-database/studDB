@@ -33,13 +33,20 @@ export function initCouncilModel(sequelize: Sequelize) {
 
 export function initCouncilInstanceModel(sequelize: Sequelize) {
     return sequelize.define('CouncilInstance', {
+        id: {
+            type: ORM.INTEGER,
+            autoIncrement: true,
+            primaryKey: true,
+        },
         year: {
             type: ORM.INTEGER,
-            primaryKey: true
+            unique: 'compositeIndex',
+            allowNull: false
         },
         councilId: {
             type: ORM.INTEGER,
-            primaryKey: true
+            unique: 'compositeIndex',
+            allowNull: false
         }
     });
 }
@@ -54,8 +61,9 @@ export function initCouncilPositionsModel(sequelize: Sequelize) {
         year: {
             type: ORM.INTEGER,
         },
-        councilId: {
+        councilInstanceId: {
             type: ORM.INTEGER,
+            allowNull: false
         },
         phd: {
             type: ORM.BOOLEAN,
@@ -64,9 +72,6 @@ export function initCouncilPositionsModel(sequelize: Sequelize) {
         vacant: {
             type: ORM.BOOLEAN,
             defaultValue: true
-        },
-        name: {
-            type: ORM.TEXT
         }
     });
 }

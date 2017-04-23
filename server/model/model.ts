@@ -1,3 +1,4 @@
+import { CouncilInstanceModel } from './model';
 // import { CouncilModel } from './model';
 
 import * as ORM from 'sequelize';
@@ -26,10 +27,9 @@ CouncilModel.belongsTo(FacultyModel, { foreignKey: 'facultyId' });
 CouncilModel.hasMany(CouncilInstanceModel, { foreignKey: 'councilId'  });
 CouncilInstanceModel.belongsTo(CouncilModel, { foreignKey: 'councilId' });
 
-CouncilInstanceModel.hasMany(CouncilPositionsModel, { foreignKey: 'year' });
-CouncilPositionsModel.belongsTo(CouncilInstanceModel, { foreignKey: 'councilId' });
-CouncilInstanceModel.hasMany(CouncilPositionsModel, { foreignKey: 'year' });
-CouncilPositionsModel.belongsTo(CouncilInstanceModel, { foreignKey: 'councilId' });
+CouncilInstanceModel.hasMany(CouncilPositionsModel, { foreignKey: 'councilInstanceId' });
+CouncilPositionsModel.belongsTo(CouncilInstanceModel, { foreignKey: 'councilInstanceId' });
+
 
 // COMMENT OUT IF YOU DON'T WANT THE DB TO BE OVERWRITTEN AT EVERY RESTART, IF WORKING WITH THE DB MODELS THIS CODE
 // SHOULD PROBABLY BE ACTIVE
@@ -54,29 +54,37 @@ sequelize.sync({
     })
 })
 .then(() => {
-    return CouncilInstanceModel.create({
-        year: 2016,
-        councilId: 1
+    return CouncilModel.create({
+        name: 'Rådet för snickare',
+        description: 'Hammare och spik!!!',
+        facultyId: 2,
+        studentPositions: 2,
+        phdPositions: 2
     })
 })
 .then(() => {
     return CouncilInstanceModel.create({
         year: 2017,
         councilId: 1
+    })
+})
+.then(() => {
+    return CouncilInstanceModel.create({
+        year: 2018,
+        councilId: 2
+    })
+})
+.then(() => {
+    return CouncilInstanceModel.create({
+        year: 2017,
+        councilId: 2
     })
 })
 .then(() => {
     return CouncilPositionsModel.create({
         year: 2017,
         councilId: 1,
-        name: 'Fredrik'
-    })
-})
-.then(() => {
-    return CouncilPositionsModel.create({
-        year: 2017,
-        councilId: 2,
-        name: 'Fredrik'
+        councilInstanceId: 1
     })
 })
 .then(() => {
@@ -88,4 +96,4 @@ sequelize.sync({
         ]
     })
 })
-.then((res) => console.log(res[1].dataValues));
+.then((res) => console.log(res[0].dataValues.CouncilPositions));
