@@ -2,9 +2,6 @@ import { NextFunction, Request, Response, Router } from 'express'
 import * as _ from 'lodash';
 import { onError } from './onError';
 import { onSuccess } from './onSuccess';
-import { createFaculty } from '../../../queries/faculty/createFaculty';
-import { deleteFaculty } from '../../../queries/faculty/deleteFaculty';
-import { updateFaculty } from '../../../queries/faculty/updateFaculty';
 import { databaseErrorHandler } from './databaseErrorHandler';
 import {FacultyModel} from '../../../model/model';
 import { create } from '../../../queries/create';
@@ -41,10 +38,6 @@ class CRUDfacultiesRouter {
   }
 
   public create(req: Request, res: Response, next: NextFunction) {
-    /*createFaculty(req.body)
-      .then(_.partial(onSuccess, res))
-      .catch(_.partial(databaseErrorHandler, res))
-      .catch(_.partial(onError, res, `Could not create faculty`));*/
     create(req.body, FacultyModel)
         .then(_.partial(onSuccess, res))
         .catch(_.partial(databaseErrorHandler, res))
@@ -52,17 +45,12 @@ class CRUDfacultiesRouter {
   }
 
   public delete(req: Request, res: Response, next: NextFunction) {
-    /*deleteFaculty(req.params.id)
-      .then(_.partial(onSuccess, res))
-      .catch(_.partial(onError, res, 'Delete faculty failed'));*/
     deleteOne(req.params.id, FacultyModel)
         .then(_.partial(onSuccess, res))
         .catch(_.partial(onError, res, 'Delete faculty failed'));
   }
 
   public patch(req: Request, res: Response, next: NextFunction) {
-    /*updateFaculty(req.params.id, req.body)
-      .then(_.partial(onSuccess, res))
       .catch(_.partial(onError, res, 'Update faculty failed'));*/
     update(req.params.id, req.body, FacultyModel)
         .then(_.partial(onSuccess, res))

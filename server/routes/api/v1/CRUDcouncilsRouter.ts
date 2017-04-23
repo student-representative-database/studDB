@@ -2,9 +2,6 @@ import { NextFunction, Request, Response, Router } from 'express'
 import * as _ from 'lodash';
 import {onError} from './onError';
 import {onSuccess} from './onSuccess';
-import {createCouncil} from '../../../queries/council/createCouncil';
-import {deleteCouncil} from '../../../queries/council/deleteCouncil';
-import {updateCouncil} from '../../../queries/council/updateCouncil';
 import {databaseErrorHandler} from './databaseErrorHandler';
 import {CouncilModel} from '../../../model/model';
 import { create } from '../../../queries/create';
@@ -29,10 +26,6 @@ class CRUDcouncilsRouter {
  */
 
   public getOne(req: Request, res: Response, next: NextFunction) {
-    /*findOneCouncil(req.params.councilId)
-      .then(_.partial(onSuccess, res))
-      .catch(_.partial(onError, res, 'Find all faculties failed'));*/
-    console.log('One Council!');
     findOneCouncilTest(req.params.councilId)
       .then(_.partial(onSuccess, res))
       .catch(_.partial(onError, res, 'Find all faculties failed'));
@@ -40,10 +33,6 @@ class CRUDcouncilsRouter {
 
   public create(req: Request, res: Response, next: NextFunction) {
     const facultyId = req.params.facultyId;
-    /*createCouncil(facultyId, req.body)
-      .then(_.partial(onSuccess, res))
-      .catch(_.partial(databaseErrorHandler, res))
-      .catch(_.partial(onError, res, `Could not create council`));*/
     create(req.body, CouncilModel, facultyId)
         .then(_.partial(onSuccess, res))
         .catch(_.partial(databaseErrorHandler, res))
@@ -51,18 +40,12 @@ class CRUDcouncilsRouter {
   }
 
   public delete(req: Request, res: Response, next: NextFunction) {
-    /*deleteCouncil(req.params.councilId)
-      .then(_.partial(onSuccess, res))
-      .catch(_.partial(onError, res, 'Delete council failed'));*/
     deleteOne(req.params.councilId, CouncilModel)
         .then(_.partial(onSuccess, res))
         .catch(_.partial(onError, res, 'Delete council failed'));
   }
 
   public patch(req: Request, res: Response, next: NextFunction) {
-    /*updateCouncil(req.params.councilId, req.body)
-      .then(_.partial(onSuccess, res))
-      .catch(_.partial(onError, res, 'Update council failed'));*/
     update(req.params.councilId, req.body, CouncilModel)
         .then(_.partial(onSuccess, res))
         .catch(_.partial(onError, res, 'Update council failed'));

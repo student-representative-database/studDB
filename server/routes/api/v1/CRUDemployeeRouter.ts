@@ -2,9 +2,6 @@ import {NextFunction, Request, Response, Router} from 'express'
 import * as _ from 'lodash';
 import {onError} from './onError';
 import {onSuccess} from './onSuccess';
-import {createOne} from '../../../queries/employee/createOne';
-// import {deleteOne} from '../../../queries/employee/deleteOne';
-import {updateOne} from '../../../queries/employee/updateOne';
 import {databaseErrorHandler} from './databaseErrorHandler';
 import {EmployeeModel} from '../../../model/model';
 import { create } from '../../../queries/create';
@@ -37,16 +34,12 @@ class CRUDemployeeRouter {
     }
 
     public getOne(req: Request, res: Response, next: NextFunction) {
-        findOneEmployee(req.params.Id)
+        findOneEmployee(req.params.id)
             .then(_.partial(onSuccess, res))
             .catch(_.partial(onError, res, 'Find one employee failed'));
     }
 
     public create(req: Request, res: Response, next: NextFunction) {
-        /*createOne(req.body)
-            .then(_.partial(onSuccess, res))
-            .catch(_.partial(databaseErrorHandler, res))
-            .catch(_.partial(onError, res, `Could not create employee`));*/
         create(req.body, EmployeeModel)
             .then(_.partial(onSuccess, res))
             .catch(_.partial(databaseErrorHandler, res))
@@ -54,19 +47,13 @@ class CRUDemployeeRouter {
     }
 
     public delete(req: Request, res: Response, next: NextFunction) {
-        /*deleteOne(req.params.Id)
-            .then(_.partial(onSuccess, res))
-            .catch(_.partial(onError, res, 'Delete employee failed'));*/
-        deleteOne(req.params.Id, EmployeeModel)
+        deleteOne(req.params.id, EmployeeModel)
             .then(_.partial(onSuccess, res))
             .catch(_.partial(onError, res, 'Delete employee failed'));
     }
 
     public patch(req: Request, res: Response, next: NextFunction) {
-        /*updateOne(req.params.Id, req.body)
-            .then(_.partial(onSuccess, res))
-            .catch(_.partial(onError, res, 'Update employee failed'));*/
-        update(req.params.Id, req.body, EmployeeModel)
+        update(req.params.id, req.body, EmployeeModel)
             .then(_.partial(onSuccess, res))
             .catch(_.partial(onError, res, 'Update employee failed'));
     }
