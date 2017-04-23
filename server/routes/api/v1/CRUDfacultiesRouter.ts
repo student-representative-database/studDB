@@ -51,7 +51,6 @@ class CRUDfacultiesRouter {
   }
 
   public patch(req: Request, res: Response, next: NextFunction) {
-      .catch(_.partial(onError, res, 'Update faculty failed'));*/
     update(req.params.id, req.body, FacultyModel)
         .then(_.partial(onSuccess, res))
         .catch(_.partial(onError, res, 'Update faculty failed'));
