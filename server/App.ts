@@ -61,6 +61,7 @@ class App {
       Web routes
      */
     this.express.use('/', HomeRouter);
+    this.express.use('/admin', HomeRouter);
 
     /*
       API routes
