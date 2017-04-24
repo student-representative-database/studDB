@@ -1,6 +1,3 @@
-import { CouncilInstanceModel } from './model';
-// import { CouncilModel } from './model';
-
 import * as ORM from 'sequelize';
 import { LoggingOptions, Sequelize } from 'sequelize';
 import { initCouncilModel, initCouncilInstanceModel, initCouncilPositionsModel } from './initCouncilModel';
@@ -30,6 +27,8 @@ CouncilInstanceModel.belongsTo(CouncilModel, { foreignKey: 'councilId' });
 CouncilInstanceModel.hasMany(CouncilPositionsModel, { foreignKey: 'councilInstanceId' });
 CouncilPositionsModel.belongsTo(CouncilInstanceModel, { foreignKey: 'councilInstanceId' });
 
+// CouncilModel.belongsToMany(CouncilPositionsModel, { through: CouncilInstanceModel });
+// CouncilPositionsModel.belongsToMany(CouncilModel, { through: CouncilInstanceModel });
 
 // COMMENT OUT IF YOU DON'T WANT THE DB TO BE OVERWRITTEN AT EVERY RESTART, IF WORKING WITH THE DB MODELS THIS CODE
 // SHOULD PROBABLY BE ACTIVE
@@ -88,6 +87,20 @@ sequelize.sync({
     })
 })
 .then(() => {
+    return CouncilPositionsModel.create({
+        year: 2017,
+        councilId: 1,
+        councilInstanceId: 1
+    })
+})
+.then(() => {
+    return CouncilPositionsModel.create({
+        year: 2017,
+        councilId: 1,
+        councilInstanceId: 1
+    })
+})
+.then(() => {
     return CouncilInstanceModel.findAll({
         include: [
             {
@@ -96,4 +109,5 @@ sequelize.sync({
         ]
     })
 })
-.then((res) => console.log(res[0].dataValues.CouncilPositions));
+//.then((res) => console.log(res[0].dataValues.CouncilPositions));
+.then((res) => console.log(res));

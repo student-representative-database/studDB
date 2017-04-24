@@ -63,7 +63,6 @@ export function initCouncilPositionsModel(sequelize: Sequelize) {
         },
         councilInstanceId: {
             type: ORM.INTEGER,
-            allowNull: false
         },
         phd: {
             type: ORM.BOOLEAN,

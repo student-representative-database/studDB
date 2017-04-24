@@ -4,6 +4,10 @@ export interface ICouncil {
     facultyId: number;
 }
 
+export function createCouncil({ id, name, facultyId }: any): ICouncil {
+    return new Council(id, name, facultyId);
+}
+
 export class Council implements ICouncil {
     public name: string;
     public facultyId: number;
@@ -20,6 +24,3 @@ export class Council implements ICouncil {
     }
 }
 
-export function createCouncil({id, name, facultyId}: any): ICouncil {
-    return new Council(id, name, facultyId);
-}
