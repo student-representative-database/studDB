@@ -1,17 +1,17 @@
 import { NextFunction, Request, Response, Router } from 'express'
 
 class HomeRouter {
-  public router: Router
+  public router: Router;
 
   constructor() {
-    this.router = Router()
+    this.router = Router();
     this.init()
   }
 
   public getHome(req: Request, res: Response, next: NextFunction) {
     res
-    .status(200)
-    .render('home')
+        .status(200)
+        .render('home')
   }
 
   public init() {

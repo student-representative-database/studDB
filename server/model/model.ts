@@ -108,6 +108,6 @@ sequelize.sync({
             }
         ]
     })
-})
-//.then((res) => console.log(res[0].dataValues.CouncilPositions));
-.then((res) => console.log(res));
+});
+// .then((res) => console.log(res[0].dataValues.CouncilPositions));
+// .then((res) => console.log(res));

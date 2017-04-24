@@ -6,6 +6,7 @@ import * as path from 'path'
 
 // Import routes.
 import HomeRouter from './routes/web/HomeRouter'
+import AdminRouter from './routes/web/AdminRouter'
 import CRUDfacultiesRouter from './routes/api/v1/CRUDfacultiesRouter'
 import CRUDcouncilRouter from './routes/api/v1/CRUDcouncilsRouter'
 import CRUDusersRouter from './routes/api/v1/CRUDusersRouter'
@@ -61,7 +62,7 @@ class App {
       Web routes
      */
     this.express.use('/', HomeRouter);
-    this.express.use('/admin', HomeRouter);
+    this.express.use('/admin', AdminRouter);
 
     /*
       API routes
