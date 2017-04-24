@@ -27,8 +27,10 @@ CouncilInstanceModel.belongsTo(CouncilModel, { foreignKey: 'councilId' });
 CouncilInstanceModel.hasMany(CouncilPositionsModel, { foreignKey: 'councilInstanceId' });
 CouncilPositionsModel.belongsTo(CouncilInstanceModel, { foreignKey: 'councilInstanceId' });
 
-UserModel.hasMany(CouncilPositionsModel, { as: 'councils' });
-//CouncilPositionsModel.hasOne(UserModel);
+UserModel.hasMany(CouncilPositionsModel, { as: 'councils', constraints: false });
+CouncilPositionsModel.hasOne(UserModel);
+
+
 
 // CouncilModel.belongsToMany(CouncilPositionsModel, { through: CouncilInstanceModel });
 // CouncilPositionsModel.belongsToMany(CouncilModel, { through: CouncilInstanceModel });
