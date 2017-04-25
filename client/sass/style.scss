@@ -10,7 +10,12 @@ h1, h2, h3, h4, h5, h6, p, code, pre {
 html {
   body {
     background: $bgc-primary;
+    font-family: $font-paragraphs;
   }
+}
+
+.container .jumbotron, h1, h2, h3, h4, h5, h6 {
+  font-family: $font-headings;
 }
 
 .container {
