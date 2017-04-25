@@ -14,7 +14,7 @@ html {
   }
 }
 
-.container .jumbotron, h1, h2, h3, h4, h5, h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: $font-headings;
 }
 
@@ -27,6 +27,20 @@ html {
   border-radius: 0px;
   border-top: 5px solid $fgc-primary;
   margin: 0 auto;
+
+  ul li {
+    font-family: $font-headings;
+    text-transform: uppercase;
+
+    a {
+      color: $fontc-primary;
+    }
+  }
+}
+
+// Nav buttons
+.nav-pills>li.active>a {
+  background: $fgc-primary;
 }
 
 /** Media queries **/
