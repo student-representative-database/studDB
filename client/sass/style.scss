@@ -13,7 +13,12 @@ html {
   }
 }
 
-.jumbotron {
-  background: $bgc-header;
-  border-top: 5px solid $fgc-primary;
+.container {
+  width: 1600px;
+
+  .jumbotron {
+    background: $bgc-header;
+    border-radius: 0px;
+    border-top: 5px solid $fgc-primary;
+  }
 }
