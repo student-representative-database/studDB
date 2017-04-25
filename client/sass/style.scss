@@ -1,14 +1,19 @@
 @import 'theme';
 
+// CSS reset
+html, body, div, header, main, section, aside,
+h1, h2, h3, h4, h5, h6, p, code, pre {
+  margin: 0;
+  padding: 0;
+}
+
 html {
   body {
     background: $bgc-primary;
   }
 }
 
-header {
+.jumbotron {
+  background: $bgc-header;
   border-top: 5px solid $fgc-primary;
-  height: 128;
-  width: 1440;
-  padding: 30px 80px;
 }
