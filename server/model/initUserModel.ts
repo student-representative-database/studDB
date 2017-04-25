@@ -1,5 +1,5 @@
 import ORM = require('sequelize');
-import {Sequelize} from 'sequelize';
+import { Sequelize } from 'sequelize';
 import * as bcryptjs from 'bcryptjs';
 // const bcryptjs = require('bcryptjs');
 
@@ -29,7 +29,7 @@ export function initUserModel(sequelize: Sequelize) {
     phd: {
       type: ORM.BOOLEAN,
       allowNull: false,
-      defaultValue: true,
+      defaultValue: false,
     },
     phone: {
       type: ORM.STRING,
@@ -75,4 +75,18 @@ export function initUserModel(sequelize: Sequelize) {
       // }
     });
   return User;
+}
+
+/*export function initUserPositionModel(sequelize: Sequelize) {
+  return sequelize.define('UserPosition', {
+    id: {
+      type: ORM.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+  });
+}*/
+
+export function initUserPositionModel(sequelize: Sequelize) {
+  return sequelize.define('UserPosition', {});
 }

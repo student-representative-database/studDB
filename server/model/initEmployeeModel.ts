@@ -74,3 +74,7 @@ export function initEmployeeModel(sequelize: Sequelize) {
     });
   return Employee;
 }
+
+export function initEmployeePositionModel(sequelize: Sequelize) {
+  return sequelize.define('EmployeePosition', {});
+}
