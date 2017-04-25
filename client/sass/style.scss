@@ -11,12 +11,22 @@ h1, h2, h3, h4, h5, h6, p, code, pre, input, form {
 html {
   body {
     background: $bgc-primary;
+    font-size: 18px;
 
+    a {
+      color: $linkc-primary;
+    }
+
+    a:hover {
+      color: $linkc-secondary;
+    }
   }
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: $font-headings;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .container {
@@ -41,12 +51,36 @@ h1, h2, h3, h4, h5, h6 {
 
 // Nav buttons
 .nav-pills>li.active>a {
-  background: $fgc-primary;
+  background: $linkc-primary;
+}
+
+.nav-pills>li.active>a:hover {
+  background: $linkc-secondary;
 }
 
 .page-search {
   display: inline-flex;
   width: 500px;
+}
+
+// Aside
+.col-md-4 {
+  section {
+    color: $fontc-secondary;
+    padding: 50px;
+  }
+
+  section:nth-child(odd) {
+    background: $fgc-primary;
+  }
+
+  section:nth-child(even) {
+    background: $fgc-secondary;
+  }
+}
+// Main content
+p {
+  padding: 10px 5px;
 }
 
 /** Media queries **/
