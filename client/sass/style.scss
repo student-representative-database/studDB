@@ -5,3 +5,10 @@ html {
     background: $bgc-primary;
   }
 }
+
+header {
+  border-top: 5px solid $fgc-primary;
+  height: 128;
+  width: 1440;
+  padding: 30px 80px;
+}
