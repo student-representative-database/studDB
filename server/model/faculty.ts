@@ -1,4 +1,5 @@
 import {ICouncil} from './council'
+import {ICouncilFacultyView} from './council'
 import {ICouncilInst} from './councilInst'
 import {createCouncilInstance} from './councilInst'
 
@@ -20,14 +21,11 @@ export function createFaculties(data: any[]): Faculty[] {
     return data.map(createFaculty);
 }
 
-function createCouncilFromDbModel({id, name, description, facultyId, studentPositions, phdPositions, CouncilInstances}: any): ICouncil {
+function createCouncilFromDbModel({id, name, description, facultyId}: any): ICouncilFacultyView {
     return {
         id,
         name,
         description,
         facultyId,
-        studentPositions,
-        phdPositions,
-        councilInstances: CouncilInstances.map(createCouncilInstance)
     }
 }

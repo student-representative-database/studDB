@@ -11,6 +11,13 @@ export interface ICouncil {
     councilInstances: ICouncilInst[]
 }
 
+export interface ICouncilFacultyView {
+    readonly id: number,
+    name: string,
+    description: string,
+    facultyId: number,
+}
+
 export function createCouncil({ id, name, description, facultyId, studentPositions, phdPositions, CouncilInstances }: any): ICouncil {
     return {
         id,
@@ -20,6 +27,15 @@ export function createCouncil({ id, name, description, facultyId, studentPositio
         studentPositions,
         phdPositions,
         councilInstances: CouncilInstances.map(createCouncilInstance)
+    }
+}
+
+export function createCouncilFacultyView({ id, name, description, facultyId }: any): ICouncilFacultyView {
+    return{
+        id,
+        name,
+        description,
+        facultyId
     }
 }
 
