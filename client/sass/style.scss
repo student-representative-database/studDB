@@ -80,6 +80,26 @@ h1, h2, h3, h4, h5, h6 {
     background: $fgc-secondary;
   }
 }
+
+.input-group {
+  input, button {
+    border-radius: 0px;
+  }
+
+  button {
+    background: $bgc-footer;
+    border: 1px solid $bgc-footer;
+    color: $fontc-secondary;
+    font-family: $font-headings;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  span {
+    padding-left: 20px;
+  }
+}
+
 // Main content
 p {
   padding: 10px 5px;
