@@ -19,14 +19,14 @@ html {
 }
 
 .container {
-  width: 1600px;
+  width: 1440px;
+}
 
-  .jumbotron {
-    background: $bgc-header;
-    border-radius: 0px;
-    border-top: 5px solid $fgc-primary;
-    margin: 0 auto;
-  }
+.jumbotron {
+  background: $bgc-header;
+  border-radius: 0px;
+  border-top: 5px solid $fgc-primary;
+  margin: 0 auto;
 }
 
 /** Media queries **/
