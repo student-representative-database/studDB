@@ -9,9 +9,14 @@ h1, h2, h3, h4, h5, h6, p, code, pre, input, form {
 }
 
 html {
+  overflow-y:scroll;
+  position: relative;
+  min-height: 100%;
+
   body {
     background: $bgc-primary;
     font-size: 18px;
+    margin-bottom: $footer-height;
 
     a {
       color: $linkc-primary;
@@ -31,7 +36,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .container {
-  width: 1440px;
+  width: $main-width;
 }
 
 .jumbotron {
@@ -103,6 +108,22 @@ h1, h2, h3, h4, h5, h6 {
 // Main content
 p {
   padding: 10px 5px;
+}
+
+// Footer
+footer {
+  background: $bgc-footer;
+  color: $fontc-secondary;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  min-height: $footer-height;
+
+  div {
+    padding: 50px;
+    width: $main-width;
+  }
 }
 
 /** Media queries **/
