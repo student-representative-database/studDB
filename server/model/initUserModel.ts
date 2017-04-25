@@ -88,5 +88,16 @@ export function initUserModel(sequelize: Sequelize) {
 }*/
 
 export function initUserPositionModel(sequelize: Sequelize) {
-  return sequelize.define('UserPosition', {});
+  return sequelize.define('UserPosition', {
+        UserId: {
+            type: ORM.INTEGER,
+            unique: 'compositeIndex',
+            allowNull: false
+        },
+        CouncilPositionId: {
+            type: ORM.INTEGER,
+            unique: 'compositeIndex',
+            allowNull: false
+        }
+  });
 }
