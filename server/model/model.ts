@@ -170,20 +170,39 @@ sequelize.sync({
             graduationYear: 2018,
         })
     })
-    /*.then(() => {
-        return UserPositionsModel.create({
-            councilId: 1,
-            councilInstanceId: 1
-        })
-    })*/
     .then(() => {
+        return UserPositionModel.create({
+            CouncilPositionId: 1,
+            UserId: 1
+        })
+    })
+    .then(() => {
+        return UserPositionModel.create({
+            CouncilPositionId: 1,
+            UserId: 2
+        })
+    })
+    /*.then(() => {
         return CouncilInstanceModel.findAll({
             include: [
                 {
-                    model: CouncilPositionsModel
+                    model: CouncilPositionsModel,
+                    include: [{
+                        model: UserPositionModel,
+                        include: [{
+                            model: UserModel
+                        }]
+                    }]
                 }
             ]
         })
-    });
-// .then((res) => console.log(res[0].dataValues.CouncilPositions));
+    })*/
+    .then(() => {
+        return CouncilModel.findById(1, {
+            include: [{
+                    model: CouncilInstanceModel
+                }]
+        })
+    })
+ .then((res) => console.log(res.dataValues.CouncilInstances));
 // .then((res) => console.log(res));
