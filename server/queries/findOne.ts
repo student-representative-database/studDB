@@ -2,11 +2,17 @@ import {createCouncil} from '../model/council';
 import {createEmployee} from '../model/employee';
 import {createFaculty} from '../model/faculty';
 import {createUser} from '../model/user';
-import {CouncilModel, FacultyModel, UserModel, EmployeeModel} from '../model/model';
-import {Council} from '../model/council';
+import {CouncilModel, FacultyModel, UserModel, EmployeeModel, CouncilInstanceModel} from '../model/model';
+import {ICouncil} from '../model/council';
 
-export function findOneCouncil(councilId: number) {
-    return CouncilModel.findById(councilId)
+export function findOneCouncil(councilId: number, currentYear: number) {
+    return CouncilModel.findById(councilId, {
+        include: [
+            {
+                model: CouncilInstanceModel
+            }
+        ]
+    })
         .then(createCouncil);
 }
 

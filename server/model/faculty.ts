@@ -1,4 +1,6 @@
 import {ICouncil} from './council'
+import {ICouncilInst} from './councilInst'
+import {createCouncilInstance} from './councilInst'
 
 export interface Faculty {
     readonly id: number,
@@ -18,10 +20,14 @@ export function createFaculties(data: any[]): Faculty[] {
     return data.map(createFaculty);
 }
 
-function createCouncilFromDbModel({id, name, facultyId}: any): ICouncil {
+function createCouncilFromDbModel({id, name, description, facultyId, studentPositions, phdPositions, CouncilInstances}: any): ICouncil {
     return {
         id,
         name,
-        facultyId
+        description,
+        facultyId,
+        studentPositions,
+        phdPositions,
+        councilInstances: CouncilInstances.map(createCouncilInstance)
     }
 }
