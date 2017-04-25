@@ -6,7 +6,7 @@ import {databaseErrorHandler} from './databaseErrorHandler';
 import {CouncilModel} from '../../../model/model';
 import { create } from '../../../queries/create';
 import { deleteOne } from '../../../queries/delete';
-import {findOneCouncil, findOneCouncilTest} from '../../../queries/findOne';
+import {findOneCouncil} from '../../../queries/findOne';
 import {findOneInst} from '../../../queries/council/findOneInst';
 import { update } from '../../../queries/update';
 

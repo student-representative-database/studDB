@@ -2,14 +2,27 @@ import {createCouncil} from '../model/council';
 import {createEmployee} from '../model/employee';
 import {createFaculty} from '../model/faculty';
 import {createUser} from '../model/user';
-import {CouncilModel, FacultyModel, UserModel, EmployeeModel, CouncilInstanceModel} from '../model/model';
-import {ICouncil} from '../model/council';
+import {
+    CouncilModel, FacultyModel, UserModel, EmployeeModel, CouncilInstanceModel,
+    CouncilPositionsModel, UserPositionModel
+} from '../model/model';
 
 export function findOneCouncil(councilId: number, currentYear: number) {
     return CouncilModel.findById(councilId, {
         include: [
             {
-                model: CouncilInstanceModel
+                model: CouncilInstanceModel,
+                include: [
+                    {
+                        model: CouncilPositionsModel,
+                        include: [{
+                            model: UserPositionModel,
+                            include: [{
+                                model: UserModel
+                            }]
+                        }]
+                    }
+                ]
             }
         ]
     })
@@ -35,9 +48,4 @@ export function findOneFaculty(facultyId: number) {
 export function findOneUser(userId: number) {
     return UserModel.findById(userId)
         .then(createUser);
-}
-
-export function findOneCouncilTest(councilId: number) {
-    return CouncilModel.findById(councilId)
-        .then(createCouncil);
 }

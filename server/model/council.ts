@@ -1,5 +1,4 @@
 import {ICouncilInst} from './councilInst';
-import {CouncilInstanceModel} from './model';
 import {createCouncilInstance} from './councilInst';
 
 export interface ICouncil {
@@ -12,8 +11,7 @@ export interface ICouncil {
     councilInstances: ICouncilInst[]
 }
 
-export function createCouncil({ id, name, description, facultyId, studentPositions, phdPositions, CouncilInstance }: any): ICouncil {
-    // return new Council(id, name, facultyId);
+export function createCouncil({ id, name, description, facultyId, studentPositions, phdPositions, CouncilInstances }: any): ICouncil {
     return {
         id,
         name,
@@ -21,7 +19,7 @@ export function createCouncil({ id, name, description, facultyId, studentPositio
         facultyId,
         studentPositions,
         phdPositions,
-        councilInstances: CouncilInstance.map(createCouncilInstance)
+        councilInstances: CouncilInstances.map(createCouncilInstance)
     }
 }
 
