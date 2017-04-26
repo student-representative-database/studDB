@@ -13,6 +13,7 @@ export function findOneCouncil(councilId: number, currentYear: number) {
         include: [
             {
                 model: CouncilInstanceModel,
+                where: {year: currentYear},
                 include: [
                     {
                         model: CouncilPositionsModel,
