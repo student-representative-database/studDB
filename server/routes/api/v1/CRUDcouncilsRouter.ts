@@ -7,7 +7,6 @@ import {CouncilModel} from '../../../model/model';
 import { create } from '../../../queries/create';
 import { deleteOne } from '../../../queries/delete';
 import {findOneCouncil} from '../../../queries/findOne';
-import {findOneInst} from '../../../queries/findOne';
 import { update } from '../../../queries/update';
 
 class CRUDcouncilsRouter {
@@ -50,12 +49,6 @@ class CRUDcouncilsRouter {
     update(req.params.councilId, req.body, CouncilModel)
         .then(_.partial(onSuccess, res))
         .catch(_.partial(onError, res, 'Update council failed'));
-  }
-
-  public getOneInst(req: Request, res: Response, next: NextFunction) {
-    findOneInst(req.params.councilId, req.params.year)
-      .then(_.partial(onSuccess, res))
-      .catch(_.partial(onError, res, 'Find councel instance failed'));
   }
 
   public init() {
