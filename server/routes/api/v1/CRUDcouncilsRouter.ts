@@ -17,13 +17,55 @@ class CRUDcouncilsRouter {
     this.router = Router();
     this.init()
   }
+
 /**
- * /api/v1/faculties/:id
- *  GET:
- *    description:  Renders the form for updating a snippet.
- *    responses:    200 - If user is logged in.
- *                  403 - If not logged in.
- *                  404 - If snippet is not found.
+ * @api {get} /faculty/ Get all council and contained XXXXXXXXX
+ * @apiVersion 0.1.0
+ * @apiName GetCouncils
+ * @apiGroup Council
+ *
+ * @apiParam {Number} id Council unique ID.
+ *
+ * @apiSuccess {String} name Name of the Faculty.
+ * @apiSuccess {String} lastname  Lastname of the User.
+ * * @apiSuccess {String[]} councils  Array of councils
+ *
+ * @apiSuccessExample Success-Response:
+ * {
+ *   "payload": [
+ *     {
+ *       "id": 1,
+ *       "name": "Fakulteten för datavetenskap",
+ *       "councils": [
+ *         {
+ *           "id": 1,
+ *           "name": "Rådet för datornördar",
+ *           "description": "Nerds R US, vi som capsar och dricker jolt cola",
+ *           "facultyId": 1
+ *         }
+ *       ]
+ *     },
+ *     {
+ *       "id": 2,
+ *       "name": "Fakulteten för ngntingannat",
+ *       "councils": [
+ *         {
+ *           "id": 2,
+ *           "name": "Rådet för snickare",
+ *           "description": "Hammare och spik!!!",
+ *           "facultyId": 2
+ *         }
+ *       ]
+ *     }
+ *   ]
+ * }
+ * @apiError FacultyNotFound The id of the Faculty was not found.
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": "FacultysNotFound"
+ *     }
  */
 
   public getOne(req: Request, res: Response, next: NextFunction) {
