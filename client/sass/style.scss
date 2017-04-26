@@ -1,7 +1,168 @@
 @import 'theme';
 
+// CSS reset
+html, body, div, header, main, section, aside,
+h1, h2, h3, h4, h5, h6, p, code, pre, input, form {
+  margin: 0;
+  padding: 0;
+  font-family: $font-paragraphs;
+}
+
 html {
+  overflow-y:scroll;
+  position: relative;
+  min-height: 100%;
+
   body {
-    background: $bg-color;
+    background: $bgc-primary;
+    font-size: 18px;
+    margin-bottom: $footer-height;
+
+    a {
+      color: $linkc-primary;
+    }
+
+    a:hover {
+      color: $linkc-secondary;
+    }
   }
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-headings;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.container {
+  width: $main-width;
+}
+
+.jumbotron {
+  background: $bgc-header;
+  border-radius: 0px;
+  border-top: 5px solid $fgc-primary;
+  margin: 0 auto;
+
+  ul li {
+    font-family: $font-headings;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    a {
+      color: $linkc-tertiary;
+    }
+  }
+}
+
+// Nav buttons
+.nav-pills>li.active>a {
+  background: $linkc-primary;
+}
+
+.nav-pills>li.active>a:hover {
+  background: $linkc-secondary;
+}
+
+.page-search {
+  display: inline-flex;
+  width: 500px;
+}
+
+// Aside
+.col-md-4 {
+  section {
+    color: $fontc-secondary;
+    padding: 50px;
+  }
+
+  section:nth-child(odd) {
+    background: $fgc-primary;
+  }
+
+  section:nth-child(even) {
+    background: $fgc-secondary;
+  }
+}
+
+.input-group {
+  input, button {
+    border-radius: 0px;
+  }
+
+  input {
+    border: 1px solid $fontc-secondary;
+  }
+
+  button {
+    background: $bgc-footer;
+    border: 1px solid $bgc-footer;
+    color: $fontc-secondary;
+    font-family: $font-headings;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  span {
+    padding-left: 20px;
+  }
+}
+
+// Main content
+p {
+  padding: 10px 5px;
+}
+
+// Footer
+footer {
+  background: $bgc-footer;
+  color: $fontc-secondary;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  min-height: $footer-height;
+
+  div {
+    padding: 50px;
+    width: $main-width;
+  }
+}
+
+/** Media queries **/
+$screen-xs: 480px;
+$screen-sm: 768px;
+$screen-md: 992px;
+$screen-lg: 1200px;
+
+// Minimum Media Queries
+@media (min-width: $screen-xs) { } //480px & greater
+@media (min-width: $screen-sm) { } //768px & greater
+@media (min-width: $screen-md) { } //992px & greater
+@media (min-width: $screen-lg) { } //1200px & greater
+
+// Minimum - Maximum Media Queries
+@media (min-width: $screen-xs) and (max-width: $screen-xs) { } //480px - 767px
+@media (min-width: $screen-sm) and (max-width: $screen-sm){ } //768px - 991px
+@media (min-width: $screen-md) and (max-width: $screen-md) { } //992px & 1199px
+
+// Maxium Media Queries
+// Note: It’s highly recommended to use min-width media queries when possible.
+@media (max-width: $screen-xs) { } //479px & lower
+@media (max-width: $screen-sm) {
+  .jumbotron {
+
+  ul li {
+    a {
+      font-size: 14px;
+    }
+  }
+}
+} //767px & lower
+@media (max-width: $screen-md) { } //991px & lower
+@media (max-width: $screen-lg) {
+  .container {
+    width: auto;
+  }
+} //1199px & lower
