@@ -1,10 +1,10 @@
 import * as ORM from 'sequelize';
 import { LoggingOptions, Sequelize } from 'sequelize';
 // tslint:disable-next-line:max-line-length
-import { initCouncilModel, initCouncilInstanceModel, initCouncilPositionsModel, initCouncilInstanceApplicationModel } from './initCouncilModel';
-import { initFacultyModel } from './initFacultyModel';
-import { initUserModel, initUserPositionModel } from './initUserModel';
-import { initEmployeeModel, initEmployeePositionModel } from './initEmployeeModel';
+import { initCouncilModel, initCouncilInstanceModel, initCouncilPositionsModel, initCouncilInstanceApplicationModel } from './DBModel/initCouncilModel';
+import { initFacultyModel } from './DBModel/initFacultyModel';
+import { initUserModel, initUserPositionModel } from './DBModel/initUserModel';
+import { initEmployeeModel, initEmployeePositionModel } from './DBModel/initEmployeeModel';
 
 const dbUrl = 'postgres://postgres:postgres@postgres:5432/studDB';
 
@@ -28,14 +28,14 @@ CouncilModel.belongsTo(FacultyModel, { foreignKey: 'facultyId' });
 CouncilModel.hasMany(CouncilInstanceModel, { foreignKey: 'councilId' });
 CouncilInstanceModel.belongsTo(CouncilModel, { foreignKey: 'councilId' });
 
-CouncilInstanceModel.hasMany(CouncilPositionsModel, { foreignKey: 'councilInstanceId' });
+CouncilInstanceModel.hasMany(CouncilPositionsModel, { foreignKey: 'councilInstanceId', onDelete: 'cascade' });
 CouncilPositionsModel.belongsTo(CouncilInstanceModel, { foreignKey: 'councilInstanceId' });
 
-CouncilPositionsModel.hasOne(UserPositionModel)
-UserPositionModel.belongsTo(CouncilPositionsModel)
+CouncilPositionsModel.hasOne(UserPositionModel, {onDelete: 'cascade' });
+UserPositionModel.belongsTo(CouncilPositionsModel);
 
-UserModel.hasOne(UserPositionModel)
-UserPositionModel.belongsTo(UserModel)
+UserModel.hasOne(UserPositionModel, {onDelete: 'cascade' });
+UserPositionModel.belongsTo(UserModel);
 
 // Council -> EmployeePosition -> Employee
 CouncilModel.hasOne(EmployeePositionModel)
@@ -170,7 +170,8 @@ sequelize.sync({
 }).then(() => {
     return UserPositionModel.create({
         CouncilPositionId: 2,
-        UserId: 2
+        UserId: 2,
+        until: new Date('October 13, 2020')
     })
 }).then(() => {
     return CouncilInstanceApplicationModel.create({

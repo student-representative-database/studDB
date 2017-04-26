@@ -63,7 +63,6 @@ class CRUDcouncilsRouter {
     this.router.post('/:facultyId', this.create);
     this.router.delete('/:facultyId/:councilId', this.delete);
     this.router.patch('/:facultyId/:councilId', this.patch);
-    this.router.get('/:facultyId/:councilId/:year', this.getOneInst);
   }
 }
 

@@ -11,6 +11,8 @@ import CRUDfacultiesRouter from './routes/api/v1/CRUDfacultiesRouter'
 import CRUDcouncilRouter from './routes/api/v1/CRUDcouncilsRouter'
 import CRUDusersRouter from './routes/api/v1/CRUDusersRouter'
 import CRUDemployeesRouter from './routes/api/v1/CRUDemployeeRouter'
+import CRUDCouncilInstRouter from './routes/api/v1/CRUDCouncilInstRouter'
+import CRUDCouncilPosition from './routes/api/v1/CRUDCouncilPositionsRouter'
 /**
  * Creates and configures an ExpressJS web server.
  *
@@ -69,6 +71,8 @@ class App {
      */
     this.express.use('/api/v1/faculties', CRUDfacultiesRouter);
     this.express.use('/api/v1/faculties', CRUDcouncilRouter);
+    this.express.use('/api/v1/faculties', CRUDCouncilInstRouter);
+    this.express.use('/api/v1/faculties', CRUDCouncilPosition);
     this.express.use('/api/v1/users', CRUDusersRouter);
     this.express.use('/api/v1/employees', CRUDemployeesRouter);
   }

@@ -5,7 +5,7 @@
     ],
     "jsRules": {},
     "rules": {
-        "quotemark": [true, "single", "avoid-escape"],
+        "quotemark": [true, "avoid-escape"],
         "semicolon": ["never"],
         "trailing-comma": ["never"],
         "ordered-imports": false,
