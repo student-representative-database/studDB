@@ -50,6 +50,23 @@ export function initCouncilInstanceModel(sequelize: Sequelize) {
         }
     });
 }
+
+export function initCouncilInstanceApplicationModel(sequelize: Sequelize) {
+    return sequelize.define('CouncilInstanceApplication', {
+        UserId: {
+            type: ORM.INTEGER,
+            primaryKey: true
+        },
+        CouncilInstanceId: {
+            type: ORM.INTEGER,
+            primaryKey: true
+        },
+        until: {
+            type: ORM.DATE,
+            allowNull: true
+        }
+    });
+}
 // Finns typ 5 stycken till ett råd
 export function initCouncilPositionsModel(sequelize: Sequelize) {
     return sequelize.define('CouncilPosition', {
