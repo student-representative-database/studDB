@@ -38,20 +38,3 @@ export function createCouncilFacultyView({ id, name, description, facultyId }: a
         facultyId
     }
 }
-
-/* export class Council implements ICouncil {
-    public name: string;
-    public facultyId: number;
-    public id: number;
-
-    constructor(name: string, facultyId: number, id: number) {
-        this.name = name;
-        this.facultyId = facultyId;
-        this.id = id;
-    }
-
-    public output() {
-        return this;
-    }
-}*/
-

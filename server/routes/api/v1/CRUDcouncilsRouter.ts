@@ -7,7 +7,7 @@ import {CouncilModel} from '../../../model/model';
 import { create } from '../../../queries/create';
 import { deleteOne } from '../../../queries/delete';
 import {findOneCouncil} from '../../../queries/findOne';
-import {findOneInst} from '../../../queries/council/findOneInst';
+import {findOneInst} from '../../../queries/findOne';
 import { update } from '../../../queries/update';
 
 class CRUDcouncilsRouter {

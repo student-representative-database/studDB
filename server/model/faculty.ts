@@ -1,15 +1,13 @@
 import {ICouncil} from './council'
 import {ICouncilFacultyView} from './council'
-import {ICouncilInst} from './councilInst'
-import {createCouncilInstance} from './councilInst'
 
-export interface Faculty {
+export interface IFaculty {
     readonly id: number,
     name: string,
     councils: ICouncil[]
 }
 
-export function createFaculty({id, name, Councils}: any): Faculty {
+export function createFaculty({id, name, Councils}: any): IFaculty {
     return {
         id,
         name,
@@ -17,7 +15,7 @@ export function createFaculty({id, name, Councils}: any): Faculty {
     };
 }
 
-export function createFaculties(data: any[]): Faculty[] {
+export function createFaculties(data: any[]): IFaculty[] {
     return data.map(createFaculty);
 }
 

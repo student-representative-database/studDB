@@ -2,6 +2,7 @@ import {createCouncil} from '../model/council';
 import {createEmployee} from '../model/employee';
 import {createFaculty} from '../model/faculty';
 import {createUser} from '../model/user';
+import { createCouncilInstance } from '../model/councilInst';
 import {
     CouncilModel, FacultyModel, UserModel, EmployeeModel, CouncilInstanceModel,
     CouncilPositionsModel, UserPositionModel
@@ -48,4 +49,12 @@ export function findOneFaculty(facultyId: number) {
 export function findOneUser(userId: number) {
     return UserModel.findById(userId)
         .then(createUser);
+}
+
+export function findOneInst(councilId: number, year: number) {
+    return CouncilInstanceModel.findOne({
+        where: { councilId, year },
+        include: [{ model: CouncilPositionsModel }]
+    })
+        .then(createCouncilInstance);
 }
