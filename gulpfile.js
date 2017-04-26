@@ -27,6 +27,7 @@ gulp.task('bundle', () => {
     extensions: ['.ts']
   })
   .bundle()
+  .on('error', handleError)
   .pipe(source('bundle.min.js'))
   .pipe(buffer())
   .pipe(sourcemaps.init({loadMaps: true}))
@@ -76,3 +77,8 @@ gulp.task('watch', ['scripts', 'bundle', 'sass', 'copy-assets'], () => {
   gulp.watch('client/**/*.hbs', ['handlebars'])
   gulp.watch('server/**/*.ts', ['scripts'])
 })
+
+function handleError(error) {
+  console.log(error.toString())
+  this.emit('end')
+}
