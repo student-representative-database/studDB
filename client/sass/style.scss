@@ -91,6 +91,10 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 0px;
   }
 
+  input {
+    border: 1px solid $fontc-secondary;
+  }
+
   button {
     background: $bgc-footer;
     border: 1px solid $bgc-footer;
