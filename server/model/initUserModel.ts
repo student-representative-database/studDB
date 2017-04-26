@@ -77,27 +77,19 @@ export function initUserModel(sequelize: Sequelize) {
   return User;
 }
 
-/*export function initUserPositionModel(sequelize: Sequelize) {
-  return sequelize.define('UserPosition', {
-    id: {
-      type: ORM.INTEGER,
-      autoIncrement: true,
-      primaryKey: true,
-    },
-  });
-}*/
-
 export function initUserPositionModel(sequelize: Sequelize) {
   return sequelize.define('UserPosition', {
         UserId: {
             type: ORM.INTEGER,
-            unique: 'compositeIndex',
-            allowNull: false
+            primaryKey: true
         },
         CouncilPositionId: {
             type: ORM.INTEGER,
-            unique: 'compositeIndex',
-            allowNull: false
+            primaryKey: true
+        },
+        until: {
+            type: ORM.DATE,
+            allowNull: true
         }
   });
 }
