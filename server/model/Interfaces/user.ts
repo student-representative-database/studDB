@@ -7,7 +7,6 @@ export interface Iuser {
     email: string,
     faculty: string,
     graduationYear: Date
-    password: string
 }
 
 export function createUser({
@@ -18,8 +17,7 @@ export function createUser({
     phone,
     email,
     faculty,
-    graduationYear,
-    password}: any): Iuser {
+    graduationYear}: any): Iuser {
     return {
         id,
         firstName,
@@ -29,8 +27,23 @@ export function createUser({
         email,
         faculty,
         graduationYear,
-        password
     };
+}
+
+export interface IUserPosition {
+    readonly UserId: number,
+    readonly CouncilPositionId: number,
+    until: Date,
+    User: Iuser
+}
+
+export function createUserPosition({ UserId, CouncilPositionId, until, User }: any): IUserPosition {
+        return {
+            UserId,
+            CouncilPositionId,
+            until,
+            User: createUser(User)
+        };
 }
 
 export function createUsers(data: any[]): Iuser[] {

@@ -1,33 +1,15 @@
-import {createCouncil} from '../model/council';
-import {createEmployee} from '../model/employee';
-import {createFaculty} from '../model/faculty';
-import {createUser} from '../model/user';
-import { createCouncilInstance } from '../model/councilInst';
+import {createCouncil} from '../model/Interfaces/council';
+import {createEmployee} from '../model/Interfaces/employee';
+import {createFaculty} from '../model/Interfaces/faculty';
+import {createUser} from '../model/Interfaces/user';
+import { createCouncilInstance, createCouncilPosition } from '../model/Interfaces/councilInst';
 import {
     CouncilModel, FacultyModel, UserModel, EmployeeModel, CouncilInstanceModel,
     CouncilPositionsModel, UserPositionModel
 } from '../model/model';
 
 export function findOneCouncil(councilId: number, currentYear: number) {
-    return CouncilModel.findById(councilId, {
-        include: [
-            {
-                model: CouncilInstanceModel,
-                where: {year: currentYear},
-                include: [
-                    {
-                        model: CouncilPositionsModel,
-                        include: [{
-                            model: UserPositionModel,
-                            include: [{
-                                model: UserModel
-                            }]
-                        }]
-                    }
-                ]
-            }
-        ]
-    })
+    return CouncilModel.findById(councilId)
         .then(createCouncil);
 }
 
@@ -55,7 +37,30 @@ export function findOneUser(userId: number) {
 export function findOneInst(councilId: number, year: number) {
     return CouncilInstanceModel.findOne({
         where: { councilId, year },
-        include: [{ model: CouncilPositionsModel }]
+        include: [
+            {
+                model: CouncilPositionsModel,
+                include: [{
+                    model: UserPositionModel,
+                    include: [{
+                        model: UserModel
+                    }]
+                }]
+            }
+        ]
     })
         .then(createCouncilInstance);
+}
+
+export function findOneCouncilPosition(id: number) {
+    return CouncilPositionsModel.findOne({
+        where: { id },
+        include: [{
+            model: UserPositionModel,
+            include: [{
+                model: UserModel
+            }]
+        }]
+    })
+        .then(createCouncilPosition);
 }

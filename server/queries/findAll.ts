@@ -1,7 +1,7 @@
 import { EmployeeModel, FacultyModel, CouncilModel, UserModel } from '../model/model';
-import { createEmployees } from '../model/employee';
-import {createFaculties} from '../model/faculty';
-import {createUsers} from '../model/user';
+import { createEmployees } from '../model/Interfaces/employee';
+import {createFaculties} from '../model/Interfaces/faculty';
+import {createUsers} from '../model/Interfaces/user';
 
 export function findAllEmployees() {
     return EmployeeModel.findAll()
