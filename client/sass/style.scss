@@ -16,7 +16,7 @@ html {
   body {
     background: $bgc-primary;
     font-size: 18px;
-    margin-bottom: $footer-height;
+    margin-bottom: $footer-height + 20px;
 
     a {
       color: $linkc-primary;
@@ -70,7 +70,6 @@ h1, h2, h3, h4, h5, h6 {
   width: 500px;
 }
 
-// Aside
 .col-md-4 {
   section {
     color: $fontc-secondary;
