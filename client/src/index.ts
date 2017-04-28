@@ -1,5 +1,3 @@
-import { Person } from './Person'
+import { RegistryList } from './RegistryList'
 
-const popniten = new Person({name: 'Pär', age: 35})
-
-console.log(popniten.getName() + ", " + popniten.getAge())
+const list = new RegistryList()
