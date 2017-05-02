@@ -27,6 +27,7 @@ gulp.task('bundle', () => {
     extensions: ['.ts']
   })
   .bundle()
+  .on('error', handleError)
   .pipe(source('bundle.min.js'))
   .pipe(buffer())
   .pipe(sourcemaps.init({loadMaps: true}))
@@ -55,6 +56,11 @@ gulp.task('scripts', () => {
   return tsResults.js.pipe(gulp.dest('dist'))
 })
 
+gulp.task('copy-assets', () => {
+  gulp.src('./client/assets/**/*.{png,jpg}')
+  .pipe(gulp.dest('public/assets'))
+})
+
 function watchServer() {
   nodemon({
     script: 'dist/index.js',
@@ -62,11 +68,17 @@ function watchServer() {
   })
 }
 
-gulp.task('watch', ['scripts', 'bundle', 'sass'], () => {
+gulp.task('watch', ['scripts', 'bundle', 'sass', 'copy-assets'], () => {
   watchServer()
   livereload.listen()
+  gulp.watch('client/assets/**/*.*', ['copy-assets'])
   gulp.watch('client/src/**/*.ts', ['bundle'])
   gulp.watch('client/sass/**/*.scss', ['sass'])
   gulp.watch('client/**/*.hbs', ['handlebars'])
   gulp.watch('server/**/*.ts', ['scripts'])
 })
+
+function handleError(error) {
+  console.log(error.toString())
+  this.emit('end')
+}
