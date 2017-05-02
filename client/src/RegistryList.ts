@@ -1,8 +1,14 @@
+import { RegistryListItem } from './RegistryListItem'
+
 export class RegistryList {
   public element: HTMLElement
 
   constructor() {
     this.init()
+  }
+
+  public appendListTo(target: HTMLElement) {
+    target.insertBefore(this.element, target.firstChild)
   }
 
   private init() {
@@ -13,9 +19,6 @@ export class RegistryList {
     this.element.addEventListener('click', (event) => {
       this.eventHandler(event)
     })
-
-    const parent = document.getElementById('main')
-    parent.insertBefore(this.element, parent.firstChild)
   }
 
   private topLevelItem() {
