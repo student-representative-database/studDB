@@ -19,23 +19,18 @@ class CRUDfacultiesRouter {
   }
 
 /**
- * @api {get} /faculty/ Get all facultys and contained councils
+ * @api {get} /faculty/ Get all faculties
  * @apiVersion 0.1.0
- * @apiName GetFacultys
+ * @apiName GetFaculties
  * @apiGroup Faculty
  *
- * @apiParam {Number} id Faculty unique ID.
- *
- * @apiSuccess {String} name Name of the Faculty.
- * @apiSuccess {String} lastname  Lastname of the User.
- * * @apiSuccess {String[]} councils  Array of councils
- *
  * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
  * {
  *   "payload": [
  *     {
  *       "id": 1,
- *       "name": "Fakulteten för datavetenskap",
+ *       "name": "Fakulteten för teknik",
  *       "councils": [
  *         {
  *           "id": 1,
@@ -45,26 +40,15 @@ class CRUDfacultiesRouter {
  *         }
  *       ]
  *     },
- *     {
- *       "id": 2,
- *       "name": "Fakulteten för ngntingannat",
- *       "councils": [
- *         {
- *           "id": 2,
- *           "name": "Rådet för snickare",
- *           "description": "Hammare och spik!!!",
- *           "facultyId": 2
- *         }
- *       ]
- *     }
+ *     {...}
  *   ]
  * }
- * @apiError FacultyNotFound The id of the Faculty was not found.
+ * @apiError NoFacultiesFound No faculties found.
  *
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 404 Not Found
  *     {
- *       "error": "FacultysNotFound"
+ *       "error": "NoFacultiesFound"
  *     }
  */
 
@@ -75,29 +59,29 @@ class CRUDfacultiesRouter {
   }
 
 /**
- * @api {get} /faculty/:id Get one faculty and contained councils
+ * @api {get} /faculty/:id Get faculty
  * @apiVersion 0.1.0
  * @apiName GetFaculty
  * @apiGroup Faculty
  *
- * @apiSuccess {String} name Name of the Faculty.
- * @apiSuccess {String} lastname  Lastname of the User.
- * * @apiSuccess {String[]} councils  Array of councils
- *
+ * @apiParam (uriParams) {number} id Id of the Faculty.
+ * 
  * @apiSuccessExample Success-Response:
- *   "payload": {
+ * HTTP/1.1 200 OK
+ * "payload": {
+ *   "id": 1,
+ *   "name": "Fakulteten för datavetenskap",
+ *   "councils": [
+ *     {
  *       "id": 1,
- *       "name": "Fakulteten för datavetenskap",
- *       "councils": [
- *         {
- *           "id": 1,
- *           "name": "Rådet för datornördar",
- *           "description": "Nerds R US, vi som capsar och dricker jolt cola",
- *           "facultyId": 1
- *         }
+ *       "name": "Rådet för datornördar",
+ *       "description": "Nerds R US, vi som capsar och dricker jolt cola",
+ *       "facultyId": 1
  *     }
+ *   ]
  * }
- * @apiError FacultyNotFound The id of the Faculty was not found.
+ *
+ * @apiError FacultyNotFound Id of the Faculty was not found.
  *
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 404 Not Found
@@ -113,22 +97,26 @@ class CRUDfacultiesRouter {
   }
 
 /**
- * @api {create} /faculty/:id Create one faculty
+ * @api {create} /faculty/:id Create faculty
  * @apiVersion 0.1.0
  * @apiName CreateFaculty
  * @apiGroup Faculty
  *
- * @apiParam {Number} id Faculty unique ID.
- *
- * @apiSuccess {String} name Name of the Faculty.
- * @apiSuccess {String} lastname  Lastname of the User.
- * @apiSuccess {String[]} councils  Array of councils
+ * @apiParam (uriParams) {Number} id Faculty unique ID.
+ * @apiParam {String} name Name of the Faculty.
+ * @apiParamExample {json} Request-Example:
+ *   {
+ *     "name": "Fakulteten för teknik"
+ *   }
  *
  * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
+ * {
  *   "payload": {
- *       "id": 1,
- *       "name": "Fakulteten för datavetenskap"
- *     }
+ *     "id": 1,
+ *     "name": "Fakulteten för teknik"
+ *   }
+ * }
  *
  * @apiError DuplicateFacultyName There alredy exist a faculty with that name
  *
@@ -147,24 +135,22 @@ class CRUDfacultiesRouter {
   }
 
 /**
- * @api {delete} /faculty/:id Delete one faculty
+ * @api {delete} /faculty/:id Delete faculty
  * @apiVersion 0.1.0
  * @apiName DeleteFaculty
  * @apiGroup Faculty
  *
- * @apiParam {Number} id Faculty unique ID.
- *
- * @apiSuccess {Number} id Id of the Faculty.
- * @apiSuccess {String} name Name of the Faculty.
- * @apiSuccess {String} lastname  Lastname of the User.
+ * @apiParam (uriParams) {Number} id Faculty unique ID.
  *
  * @apiSuccessExample Success-Response:
+ * {
  *   "payload": {
- *       "id": 1,
- *       "name": "Fakulteten för datavetenskap"
- *     }
+ *     "id": 1,
+ *     "name": "Fakulteten för teknik"
+ *   }
+ * }
  *
- * @apiError NoFacultyWitdId There alredy exist a faculty with that name
+ * @apiError NoFacultyWithId No faculty with that id exists
  *
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 404 Not Found
@@ -180,21 +166,22 @@ class CRUDfacultiesRouter {
   }
 
 /**
- * @api {patch} /faculty/:id Create one faculty
+ * @api {patch} /faculty/:id Update faculty
  * @apiVersion 0.1.0
  * @apiName patchFaculty
  * @apiGroup Faculty
  *
- * @apiParam {Number} id Faculty unique ID.
+ * @apiParam (uriParams) {Number} id Faculty unique ID.
  *
- * @apiSuccess {String} name Name of the Faculty.
- * @apiSuccess {String} lastname  Lastname of the User.
- * @apiSuccess {String[]} councils  Array of councils
+ * @apiParamExample {json} Request-Example:
+ *   {
+ *     "name": "Fakulteten för "
+ *   }
  *
  * @apiSuccessExample Success-Response:
  *   "payload": {
  *       "id": 1,
- *       "name": "Fakulteten för datavetenskap"
+ *       "name": "Fakulteten för samhällsvetenskap"
  *     }
  *
  * @apiError DuplicateFacultyName There alredy exist a faculty with that name
