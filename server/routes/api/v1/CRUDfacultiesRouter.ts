@@ -34,8 +34,8 @@ class CRUDfacultiesRouter {
  *       "councils": [
  *         {
  *           "id": 1,
- *           "name": "Rådet för datornördar",
- *           "description": "Nerds R US, vi som capsar och dricker jolt cola",
+ *           "name": "Utbildningsråd",
+ *           "description": "...",
  *           "facultyId": 1
  *         }
  *       ]
@@ -70,12 +70,12 @@ class CRUDfacultiesRouter {
  * HTTP/1.1 200 OK
  * "payload": {
  *   "id": 1,
- *   "name": "Fakulteten för datavetenskap",
+ *   "name": "Fakulteten för teknik",
  *   "councils": [
  *     {
  *       "id": 1,
- *       "name": "Rådet för datornördar",
- *       "description": "Nerds R US, vi som capsar och dricker jolt cola",
+ *       "name": "Utbildningsråd",
+ *       "description": "...",
  *       "facultyId": 1
  *     }
  *   ]
@@ -97,7 +97,7 @@ class CRUDfacultiesRouter {
   }
 
 /**
- * @api {create} /faculty/:id Create faculty
+ * @api {post} /faculty/:id Create faculty
  * @apiVersion 0.1.0
  * @apiName CreateFaculty
  * @apiGroup Faculty
