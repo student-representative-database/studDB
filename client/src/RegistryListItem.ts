@@ -20,6 +20,11 @@ export class RegistryListItem {
 
   private init() {
     const item = document.createElement('a')
+
+    if (this.options.type === 'councils') {
+      item.setAttribute('href', `/council/${this.options.id}`)
+    }
+
     item.classList.add('list-group-item')
     item.setAttribute('data-type', this.options.type)
     let dataID = ''
