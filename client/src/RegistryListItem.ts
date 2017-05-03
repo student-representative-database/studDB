@@ -1,12 +1,17 @@
 interface IListItem {
-  title: string,
-  icon: boolean
+  id: number,
+  name: string,
+  icon: boolean,
+  indent: number,
+  type: string,
+  callback: () => void
 }
 
 export class RegistryListItem {
   public icon: HTMLElement = null
   public element: HTMLElement
   private options: IListItem
+  private isOpen: boolean
 
   constructor(options: IListItem) {
     this.options = options
@@ -16,8 +21,22 @@ export class RegistryListItem {
   private init() {
     const item = document.createElement('a')
     item.classList.add('list-group-item')
+    item.setAttribute('data-type', this.options.type)
+    let dataID = ''
+    try {
+      dataID = this.options.id.toString()
+    } catch (e) {
+      dataID = 'null'
+    }
+    item.setAttribute('data-id', dataID)
 
-    item.appendChild(document.createTextNode(this.options.title))
+    if (this.options.indent === 1) {
+      item.classList.add('indent')
+    } else if (this.options.indent === 2) {
+      item.classList.add('indent-2x')
+    }
+
+    item.appendChild(document.createTextNode(this.options.name))
     item.addEventListener('click', (event) => {
       this.eventHandler(event)
     })
@@ -37,10 +56,72 @@ export class RegistryListItem {
     this.element.insertBefore(this.icon, this.element.firstChild)
   }
 
+  private getCouncils() {
+
+    if (this.isOpen) {
+      fetch(`/api/v1/faculties/${this.options.id}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then((result) => {
+        return result.json()
+      })
+      .then((data) => {
+        data['payload'].councils.forEach((element) => {
+          this.element.parentElement.removeChild(this.element.nextElementSibling)
+        });
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    } else {
+      fetch(`/api/v1/faculties/${this.options.id}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then((result) => {
+        return result.json()
+      })
+      .then((data) => {
+        data['payload'].councils.forEach((element) => {
+          const item = new RegistryListItem({
+            id: element.id,
+            name: element.name,
+            icon: false,
+            indent: 2,
+            type: 'councils',
+            callback: null
+          })
+
+          this.element.parentElement.insertBefore(item.element, this.element.nextElementSibling)
+        });
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    }
+
+    this.isOpen = !this.isOpen
+  }
+
   private eventHandler(event) {
     if (this.icon) {
       this.icon.classList.toggle('glyphicon-triangle-right')
       this.icon.classList.toggle('glyphicon-triangle-bottom')
+    }
+
+    if (this.options.type === 'councils') {
+      console.log('Going to council.')
+    } else {
+      if (this.options.callback) {
+      this.options.callback()
+    } else {
+      this.getCouncils()
+    }
     }
   }
 }

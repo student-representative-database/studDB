@@ -8,7 +8,7 @@ switch (type) {
   case 'home':
     const target = document.getElementById(type)
     const list = new RegistryList()
-    list.appendListTo(target)
+    list.appendListTo()
     break
   case 'apply-interest':
     break
