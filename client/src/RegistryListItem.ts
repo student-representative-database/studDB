@@ -1,3 +1,5 @@
+import API from './APILogic'
+
 interface IListItem {
   id: number,
   name: string,
@@ -64,15 +66,7 @@ export class RegistryListItem {
   private getCouncils() {
 
     if (this.isOpen) {
-      fetch(`/api/v1/faculties/${this.options.id}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-      .then((result) => {
-        return result.json()
-      })
+      API.getAllCouncils(this.options.id)
       .then((data) => {
         data['payload'].councils.forEach((element) => {
           this.element.parentElement.removeChild(this.element.nextElementSibling)
@@ -82,15 +76,10 @@ export class RegistryListItem {
         console.log(err)
       })
     } else {
-      fetch(`/api/v1/faculties/${this.options.id}`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-      .then((result) => {
-        return result.json()
-      })
+      // Save number of councils to this object instead,
+      // possible bug if someone adds a council between
+      // open and closing a faculty list.
+      API.getAllCouncils(this.options.id)
       .then((data) => {
         data['payload'].councils.forEach((element) => {
           const item = new RegistryListItem({

@@ -1,4 +1,5 @@
 import { RegistryListItem } from './RegistryListItem'
+import API from './APILogic'
 
 export class RegistryList {
   public element: HTMLElement
@@ -41,15 +42,8 @@ export class RegistryList {
       this.isOpen = false
     } else {
       this.isOpen = true
-      fetch('/api/v1/faculties', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-      .then((result) => {
-        return result.json()
-      })
+
+      API.getAllFaculties()
       .then((data) => {
         const parent = document.getElementById('browseList')
         data['payload'].forEach((element) => {
@@ -65,8 +59,8 @@ export class RegistryList {
           parent.appendChild(item.element)
         })
       })
-      .catch((err) => {
-        console.log(err)
+      .catch((error) => {
+        console.log(error)
       })
     }
   }
