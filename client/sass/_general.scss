@@ -1,0 +1,39 @@
+// CSS reset
+html, body, div, header, main, section, aside,
+h1, h2, h3, h4, h5, h6, p, code, pre, input, form {
+  margin: 0;
+  padding: 0;
+  font-family: $font-paragraphs;
+}
+
+html {
+  overflow-y:scroll;
+  position: relative;
+  min-height: 100%;
+
+  body {
+    background: $bgc-primary;
+    font-size: 18px;
+    margin-bottom: $footer-height + 20px;
+
+    a {
+      color: $linkc-primary;
+    }
+
+    a:hover {
+      color: $linkc-secondary;
+    }
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-headings;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+// Main content
+p {
+  padding: 10px 5px;
+}

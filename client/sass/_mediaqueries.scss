@@ -1,0 +1,36 @@
+/** Media queries **/
+$screen-xs: 480px;
+$screen-sm: 768px;
+$screen-md: 992px;
+$screen-lg: 1200px;
+
+// Minimum Media Queries
+@media (min-width: $screen-xs) { } //480px & greater
+@media (min-width: $screen-sm) { } //768px & greater
+@media (min-width: $screen-md) { } //992px & greater
+@media (min-width: $screen-lg) { } //1200px & greater
+
+// Minimum - Maximum Media Queries
+@media (min-width: $screen-xs) and (max-width: $screen-xs) { } //480px - 767px
+@media (min-width: $screen-sm) and (max-width: $screen-sm){ } //768px - 991px
+@media (min-width: $screen-md) and (max-width: $screen-md) { } //992px & 1199px
+
+// Maxium Media Queries
+// Note: It’s highly recommended to use min-width media queries when possible.
+@media (max-width: $screen-xs) { } //479px & lower
+@media (max-width: $screen-sm) {
+  .jumbotron {
+
+  ul li {
+    a {
+      font-size: 14px;
+    }
+  }
+}
+} //767px & lower
+@media (max-width: $screen-md) { } //991px & lower
+@media (max-width: $screen-lg) {
+  .container {
+    width: auto;
+  }
+} //1199px & lower

@@ -1,0 +1,20 @@
+.container {
+  width: $main-width;
+
+  .col-md-8 .list-group {
+    margin: 20px 0px 10px 0px;
+    cursor: pointer;
+
+    .list-group-item {
+      cursor: pointer;
+    }
+
+    .indent {
+      margin: 0px 0px 0px 20px;
+    }
+
+    .indent-2x {
+      margin: 0px 0px 0px 40px;
+    }
+  }
+}

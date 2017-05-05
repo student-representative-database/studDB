@@ -1,0 +1,15 @@
+// Footer
+footer {
+  background: $bgc-footer;
+  color: $fontc-secondary;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  min-height: $footer-height;
+
+  div {
+    padding: 50px;
+    width: $main-width;
+  }
+}
