@@ -6,6 +6,7 @@ class APILogic {
     this.init()
   }
 
+  // FACULTIES
   public getAllFaculties() {
     return fetch('/api/v1/faculties', this.headers.GET)
     .then((result) => {
@@ -13,8 +14,65 @@ class APILogic {
     })
   }
 
-  public deleteFaculty() {}
+  public createFaculty(facultyName: string) {
+    const data = JSON.stringify({name: facultyName})
 
+    fetch('/api/v1/faculties', {
+      method: 'POST',
+      body: data,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((response) => {
+      console.log(response)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+
+  public deleteFaculty(facultyID: number) {
+    fetch(`/api/v1/faculties/${facultyID}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((response) => {
+      console.log(response)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+
+  public updateFaculty(id: number, facultyName: string) {
+    const data = JSON.stringify({name: facultyName})
+
+    fetch(`/api/v1/faculties/${id}`, {
+      method: 'PATCH',
+      body: data,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((response) => {
+      console.log(response)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+
+  public getOneFaculty(id: number) {
+    return fetch(`/api/v1/faculties/${id}`, this.headers.GET)
+    .then((result) => {
+      return result.json()
+    })
+  }
+
+  // COUNCILS
   public getAllCouncils(facultyID: number) {
     return fetch(`/api/v1/faculties/${facultyID}`, this.headers.GET)
     .then((result) => {
@@ -22,8 +80,17 @@ class APILogic {
     })
   }
 
+  public getOneCouncil() {}
+
+  public createCouncil() {}
+
   public deleteCouncil() {}
 
+  public updateCouncil() {}
+
+  // CRUD student/representative/employee
+
+  // OTHER
   public sendApplicationForm() {}
 
   public init() {
