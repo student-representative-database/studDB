@@ -27,7 +27,7 @@ export function initUserModel(sequelize: Sequelize) {
       }
     },
     birthDate: {
-      type: ORM.DATEONLY,
+      type: ORM.DATE,
       allowNull: false
     },
     phd: {
@@ -100,11 +100,11 @@ export function initUserPositionModel(sequelize: Sequelize) {
             primaryKey: true
         },
         from: {
-            type: ORM.DATEONLY,
+            type: ORM.DATE,
             allowNull: false
         },
         till: {
-            type: ORM.DATEONLY,
+            type: ORM.DATE,
             allowNull: false
         },
         elected: {

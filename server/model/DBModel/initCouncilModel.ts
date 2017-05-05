@@ -39,12 +39,12 @@ export function initCouncilInstanceModel(sequelize: Sequelize) {
             primaryKey: true,
         },
         from: {
-            type: ORM.DATEONLY,
+            type: ORM.DATE,
             unique: 'compositeIndex',
             allowNull: false
         },
         till: {
-            type: ORM.DATEONLY,
+            type: ORM.DATE,
             unique: 'compositeIndex',
             allowNull: false
         },
