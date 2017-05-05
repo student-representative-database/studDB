@@ -93,6 +93,10 @@ class APILogic {
   // OTHER
   public sendApplicationForm() {}
 
+  public login() {}
+
+  public logout() {}
+
   public init() {
     // Setup headers.
     this.headers.GET = {
