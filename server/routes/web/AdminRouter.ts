@@ -17,7 +17,7 @@ class AdminRouter {
     public getAdminLogin(req: Request, res: Response, next: NextFunction) {
         res
             .status(200)
-            .render('login', {layout: 'login'});
+            .render('login');
     }
 
     public init() {

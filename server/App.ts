@@ -7,6 +7,8 @@ import * as path from 'path'
 // Import routes.
 import HomeRouter from './routes/web/HomeRouter'
 import AdminRouter from './routes/web/AdminRouter'
+import CouncilRouter from './routes/web/CouncilRouter'
+import ApplyRouter from './routes/web/ApplyRouter'
 import CRUDfacultiesRouter from './routes/api/v1/CRUDfacultiesRouter'
 import CRUDcouncilRouter from './routes/api/v1/CRUDcouncilsRouter'
 import CRUDusersRouter from './routes/api/v1/CRUDusersRouter'
@@ -58,13 +60,15 @@ class App {
     Configure API endpoints.
   */
   private routes(): void {
-    const router = express.Router();
+    const router = express.Router()
 
     /*
       Web routes
      */
-    this.express.use('/', HomeRouter);
-    this.express.use('/admin', AdminRouter);
+    this.express.use('/', HomeRouter)
+    this.express.use('/admin', AdminRouter)
+    this.express.use('/council', CouncilRouter)
+    this.express.use('/apply', ApplyRouter)
 
     /*
       API routes

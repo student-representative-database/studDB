@@ -16,7 +16,7 @@ html {
   body {
     background: $bgc-primary;
     font-size: 18px;
-    margin-bottom: $footer-height;
+    margin-bottom: $footer-height + 20px;
 
     a {
       color: $linkc-primary;
@@ -37,6 +37,23 @@ h1, h2, h3, h4, h5, h6 {
 
 .container {
   width: $main-width;
+
+  .col-md-8 .list-group {
+    margin: 20px 0px 10px 0px;
+    cursor: pointer;
+
+    .list-group-item {
+      cursor: pointer;
+    }
+
+    .indent {
+      margin: 0px 0px 0px 20px;
+    }
+
+    .indent-2x {
+      margin: 0px 0px 0px 40px;
+    }
+  }
 }
 
 .jumbotron {
@@ -70,7 +87,6 @@ h1, h2, h3, h4, h5, h6 {
   width: 500px;
 }
 
-// Aside
 .col-md-4 {
   section {
     color: $fontc-secondary;
@@ -128,6 +144,32 @@ footer {
     padding: 50px;
     width: $main-width;
   }
+}
+
+// Animations
+.glyphicon-spin {
+    -webkit-animation: spin 1000ms infinite linear;
+    animation: spin 1000ms infinite linear;
+}
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+@keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
 }
 
 /** Media queries **/
