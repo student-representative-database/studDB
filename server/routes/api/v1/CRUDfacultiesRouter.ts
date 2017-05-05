@@ -17,25 +17,115 @@ class CRUDfacultiesRouter {
     this.router = Router();
     this.init()
   }
-  /**
-   * /api/v1/faculties/:id
-   *  GET:
-   *    description:  Renders the form for updating a snippet.
-   *    responses:    200 - If user is logged in.
-   *                  403 - If not logged in.
-   *                  404 - If snippet is not found.
-   */
+
+/**
+ * @api {get} /faculty/ Get all faculties
+ * @apiVersion 0.1.0
+ * @apiName GetFaculties
+ * @apiGroup Faculty
+ *
+ * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
+ * {
+ *   "payload": [
+ *     {
+ *       "id": 1,
+ *       "name": "Fakulteten för teknik",
+ *       "councils": [
+ *         {
+ *           "id": 1,
+ *           "name": "Utbildningsråd",
+ *           "description": "...",
+ *           "facultyId": 1
+ *         }
+ *       ]
+ *     },
+ *     {...}
+ *   ]
+ * }
+ * @apiError NoFacultiesFound No faculties found.
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": "NoFacultiesFound"
+ *     }
+ */
+
   public getAll(req: Request, res: Response, next: NextFunction) {
     findAllFaculties()
       .then(_.partial(onSuccess, res))
       .catch(_.partial(onError, res, 'Find all faculties failed'));
   }
 
+/**
+ * @api {get} /faculty/:id Get faculty
+ * @apiVersion 0.1.0
+ * @apiName GetFaculty
+ * @apiGroup Faculty
+ *
+ * @apiParam (uriParams) {number} id Id of the Faculty.
+ * 
+ * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
+ * "payload": {
+ *   "id": 1,
+ *   "name": "Fakulteten för teknik",
+ *   "councils": [
+ *     {
+ *       "id": 1,
+ *       "name": "Utbildningsråd",
+ *       "description": "...",
+ *       "facultyId": 1
+ *     }
+ *   ]
+ * }
+ *
+ * @apiError FacultyNotFound Id of the Faculty was not found.
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": "FacultyNotFound"
+ *     }
+ */
+
   public getOne(req: Request, res: Response, next: NextFunction) {
     findOneFaculty(req.params.id)
       .then(_.partial(onSuccess, res))
       .catch(_.partial(onError, res, 'Find one faculty failed'));
   }
+
+/**
+ * @api {post} /faculty/:id Create faculty
+ * @apiVersion 0.1.0
+ * @apiName CreateFaculty
+ * @apiGroup Faculty
+ *
+ * @apiParam (uriParams) {Number} id Faculty unique ID.
+ * @apiParam {String} name Name of the Faculty.
+ * @apiParamExample {json} Request-Example:
+ *   {
+ *     "name": "Fakulteten för teknik"
+ *   }
+ *
+ * @apiSuccessExample Success-Response:
+ * HTTP/1.1 200 OK
+ * {
+ *   "payload": {
+ *     "id": 1,
+ *     "name": "Fakulteten för teknik"
+ *   }
+ * }
+ *
+ * @apiError DuplicateFacultyName There alredy exist a faculty with that name
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 400 Bad request
+ *     {
+ *       "error": "DuclicateFacultyName"
+ *     }
+ */
 
   public create(req: Request, res: Response, next: NextFunction) {
     create(req.body, FacultyModel)
@@ -44,11 +134,64 @@ class CRUDfacultiesRouter {
         .catch(_.partial(onError, res, `Could not create faculty`));
   }
 
+/**
+ * @api {delete} /faculty/:id Delete faculty
+ * @apiVersion 0.1.0
+ * @apiName DeleteFaculty
+ * @apiGroup Faculty
+ *
+ * @apiParam (uriParams) {Number} id Faculty unique ID.
+ *
+ * @apiSuccessExample Success-Response:
+ * {
+ *   "payload": {
+ *     "id": 1,
+ *     "name": "Fakulteten för teknik"
+ *   }
+ * }
+ *
+ * @apiError NoFacultyWithId No faculty with that id exists
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 404 Not Found
+ *     {
+ *       "error": "FacultyNotFound"
+ *     }
+ */
+
   public delete(req: Request, res: Response, next: NextFunction) {
     deleteOne(req.params.id, FacultyModel)
         .then(_.partial(onSuccess, res))
         .catch(_.partial(onError, res, 'Delete faculty failed'));
   }
+
+/**
+ * @api {patch} /faculty/:id Update faculty
+ * @apiVersion 0.1.0
+ * @apiName patchFaculty
+ * @apiGroup Faculty
+ *
+ * @apiParam (uriParams) {Number} id Faculty unique ID.
+ *
+ * @apiParamExample {json} Request-Example:
+ *   {
+ *     "name": "Fakulteten för "
+ *   }
+ *
+ * @apiSuccessExample Success-Response:
+ *   "payload": {
+ *       "id": 1,
+ *       "name": "Fakulteten för samhällsvetenskap"
+ *     }
+ *
+ * @apiError DuplicateFacultyName There alredy exist a faculty with that name
+ *
+ * @apiErrorExample Error-Response:
+ *     HTTP/1.1 400 Bad request
+ *     {
+ *       "error": "DuclicateFacultyName"
+ *     }
+ */
 
   public patch(req: Request, res: Response, next: NextFunction) {
     update(req.params.id, req.body, FacultyModel)
