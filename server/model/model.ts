@@ -125,11 +125,14 @@ sequelize.sync({
         lastName: 'Olsson',
         phone: '0123456-123',
         email: 'fredriko.olsson@gmail.com',
-        faculty: 'data...',
-        position: 'hkjhk',
-        profileUrl: 'kllökök',
+        facultyId: 1,
+        //position: 'hkjhk',
+        //profileUrl: 'kllökök',
         password: 'dingDong',
         graduationYear: 2018,
+        birthDate: new Date('October 10, 1980'),
+        program: 'UDM',
+        comments: 'bla'
     })
 }).then(() => {
     return UserModel.create({
@@ -137,12 +140,15 @@ sequelize.sync({
         lastName: 'Balla',
         phone: '0123456-123',
         email: 'andrasBalla@gmail.com',
-        faculty: 'data...',
-        position: 'hkjhk',
-        profileUrl: 'kllökök',
+        facultyId: 2,
+        //position: 'hkjhk',
+        //profileUrl: 'kllökök',
         password: 'hello',
         phd: true,
         graduationYear: 2018,
+        birthDate: new Date('October 10, 1980'),
+        program: 'some course',
+        comments: 'bla'
     })
 }).then(() => {
     return UserModel.create({
@@ -150,11 +156,14 @@ sequelize.sync({
         lastName: 'Popniten',
         phone: '0123456-123',
         email: 'pär@gmail.com',
-        faculty: 'data...',
-        position: 'hkjhk',
-        profileUrl: 'kllökök',
+        facultyId: 1,
+        //position: 'hkjhk',
+        //profileUrl: 'kllökök',
         password: 'password',
         graduationYear: 2018,
+        birthDate: new Date('October 10, 1980'),
+        program: 'UDM',
+        comments: 'bla'
     })
 }).then(() => {
     return UserModel.create({
@@ -162,11 +171,14 @@ sequelize.sync({
         lastName: 'Oc',
         phone: '0123456-123',
         email: 'oc@gmail.com',
-        faculty: 'data...',
-        position: 'hkjhk',
-        profileUrl: 'kllökök',
+        facultyId: 2,
+        //position: 'hkjhk',
+        //profileUrl: 'kllökök',
         password: 'password',
         graduationYear: 2018,
+        birthDate: new Date('October 10, 1980'),
+        program: 'hallo',
+        comments: 'bla'
     })
 }).then(() => {
     return UserPositionModel.create({
