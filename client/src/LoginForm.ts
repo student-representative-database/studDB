@@ -1,8 +1,8 @@
 
-export default class LoginForm {
+export class LoginForm {
 
   public displayForm() {
-    console.log(`Create and display form.`)
+    console.log(`Create and display login form.`)
   }
 
   private eventHandler(event) {}

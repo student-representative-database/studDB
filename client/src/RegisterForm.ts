@@ -1,8 +1,8 @@
 
-export default class RegisterForm {
+export class RegisterForm {
 
   public displayForm() {
-    console.log(`Create and display form.`)
+    console.log(`Create and display register form.`)
   }
 
   private submitForm() {}

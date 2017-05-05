@@ -1,8 +1,8 @@
 
-export default class AdminPanel {
+export class AdminPanel {
 
   public displayPanel() {
-    console.log(`Create and display form.`)
+    console.log(`Create and display admin panel.`)
   }
 
   private eventHandler(event) {}

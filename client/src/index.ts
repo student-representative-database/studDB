@@ -1,4 +1,7 @@
 import { RegistryList } from './RegistryList'
+import { LoginForm } from './LoginForm'
+import { RegisterForm } from './RegisterForm'
+import { AdminPanel } from './AdminPanel'
 
 //////
 
@@ -30,9 +33,17 @@ switch (type) {
     const list = new RegistryList()
     list.appendListTo()
     break
-  case 'apply-interest':
+  case 'registerform':
+    const register = new RegisterForm()
+    register.displayForm()
     break
-  case 'administrate':
+  case 'admin':
+    const admin = new AdminPanel()
+    admin.displayPanel()
+    break
+  case 'login':
+    const login = new LoginForm()
+    login.displayForm()
     break
   default:
     break
