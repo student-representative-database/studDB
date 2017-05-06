@@ -73,12 +73,12 @@ export function initEmployeeModel(sequelize: Sequelize) {
 
 export function initEmployeePositionModel(sequelize: Sequelize) {
   return sequelize.define('EmployeePosition', {
-    councilId: {
+    CouncilId: {
       type: ORM.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    employeeId: {
+    EmployeeId: {
       type: ORM.INTEGER,
       allowNull: false,
       primaryKey: true

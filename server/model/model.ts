@@ -96,26 +96,6 @@ sequelize.sync({
         till: new Date('May 20, 2017'),
         councilId: 2
     })
-    /*
-}).then(() => {
-    return CouncilPositionsModel.create({
-        year: 2017,
-        councilId: 1,
-        councilInstanceId: 1
-    })
-}).then(() => {
-    return CouncilPositionsModel.create({
-        year: 2017,
-        councilId: 1,
-        councilInstanceId: 1
-    })
-}).then(() => {
-    return CouncilPositionsModel.create({
-        year: 2017,
-        councilId: 1,
-        councilInstanceId: 1
-    })
-    */
 }).then(() => {
     return UserModel.create({
         firstName: 'Fredrik',
@@ -178,6 +158,43 @@ sequelize.sync({
         comments: 'bla'
     })
 }).then(() => {
+    return EmployeeModel.create({
+        firstName: 'Olga',
+        lastName: 'Oc',
+        phone: '0123456-123',
+        email: 'oc@gmail.com',
+        facultyId: 1,
+        profileUrl: "kllökök",
+        password: 'password',
+    })
+}).then(() => {
+    return EmployeeModel.create({
+        firstName: 'Olga',
+        lastName: 'Oc',
+        phone: '0123456-123',
+        email: 'oc@gmail.com',
+        facultyId: 1,
+        profileUrl: "kllökök",
+        password: 'password',
+
+    })
+}).then(() => {
+    return EmployeePositionModel.create({
+        CouncilId: 1,
+        EmployeeId: 1,
+        secretary: false,
+        chairman: true,
+        convener: false,
+    })
+}).then(() => {
+    return EmployeePositionModel.create({
+        CouncilId: 1,
+        EmployeeId: 2,
+        secretary: false,
+        chairman: true,
+        convener: false,
+    })
+}).then(() => {
     return UserPositionModel.create({
         CouncilInstanceId: 1,
         UserId: 1,
@@ -221,9 +238,13 @@ sequelize.sync({
     console.log(JSON.stringify(res))
 })*/
 .then(() => {
+    const facultyId = 1;
     return CouncilModel.findById(1,
         {
             include: [
+                {
+                    model: EmployeeModel,
+                }
                 {
                     model: CouncilInstanceModel,
                     include: [
@@ -235,6 +256,6 @@ sequelize.sync({
         }
     )
 }).then((res) => {
-    const blabla = res.get({plain: true});
+    const blabla = res; // [].get({plain: true});
     console.log(JSON.stringify(blabla, null, 2));
 })

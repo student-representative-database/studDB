@@ -7,10 +7,13 @@ import {
     CouncilModel, FacultyModel, UserModel, EmployeeModel, CouncilInstanceModel,
     UserPositionModel} from '../model/model';
 
-export function findOneCouncil(id: number) {
+export function findOneCouncil(id: number, facultyId: number) {
     return CouncilModel.findById(id,
     {
         include: [
+            {
+                model: EmployeeModel,
+            },
             {
                 model: CouncilInstanceModel,
                 include: [
