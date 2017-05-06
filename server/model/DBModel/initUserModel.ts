@@ -26,6 +26,10 @@ export function initUserModel(sequelize: Sequelize) {
         len: [1, 20]
       }
     },
+    birthDate: {
+      type: ORM.DATE,
+      allowNull: false
+    },
     phd: {
       type: ORM.BOOLEAN,
       allowNull: false,
@@ -42,12 +46,20 @@ export function initUserModel(sequelize: Sequelize) {
         isEmail: true
       }
     },
-    faculty: {
-      type: ORM.STRING,
-      allowNull: false
+    facultyId: {
+      type: ORM.INTEGER,
+      allowNull: true
     },
     graduationYear: {
       type: ORM.DATE,
+      allowNull: false
+    },
+    program: {
+      type: ORM.STRING,
+      allowNull: false
+    },
+    comments: {
+      type: ORM.TEXT,
       allowNull: false
     },
     password: {
@@ -83,13 +95,21 @@ export function initUserPositionModel(sequelize: Sequelize) {
             type: ORM.INTEGER,
             primaryKey: true
         },
-        CouncilPositionId: {
+        CouncilInstanceId: {
             type: ORM.INTEGER,
             primaryKey: true
         },
-        until: {
+        from: {
             type: ORM.DATE,
-            allowNull: true
+            allowNull: false
+        },
+        till: {
+            type: ORM.DATE,
+            allowNull: false
+        },
+        elected: {
+            type: ORM.BOOLEAN,
+            defaultValue: false
         }
   });
 }

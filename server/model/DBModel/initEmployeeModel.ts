@@ -36,12 +36,8 @@ export function initEmployeeModel(sequelize: Sequelize) {
         isEmail: true
       }
     },
-    faculty: {
-      type: ORM.STRING,
-      allowNull: false
-    },
-    position: {
-      type: ORM.STRING,
+    facultyId: {
+      type: ORM.INTEGER,
       allowNull: false
     },
     profileUrl: {
@@ -76,5 +72,31 @@ export function initEmployeeModel(sequelize: Sequelize) {
 }
 
 export function initEmployeePositionModel(sequelize: Sequelize) {
-  return sequelize.define('EmployeePosition', {});
+  return sequelize.define('EmployeePosition', {
+    councilId: {
+      type: ORM.INTEGER,
+      allowNull: false,
+      primaryKey: true
+    },
+    employeeId: {
+      type: ORM.INTEGER,
+      allowNull: false,
+      primaryKey: true
+    },
+    secretary: {
+      type: ORM.BOOLEAN,
+      defaultValue: false,
+      allowNull: false
+    },
+    chairman: {
+      type: ORM.BOOLEAN,
+      defaultValue: false,
+      allowNull: false
+    },
+    convener: {
+      type: ORM.BOOLEAN,
+      defaultValue: false,
+      allowNull: false
+    }
+  });
 }

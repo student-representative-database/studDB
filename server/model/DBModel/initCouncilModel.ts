@@ -38,8 +38,13 @@ export function initCouncilInstanceModel(sequelize: Sequelize) {
             autoIncrement: true,
             primaryKey: true,
         },
-        year: {
-            type: ORM.INTEGER,
+        from: {
+            type: ORM.DATE,
+            unique: 'compositeIndex',
+            allowNull: false
+        },
+        till: {
+            type: ORM.DATE,
             unique: 'compositeIndex',
             allowNull: false
         },
@@ -51,6 +56,7 @@ export function initCouncilInstanceModel(sequelize: Sequelize) {
     });
 }
 
+/*
 export function initCouncilInstanceApplicationModel(sequelize: Sequelize) {
     return sequelize.define('CouncilInstanceApplication', {
         UserId: {
@@ -67,6 +73,7 @@ export function initCouncilInstanceApplicationModel(sequelize: Sequelize) {
         }
     });
 }
+
 // Finns typ 5 stycken till ett råd
 export function initCouncilPositionsModel(sequelize: Sequelize) {
     return sequelize.define('CouncilPosition', {
@@ -91,3 +98,4 @@ export function initCouncilPositionsModel(sequelize: Sequelize) {
         }
     });
 }
+*/

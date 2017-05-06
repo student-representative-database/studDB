@@ -1,7 +1,7 @@
 import * as ORM from 'sequelize';
 import { LoggingOptions, Sequelize } from 'sequelize';
 // tslint:disable-next-line:max-line-length
-import { initCouncilModel, initCouncilInstanceModel, initCouncilPositionsModel, initCouncilInstanceApplicationModel } from './DBModel/initCouncilModel';
+import { initCouncilModel, initCouncilInstanceModel } from './DBModel/initCouncilModel';
 import { initFacultyModel } from './DBModel/initFacultyModel';
 import { initUserModel, initUserPositionModel } from './DBModel/initUserModel';
 import { initEmployeeModel, initEmployeePositionModel } from './DBModel/initEmployeeModel';
@@ -19,37 +19,38 @@ export const UserPositionModel = initUserPositionModel(sequelize);
 export const EmployeeModel = initEmployeeModel(sequelize);
 export const EmployeePositionModel = initEmployeePositionModel(sequelize);
 export const CouncilInstanceModel = initCouncilInstanceModel(sequelize);
-export const CouncilPositionsModel = initCouncilPositionsModel(sequelize);
-export const CouncilInstanceApplicationModel = initCouncilInstanceApplicationModel(sequelize);
-// Faculty -> Council -> CouncilInstance -> CouncilsPositions -> UserPosition -> User
+
+// Faculty -> Council, Faculty -> User; Faculty -> Employee
 FacultyModel.hasMany(CouncilModel, { foreignKey: 'facultyId' });
 CouncilModel.belongsTo(FacultyModel, { foreignKey: 'facultyId' });
 
+FacultyModel.hasMany(UserModel);
+UserModel.belongsTo(FacultyModel);
+
+FacultyModel.hasMany(EmployeeModel);
+EmployeeModel.belongsTo(FacultyModel);
+
+
+// Council -> CouncilInstance -> UserPosition -> User
 CouncilModel.hasMany(CouncilInstanceModel, { foreignKey: 'councilId' });
 CouncilInstanceModel.belongsTo(CouncilModel, { foreignKey: 'councilId' });
 
-CouncilInstanceModel.hasMany(CouncilPositionsModel, { foreignKey: 'councilInstanceId', onDelete: 'cascade' });
-CouncilPositionsModel.belongsTo(CouncilInstanceModel, { foreignKey: 'councilInstanceId' });
+CouncilInstanceModel.belongsToMany(UserModel, {through: UserPositionModel});
+UserModel.belongsToMany(CouncilInstanceModel, {through: UserPositionModel});
 
-CouncilPositionsModel.hasOne(UserPositionModel, {onDelete: 'cascade' });
-UserPositionModel.belongsTo(CouncilPositionsModel);
+/*
+CouncilInstanceModel.hasMany(UserPositionModel);
+UserPositionModel.belongsTo(CouncilInstanceModel);
 
-UserModel.hasOne(UserPositionModel, {onDelete: 'cascade' });
+UserModel.hasMany(UserPositionModel);
 UserPositionModel.belongsTo(UserModel);
+*/
+
 
 // Council -> EmployeePosition -> Employee
-CouncilModel.hasOne(EmployeePositionModel)
-EmployeePositionModel.belongsTo(CouncilModel)
+CouncilModel.belongsToMany(EmployeeModel, {through: EmployeePositionModel});
+EmployeeModel.belongsToMany(CouncilModel, {through: EmployeePositionModel});
 
-EmployeePositionModel.hasOne(EmployeeModel)
-EmployeeModel.belongsTo(EmployeePositionModel)
-
-// Application
-CouncilInstanceModel.hasMany(CouncilInstanceApplicationModel);
-CouncilInstanceApplicationModel.belongsTo(CouncilInstanceModel);
-
-UserModel.hasMany(CouncilInstanceApplicationModel)
-CouncilInstanceApplicationModel.belongsTo(UserModel)
 
 // COMMENT OUT IF YOU DON'T WANT THE DB TO BE OVERWRITTEN AT EVERY RESTART, IF WORKING WITH THE DB MODELS THIS CODE
 // SHOULD PROBABLY BE ACTIVE
@@ -82,19 +83,23 @@ sequelize.sync({
     })
 }).then(() => {
     return CouncilInstanceModel.create({
-        year: 2017,
+        from: new Date('January 1, 2017'),
+        till: new Date('May 30, 2017'),
         councilId: 1
     })
 }).then(() => {
     return CouncilInstanceModel.create({
-        year: 2018,
+        from: new Date('January 1, 2017'),
+        till: new Date('May 30, 2017'),
         councilId: 2
     })
 }).then(() => {
     return CouncilInstanceModel.create({
-        year: 2017,
+        from: new Date('February 1, 2017'),
+        till: new Date('May 20, 2017'),
         councilId: 2
     })
+    /*
 }).then(() => {
     return CouncilPositionsModel.create({
         year: 2017,
@@ -113,17 +118,21 @@ sequelize.sync({
         councilId: 1,
         councilInstanceId: 1
     })
+    */
 }).then(() => {
     return UserModel.create({
         firstName: 'Fredrik',
         lastName: 'Olsson',
         phone: '0123456-123',
         email: 'fredriko.olsson@gmail.com',
-        faculty: 'data...',
-        position: 'hkjhk',
-        profileUrl: 'kllökök',
+        facultyId: 1,
+        //position: 'hkjhk',
+        //profileUrl: 'kllökök',
         password: 'dingDong',
         graduationYear: 2018,
+        birthDate: new Date('October 10, 1980'),
+        program: 'UDM',
+        comments: 'bla'
     })
 }).then(() => {
     return UserModel.create({
@@ -131,12 +140,15 @@ sequelize.sync({
         lastName: 'Balla',
         phone: '0123456-123',
         email: 'andrasBalla@gmail.com',
-        faculty: 'data...',
-        position: 'hkjhk',
-        profileUrl: 'kllökök',
+        facultyId: 2,
+        //position: 'hkjhk',
+        //profileUrl: 'kllökök',
         password: 'hello',
         phd: true,
         graduationYear: 2018,
+        birthDate: new Date('October 10, 1980'),
+        program: 'some course',
+        comments: 'bla'
     })
 }).then(() => {
     return UserModel.create({
@@ -144,11 +156,14 @@ sequelize.sync({
         lastName: 'Popniten',
         phone: '0123456-123',
         email: 'pär@gmail.com',
-        faculty: 'data...',
-        position: 'hkjhk',
-        profileUrl: 'kllökök',
+        facultyId: 1,
+        //position: 'hkjhk',
+        //profileUrl: 'kllökök',
         password: 'password',
         graduationYear: 2018,
+        birthDate: new Date('October 10, 1980'),
+        program: 'UDM',
+        comments: 'bla'
     })
 }).then(() => {
     return UserModel.create({
@@ -156,52 +171,59 @@ sequelize.sync({
         lastName: 'Oc',
         phone: '0123456-123',
         email: 'oc@gmail.com',
-        faculty: 'data...',
-        position: 'hkjhk',
-        profileUrl: 'kllökök',
+        facultyId: 2,
+        //position: 'hkjhk',
+        //profileUrl: 'kllökök',
         password: 'password',
         graduationYear: 2018,
+        birthDate: new Date('October 10, 1980'),
+        program: 'hallo',
+        comments: 'bla'
     })
 }).then(() => {
     return UserPositionModel.create({
-        CouncilPositionId: 1,
-        UserId: 1
+        CouncilInstanceId: 1,
+        UserId: 1,
+        from: new Date('October 13, 2018'),
+        till: new Date('October 13, 2020')
     })
 }).then(() => {
     return UserPositionModel.create({
-        CouncilPositionId: 2,
+        CouncilInstanceId: 2,
         UserId: 2,
-        until: new Date('October 13, 2020')
+        from: new Date('January 13, 2020'),
+        till: new Date('October 13, 2020')
     })
+    /*
+     }).then(() => {
+     return CouncilInstanceApplicationModel.create({
+     CouncilInstanceId: 1,
+     UserId: 3,
+     })
+     }).then(() => {
+     return CouncilInstanceApplicationModel.create({
+     CouncilInstanceId: 1,
+     UserId: 4,
+     until: new Date('2017-05-01')
+     })
+     */
 }).then(() => {
-    return CouncilInstanceApplicationModel.create({
-        CouncilInstanceId: 1,
-        UserId: 3,
-    })
-}).then(() => {
-    return CouncilInstanceApplicationModel.create({
-        CouncilInstanceId: 1,
-        UserId: 4,
-        until: new Date('2017-05-01')
-    })
-}).then(() => {
-    return CouncilInstanceModel.findAll({
+    return CouncilInstanceModel.findAll(
+
+         {
         include: [
             {
-                model: CouncilPositionsModel,
-                include: [{
-                    model: UserPositionModel,
-                    include: [{
-                        model: UserModel
-                    }]
-                }]
+                model: UserModel
             }
         ]
-    })
+         }
+
+    )
 }).then((res) => {
     const blabla = res[0].get({plain: true});
-    console.log(JSON.stringify(res, null, 2))
+    console.log(JSON.stringify(res))
 })
+
 
 /*.then(() => {
         return CouncilModel.findById(1, {
