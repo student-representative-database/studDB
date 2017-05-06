@@ -7,7 +7,7 @@ export interface Iemployee {
     facultyId: number,
     profileUrl: string,
     password: string,
-    employeePosition: IEmployeePosition
+    EmployeePosition: IEmployeePosition
 }
 
 export function createEmployee({
@@ -18,7 +18,7 @@ export function createEmployee({
     email,
     facultyId,
     profileUrl,
-    password, employeePosition}: any): Iemployee {
+    password, EmployeePosition}: any): Iemployee {
     return {
         id,
         firstName,
@@ -28,7 +28,7 @@ export function createEmployee({
         facultyId,
         profileUrl,
         password,
-        createEmployeePosition(employeePosition)
+        EmployeePosition
     };
 }
 
