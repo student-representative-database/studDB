@@ -8,7 +8,7 @@ export interface ICouncilInst {
     //positions: ICouncilPosition[]
 }
 
-export function createCouncilInstance({ id, councilId, from, till, CouncilPositions }: any): ICouncilInst {
+export function createCouncilInstance({ id, councilId, from, till }: any): ICouncilInst {
     return {
         id,
         councilId,
