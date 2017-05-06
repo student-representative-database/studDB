@@ -30,7 +30,6 @@ UserModel.belongsTo(FacultyModel);
 FacultyModel.hasMany(EmployeeModel);
 EmployeeModel.belongsTo(FacultyModel);
 
-
 // Council -> CouncilInstance -> UserPosition -> User
 CouncilModel.hasMany(CouncilInstanceModel, { foreignKey: 'councilId' });
 CouncilInstanceModel.belongsTo(CouncilModel, { foreignKey: 'councilId' });
@@ -103,8 +102,6 @@ sequelize.sync({
         phone: '0123456-123',
         email: 'fredriko.olsson@gmail.com',
         facultyId: 1,
-        //position: 'hkjhk',
-        //profileUrl: 'kllökök',
         password: 'dingDong',
         graduationYear: 2018,
         birthDate: new Date('October 10, 1980'),
@@ -118,8 +115,6 @@ sequelize.sync({
         phone: '0123456-123',
         email: 'andrasBalla@gmail.com',
         facultyId: 2,
-        //position: 'hkjhk',
-        //profileUrl: 'kllökök',
         password: 'hello',
         phd: true,
         graduationYear: 2018,
@@ -134,8 +129,6 @@ sequelize.sync({
         phone: '0123456-123',
         email: 'pär@gmail.com',
         facultyId: 1,
-        //position: 'hkjhk',
-        //profileUrl: 'kllökök',
         password: 'password',
         graduationYear: 2018,
         birthDate: new Date('October 10, 1980'),
@@ -149,8 +142,6 @@ sequelize.sync({
         phone: '0123456-123',
         email: 'oc@gmail.com',
         facultyId: 2,
-        //position: 'hkjhk',
-        //profileUrl: 'kllökök',
         password: 'password',
         graduationYear: 2018,
         birthDate: new Date('October 10, 1980'),
@@ -208,19 +199,6 @@ sequelize.sync({
         from: new Date('January 13, 2020'),
         till: new Date('October 13, 2020')
     })
-    /*
-     }).then(() => {
-     return CouncilInstanceApplicationModel.create({
-     CouncilInstanceId: 1,
-     UserId: 3,
-     })
-     }).then(() => {
-     return CouncilInstanceApplicationModel.create({
-     CouncilInstanceId: 1,
-     UserId: 4,
-     until: new Date('2017-05-01')
-     })
-     */
 })/*.then(() => {
     return CouncilInstanceModel.findAll(
 
@@ -237,7 +215,7 @@ sequelize.sync({
     const blabla = res[0].get({plain: true});
     console.log(JSON.stringify(res))
 })*/
-.then(() => {
+/*.then(() => {
     const facultyId = 1;
     return CouncilModel.findById(1,
         {
@@ -258,4 +236,4 @@ sequelize.sync({
 }).then((res) => {
     const blabla = res; // [].get({plain: true});
     console.log(JSON.stringify(blabla, null, 2));
-})
+})*/

@@ -20,7 +20,6 @@ export interface ICouncilFacultyView {
 }
 
 export function createCouncil({id, name, description , facultyId, studentPositions, phdPositions, Employees, CouncilInstances}: any): ICouncil {
-    console.log(Employees);
     return {
         id,
         name,
