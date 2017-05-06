@@ -38,14 +38,11 @@ CouncilInstanceModel.belongsTo(CouncilModel, { foreignKey: 'councilId' });
 CouncilInstanceModel.belongsToMany(UserModel, {through: UserPositionModel});
 UserModel.belongsToMany(CouncilInstanceModel, {through: UserPositionModel});
 
-/*
-CouncilInstanceModel.hasMany(UserPositionModel);
+/* CouncilInstanceModel.hasMany(UserPositionModel);
 UserPositionModel.belongsTo(CouncilInstanceModel);
 
 UserModel.hasMany(UserPositionModel);
-UserPositionModel.belongsTo(UserModel);
-*/
-
+UserPositionModel.belongsTo(UserModel);*/
 
 // Council -> EmployeePosition -> Employee
 CouncilModel.belongsToMany(EmployeeModel, {through: EmployeePositionModel});
@@ -207,7 +204,7 @@ sequelize.sync({
      until: new Date('2017-05-01')
      })
      */
-}).then(() => {
+})/*.then(() => {
     return CouncilInstanceModel.findAll(
 
          {
@@ -222,13 +219,22 @@ sequelize.sync({
 }).then((res) => {
     const blabla = res[0].get({plain: true});
     console.log(JSON.stringify(res))
+})*/
+.then(() => {
+    return CouncilModel.findById(1,
+        {
+            include: [
+                {
+                    model: CouncilInstanceModel,
+                    include: [
+                        {
+                            model: UserModel
+                        }
+                }
+            ]
+        }
+    )
+}).then((res) => {
+    const blabla = res.get({plain: true});
+    console.log(JSON.stringify(blabla, null, 2));
 })
-
-
-/*.then(() => {
-        return CouncilModel.findById(1, {
-            include: [{
-                model: CouncilInstanceModel
-            }]
-        })
-    })*/

@@ -45,17 +45,15 @@ export interface IUserPosition {
     from: Date,
     till: Date,
     elected: boolean,
-    User: Iuser
 }
 
-export function createUserPosition({ UserId, CouncilInstanceId, from, till, elected, User }: any): IUserPosition {
+export function createUserPosition({ UserId, CouncilInstanceId, from, till, elected }: any): IUserPosition {
         return {
             UserId,
             CouncilInstanceId,
             from,
             till,
-            elected,
-            User: createUser(User)
+            elected
         };
 }
 

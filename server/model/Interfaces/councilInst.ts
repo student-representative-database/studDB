@@ -1,11 +1,11 @@
-//import {createUserPosition, IUserPosition} from './user';
+import {createUser, createUserPosition, Iuser, IUserPosition} from './user';
 
 export interface ICouncilInst {
     readonly id: number,
-    councilId: number,
     from: Date,
     till: Date,
-    //positions: ICouncilPosition[]
+    councilId: number,
+    // Users: Iuser
 }
 
 export function createCouncilInstance({ id, councilId, from, till }: any): ICouncilInst {
@@ -14,7 +14,7 @@ export function createCouncilInstance({ id, councilId, from, till }: any): ICoun
         councilId,
         from,
         till,
-        //positions: CouncilPositions.map(createCouncilPosition)
+        // Users: createUser(User)
     }
 }
 

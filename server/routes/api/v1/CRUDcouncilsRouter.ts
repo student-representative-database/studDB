@@ -53,7 +53,7 @@ class CRUDcouncilsRouter {
   public getOne(req: Request, res: Response, next: NextFunction) {
     findOneCouncil(req.params.councilId, 2017)
       .then(_.partial(onSuccess, res))
-      .catch(_.partial(onError, res, 'Find all faculties failed'));
+      .catch(_.partial(onError, res, 'Get One Council failed!'));
   }
 
 /**

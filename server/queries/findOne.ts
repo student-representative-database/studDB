@@ -2,14 +2,25 @@ import {createCouncil} from '../model/Interfaces/council';
 import {createEmployee} from '../model/Interfaces/employee';
 import {createFaculty} from '../model/Interfaces/faculty';
 import {createUser} from '../model/Interfaces/user';
-import { createCouncilInstance, createCouncilPosition } from '../model/Interfaces/councilInst';
+import { createCouncilInstance} from '../model/Interfaces/councilInst';
 import {
     CouncilModel, FacultyModel, UserModel, EmployeeModel, CouncilInstanceModel,
-    CouncilPositionsModel, UserPositionModel
-} from '../model/model';
+    UserPositionModel} from '../model/model';
 
-export function findOneCouncil(councilId: number, currentYear: number) {
-    return CouncilModel.findById(councilId)
+export function findOneCouncil(id: number, currentYear: number) {
+    return CouncilModel.findById(id,
+    {
+        include: [
+            {
+                model: CouncilInstanceModel,
+                /*include: [
+                    {
+                        model: UserModel
+                    }
+                ]*/
+            }
+        ]
+    })
         .then(createCouncil);
 }
 
@@ -34,25 +45,17 @@ export function findOneUser(userId: number) {
         .then(createUser);
 }
 
-export function findOneInst(councilId: number, year: number) {
+export function findOneInst(councilId: number, id: number) {
     return CouncilInstanceModel.findOne({
-        where: { councilId, year },
-        include: [
-            {
-                model: CouncilPositionsModel,
-                include: [{
-                    model: UserPositionModel,
-                    include: [{
-                        model: UserModel
-                    }]
+        where: { councilId, id },
+            include: [{
+                    model: UserModel
                 }]
-            }
-        ]
     })
         .then(createCouncilInstance);
 }
 
-export function findOneCouncilPosition(id: number) {
+/*export function findOneCouncilPosition(id: number) {
     return CouncilPositionsModel.findOne({
         where: { id },
         include: [{
@@ -63,4 +66,4 @@ export function findOneCouncilPosition(id: number) {
         }]
     })
         .then(createCouncilPosition);
-}
+}*/
