@@ -8,23 +8,24 @@ import {
     UserPositionModel} from '../model/model';
 
 export function findOneCouncil(id: number) {
-    return CouncilModel.findById(id)
-    /*{
+    return CouncilModel.findById(id,
+    {
         include: [
             {
                 model: CouncilInstanceModel,
-                /*include: [
+                include: [
                     {
                         model: UserModel
                     }
                 ]
             }
         ]
-    }) */
-        .then((res) => {
+    })
+        /*.then((res) => {
             const blabla = res.get({plain: true});
             console.log(JSON.stringify(blabla, null, 2))
-        })
+            createCouncil(blabla);
+        })*/
         .then(createCouncil);
 }
 

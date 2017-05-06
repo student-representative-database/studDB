@@ -9,7 +9,8 @@ export interface Iuser {
     faculty: number,
     graduationYear: Date,
     program: string,
-    comments: string
+    comments: string,
+    UserPosition: IUserPosition
 }
 
 export function createUser({
@@ -23,7 +24,7 @@ export function createUser({
     faculty,
     graduationYear,
     program,
-    comments}: any): Iuser {
+    comments, UserPosition}: any): Iuser {
     return {
         id,
         firstName,
@@ -35,7 +36,8 @@ export function createUser({
         faculty,
         graduationYear,
         program,
-        comments
+        comments,
+        UserPosition
     };
 }
 
