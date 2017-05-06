@@ -49,7 +49,7 @@ UserPositionModel.belongsTo(UserModel);
 
 // Council -> EmployeePosition -> Employee
 CouncilModel.belongsToMany(EmployeeModel, {through: EmployeePositionModel});
-EmployeeModel.belongsToMany(CouncilModel, {through: CouncilModel});
+EmployeeModel.belongsToMany(CouncilModel, {through: EmployeePositionModel});
 
 
 // COMMENT OUT IF YOU DON'T WANT THE DB TO BE OVERWRITTEN AT EVERY RESTART, IF WORKING WITH THE DB MODELS THIS CODE
@@ -182,14 +182,14 @@ sequelize.sync({
     })
 }).then(() => {
     return UserPositionModel.create({
-        CouncilId: 1,
+        CouncilInstanceId: 1,
         UserId: 1,
         from: new Date('October 13, 2018'),
         till: new Date('October 13, 2020')
     })
 }).then(() => {
     return UserPositionModel.create({
-        CouncilId: 2,
+        CouncilInstanceId: 2,
         UserId: 2,
         from: new Date('January 13, 2020'),
         till: new Date('October 13, 2020')
@@ -208,23 +208,22 @@ sequelize.sync({
      })
      */
 }).then(() => {
-    return CouncilInstanceModel.findAll({
+    return CouncilInstanceModel.findAll(
+
+         {
         include: [
             {
-                //model: CouncilPositionsModel,
-                include: [{
-                    model: UserPositionModel,
-                    include: [{
-                        model: UserModel
-                    }]
-                }]
+                model: UserModel
             }
         ]
-    })
+         }
+
+    )
 }).then((res) => {
     const blabla = res[0].get({plain: true});
-    console.log(JSON.stringify(res, null, 2))
+    console.log(JSON.stringify(res))
 })
+
 
 /*.then(() => {
         return CouncilModel.findById(1, {

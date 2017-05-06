@@ -4,8 +4,7 @@ export interface Iemployee {
     lastName: string,
     phone: string,
     email: string,
-    faculty: string,
-    position: string,
+    facultyId: number,
     profileUrl: string,
     password: string
 }
@@ -16,8 +15,7 @@ export function createEmployee({
     lastName,
     phone,
     email,
-    faculty,
-    position,
+    facultyId,
     profileUrl,
     password}: any): Iemployee {
     return {
@@ -26,8 +24,7 @@ export function createEmployee({
         lastName,
         phone,
         email,
-        faculty,
-        position,
+        facultyId,
         profileUrl,
         password
     };

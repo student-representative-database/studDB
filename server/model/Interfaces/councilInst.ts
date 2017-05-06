@@ -1,21 +1,24 @@
-import {createUserPosition, IUserPosition} from './user';
+//import {createUserPosition, IUserPosition} from './user';
 
 export interface ICouncilInst {
     readonly id: number,
     councilId: number,
-    year: number,
-    positions: ICouncilPosition[]
+    from: Date,
+    till: Date,
+    //positions: ICouncilPosition[]
 }
 
-export function createCouncilInstance({ id, councilId, year, CouncilPositions }: any): ICouncilInst {
+export function createCouncilInstance({ id, councilId, from, till, CouncilPositions }: any): ICouncilInst {
     return {
         id,
         councilId,
-        year,
-        positions: CouncilPositions.map(createCouncilPosition)
+        from,
+        till,
+        //positions: CouncilPositions.map(createCouncilPosition)
     }
 }
 
+/*
 export interface ICouncilPosition {
     readonly id: number,
     councilInstanceId: number,
@@ -46,3 +49,4 @@ export function createCouncilPosition({ id, councilInstanceId, year, phd, vacant
         }
     }
 }
+*/
