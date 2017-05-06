@@ -7,7 +7,7 @@ export interface ICouncil {
     facultyId: number,
     studentPositions: number,
     phdPositions: number,
-    councilInstances: ICouncilInst
+    // CouncilInstances: ICouncilInst
 }
 
 export interface ICouncilFacultyView {
@@ -17,15 +17,16 @@ export interface ICouncilFacultyView {
     facultyId: number,
 }
 
-export function createCouncil({ id, name, description, facultyId, studentPositions, phdPositions, CouncilInst }: any): ICouncil {
+export function createCouncil({ id, name, description, facultyId, studentPositions, phdPositions}: any): ICouncil {
+    console.log("Console inside council " + id);
     return {
         id,
         name,
         description,
         facultyId,
         studentPositions,
-        phdPositions,
-        councilInstances: createCouncilInstance(CouncilInst)
+        phdPositions
+        // CouncilInstances: createCouncilInstance(CouncilInst)
     }
 }
 

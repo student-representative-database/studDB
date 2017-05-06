@@ -7,9 +7,9 @@ import {
     CouncilModel, FacultyModel, UserModel, EmployeeModel, CouncilInstanceModel,
     UserPositionModel} from '../model/model';
 
-export function findOneCouncil(id: number, currentYear: number) {
-    return CouncilModel.findById(id,
-    {
+export function findOneCouncil(id: number) {
+    return CouncilModel.findById(id)
+    /*{
         include: [
             {
                 model: CouncilInstanceModel,
@@ -17,10 +17,14 @@ export function findOneCouncil(id: number, currentYear: number) {
                     {
                         model: UserModel
                     }
-                ]*/
+                ]
             }
         ]
-    })
+    }) */
+        .then((res) => {
+            const blabla = res.get({plain: true});
+            console.log(JSON.stringify(blabla, null, 2))
+        })
         .then(createCouncil);
 }
 
