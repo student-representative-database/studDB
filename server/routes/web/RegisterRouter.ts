@@ -11,7 +11,7 @@ class ApplyRouter {
   public getApplyForm(req: Request, res: Response, next: NextFunction) {
     res
         .status(200)
-        .render('representform')
+        .render('registerform')
   }
 
   public init() {
