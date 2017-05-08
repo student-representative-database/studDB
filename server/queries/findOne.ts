@@ -7,29 +7,57 @@ import {
     CouncilModel, FacultyModel, UserModel, EmployeeModel, CouncilInstanceModel,
     UserPositionModel} from '../model/model';
 
-export function findOneCouncil(id: number, facultyId: number) {
-    return CouncilModel.findById(id,
-    {
-        include: [
+export function findOneCouncil(id: number, facultyId: number, all?: boolean) {
+    if (all) {
+        return CouncilModel.findById(id,
             {
-                model: EmployeeModel,
-            },
-            {
-                model: CouncilInstanceModel,
                 include: [
                     {
-                        model: UserModel
+                        model: EmployeeModel,
+                    },
+                    {
+                        where: {
+                            from: {
+                                $lt: new Date(),
+                            },
+                            till: {
+                                $gt: new Date(),
+                            }
+                        },
+                        model: CouncilInstanceModel,
+                        include: [
+                            {
+                                model: UserModel
+                            }
+                        ]
                     }
                 ]
-            }
-        ]
-    })
+            }) .then(createCouncil);
+    }else {
+        return CouncilModel.findById(id,
+            {
+                include: [
+                    {
+                        model: EmployeeModel,
+                    },
+                    {
+                        model: CouncilInstanceModel,
+                        include: [
+                            {
+                                model: UserModel
+                            }
+                        ]
+                    }
+                ]
+            })
         /*.then((res) => {
-            const blabla = res.get({plain: true});
-            console.log(JSON.stringify(blabla, null, 2))
-            createCouncil(blabla);
-        })*/
-        .then(createCouncil);
+         //const blabla = res.get({plain: true});
+         const blabla = res;
+         console.log(JSON.stringify(blabla, null, 2))
+         createCouncil(blabla);
+         })*/
+            .then(createCouncil);
+    }
 }
 
 export function findOneEmployee(userId: number) {

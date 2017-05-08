@@ -47,7 +47,6 @@ UserPositionModel.belongsTo(UserModel);*/
 CouncilModel.belongsToMany(EmployeeModel, {through: EmployeePositionModel});
 EmployeeModel.belongsToMany(CouncilModel, {through: EmployeePositionModel});
 
-
 // COMMENT OUT IF YOU DON'T WANT THE DB TO BE OVERWRITTEN AT EVERY RESTART, IF WORKING WITH THE DB MODELS THIS CODE
 // SHOULD PROBABLY BE ACTIVE
 // Sequelize forces overwrite of current models in DB in they are changed in code and all rows are removed.
