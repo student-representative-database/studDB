@@ -8,7 +8,7 @@ import * as path from 'path'
 import HomeRouter from './routes/web/HomeRouter'
 import AdminRouter from './routes/web/AdminRouter'
 import CouncilRouter from './routes/web/CouncilRouter'
-import ApplyRouter from './routes/web/ApplyRouter'
+import RegisterRouter from './routes/web/RegisterRouter'
 import CRUDfacultiesRouter from './routes/api/v1/CRUDfacultiesRouter'
 import CRUDcouncilRouter from './routes/api/v1/CRUDcouncilsRouter'
 import CRUDusersRouter from './routes/api/v1/CRUDusersRouter'
@@ -68,7 +68,7 @@ class App {
     this.express.use('/', HomeRouter)
     this.express.use('/admin', AdminRouter)
     this.express.use('/council', CouncilRouter)
-    this.express.use('/apply', ApplyRouter)
+    this.express.use('/apply', RegisterRouter)
 
     /*
       API routes
