@@ -1,0 +1,13 @@
+.alert {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  z-index: 999;
+}
+
+.alert-show {
+  // transition: opacity .5s ease-in;
+  opacity: 1;
+}
