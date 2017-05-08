@@ -9,6 +9,9 @@ export interface ICouncilInst {
 }
 
 export function createCouncilInstance({ id, councilId, from, till, Users }: any): ICouncilInst {
+    const today = new Date();
+    console.log(from.getFullYear());
+    console.log(today.getTime() < till.getTime() && today.getTime() > from.getTime());
     return {
         id,
         councilId,
