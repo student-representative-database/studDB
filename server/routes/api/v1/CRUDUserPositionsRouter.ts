@@ -3,8 +3,8 @@ import * as _ from 'lodash';
 import {onError} from './onError';
 import {onSuccess} from './onSuccess';
 import {databaseErrorHandler} from './databaseErrorHandler';
-import {CouncilPositionsModel} from '../../../model/model';
-import {findOneCouncilPosition, findOneInst} from "../../../queries/findOne";
+import {UserPositionModel} from '../../../model/model';
+import {findOneUserPosition, findOneInst} from "../../../queries/findOne";
 import { create, createCouncilPosition } from '../../../queries/create';
 import { deleteOne } from '../../../queries/delete';
 import { update } from '../../../queries/update';
@@ -27,11 +27,11 @@ class CRUDCouncilPositionsRouter {
      */
 
     public getOne(req: Request, res: Response, next: NextFunction) {
-        findOneCouncilPosition(req.params.id)
+        findOneUserPosition(req.params.id)
             .then(_.partial(onSuccess, res))
             .catch(_.partial(onError, res, 'Find council position instance failed'));
     }
-
+    // TODO
     public create(req: Request, res: Response, next: NextFunction) {
         findOneInst(req.params.councilId, req.params.year)
             .then((data: any) => {
@@ -43,22 +43,22 @@ class CRUDCouncilPositionsRouter {
     }
 
     public delete(req: Request, res: Response, next: NextFunction) {
-        deleteOne(req.params.id, CouncilPositionsModel)
+        deleteOne(req.params.id, UserPositionModel)
             .then(_.partial(onSuccess, res))
             .catch(_.partial(onError, res, 'Delete council position failed'));
     }
 
     public patch(req: Request, res: Response, next: NextFunction) {
-        update(req.params.id, req.body, CouncilPositionsModel)
+        update(req.params.id, req.body, UserPositionModel)
             .then(_.partial(onSuccess, res))
             .catch(_.partial(onError, res, 'Update council position failed'));
     }
 
     public init() {
-        this.router.get('/:facultyId/:councilId/:year/:id', this.getOne);
-        this.router.post('/:facultyId/:councilId/:year/', this.create);
-        this.router.delete('/:facultyId/:councilId/:year/:id', this.delete);
-        this.router.patch('/:facultyId/:councilId/:year/:id', this.patch);
+        this.router.get('/:userId/:posId', this.getOne);
+        this.router.post('/:userId', this.create);
+        this.router.delete('/:userId/:posId', this.delete);
+        this.router.patch('/:userId/:posId', this.patch);
     }
 }
 

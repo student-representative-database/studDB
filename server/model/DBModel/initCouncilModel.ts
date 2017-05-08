@@ -56,7 +56,7 @@ export function initCouncilInstanceModel(sequelize: Sequelize) {
     });
 }
 
-/*
+
 export function initCouncilInstanceApplicationModel(sequelize: Sequelize) {
     return sequelize.define('CouncilInstanceApplication', {
         UserId: {
@@ -98,4 +98,3 @@ export function initCouncilPositionsModel(sequelize: Sequelize) {
         }
     });
 }
-*/

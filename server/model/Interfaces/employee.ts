@@ -6,7 +6,8 @@ export interface Iemployee {
     email: string,
     facultyId: number,
     profileUrl: string,
-    password: string
+    password: string,
+    EmployeePosition: IEmployeePosition
 }
 
 export function createEmployee({
@@ -17,7 +18,7 @@ export function createEmployee({
     email,
     facultyId,
     profileUrl,
-    password}: any): Iemployee {
+    password, EmployeePosition}: any): Iemployee {
     return {
         id,
         firstName,
@@ -26,7 +27,8 @@ export function createEmployee({
         email,
         facultyId,
         profileUrl,
-        password
+        password,
+        EmployeePosition
     };
 }
 
@@ -42,7 +44,7 @@ export interface IEmployeePosition {
     convener: boolean
 }
 
-export function createEmployeePosition({EmployeeId, CouncilId, secretary, chairman, convener} : any) : IEmployeePosition {
+export function createEmployeePosition({EmployeeId, CouncilId, secretary, chairman, convener}: any): IEmployeePosition {
     return {
         EmployeeId,
         CouncilId,

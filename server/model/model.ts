@@ -30,7 +30,6 @@ UserModel.belongsTo(FacultyModel);
 FacultyModel.hasMany(EmployeeModel);
 EmployeeModel.belongsTo(FacultyModel);
 
-
 // Council -> CouncilInstance -> UserPosition -> User
 CouncilModel.hasMany(CouncilInstanceModel, { foreignKey: 'councilId' });
 CouncilInstanceModel.belongsTo(CouncilModel, { foreignKey: 'councilId' });
@@ -38,19 +37,15 @@ CouncilInstanceModel.belongsTo(CouncilModel, { foreignKey: 'councilId' });
 CouncilInstanceModel.belongsToMany(UserModel, {through: UserPositionModel});
 UserModel.belongsToMany(CouncilInstanceModel, {through: UserPositionModel});
 
-/*
-CouncilInstanceModel.hasMany(UserPositionModel);
+/* CouncilInstanceModel.hasMany(UserPositionModel);
 UserPositionModel.belongsTo(CouncilInstanceModel);
 
 UserModel.hasMany(UserPositionModel);
-UserPositionModel.belongsTo(UserModel);
-*/
-
+UserPositionModel.belongsTo(UserModel);*/
 
 // Council -> EmployeePosition -> Employee
 CouncilModel.belongsToMany(EmployeeModel, {through: EmployeePositionModel});
 EmployeeModel.belongsToMany(CouncilModel, {through: EmployeePositionModel});
-
 
 // COMMENT OUT IF YOU DON'T WANT THE DB TO BE OVERWRITTEN AT EVERY RESTART, IF WORKING WITH THE DB MODELS THIS CODE
 // SHOULD PROBABLY BE ACTIVE
@@ -99,26 +94,6 @@ sequelize.sync({
         till: new Date('May 20, 2017'),
         councilId: 2
     })
-    /*
-}).then(() => {
-    return CouncilPositionsModel.create({
-        year: 2017,
-        councilId: 1,
-        councilInstanceId: 1
-    })
-}).then(() => {
-    return CouncilPositionsModel.create({
-        year: 2017,
-        councilId: 1,
-        councilInstanceId: 1
-    })
-}).then(() => {
-    return CouncilPositionsModel.create({
-        year: 2017,
-        councilId: 1,
-        councilInstanceId: 1
-    })
-    */
 }).then(() => {
     return UserModel.create({
         firstName: 'Fredrik',
@@ -126,8 +101,6 @@ sequelize.sync({
         phone: '0123456-123',
         email: 'fredriko.olsson@gmail.com',
         facultyId: 1,
-        //position: 'hkjhk',
-        //profileUrl: 'kllökök',
         password: 'dingDong',
         graduationYear: 2018,
         birthDate: new Date('October 10, 1980'),
@@ -141,8 +114,6 @@ sequelize.sync({
         phone: '0123456-123',
         email: 'andrasBalla@gmail.com',
         facultyId: 2,
-        //position: 'hkjhk',
-        //profileUrl: 'kllökök',
         password: 'hello',
         phd: true,
         graduationYear: 2018,
@@ -157,8 +128,6 @@ sequelize.sync({
         phone: '0123456-123',
         email: 'pär@gmail.com',
         facultyId: 1,
-        //position: 'hkjhk',
-        //profileUrl: 'kllökök',
         password: 'password',
         graduationYear: 2018,
         birthDate: new Date('October 10, 1980'),
@@ -172,13 +141,48 @@ sequelize.sync({
         phone: '0123456-123',
         email: 'oc@gmail.com',
         facultyId: 2,
-        //position: 'hkjhk',
-        //profileUrl: 'kllökök',
         password: 'password',
         graduationYear: 2018,
         birthDate: new Date('October 10, 1980'),
         program: 'hallo',
         comments: 'bla'
+    })
+}).then(() => {
+    return EmployeeModel.create({
+        firstName: 'Olga',
+        lastName: 'Oc',
+        phone: '0123456-123',
+        email: 'oc@gmail.com',
+        facultyId: 1,
+        profileUrl: "kllökök",
+        password: 'password',
+    })
+}).then(() => {
+    return EmployeeModel.create({
+        firstName: 'Olga',
+        lastName: 'Oc',
+        phone: '0123456-123',
+        email: 'oc@gmail.com',
+        facultyId: 1,
+        profileUrl: "kllökök",
+        password: 'password',
+
+    })
+}).then(() => {
+    return EmployeePositionModel.create({
+        CouncilId: 1,
+        EmployeeId: 1,
+        secretary: false,
+        chairman: true,
+        convener: false,
+    })
+}).then(() => {
+    return EmployeePositionModel.create({
+        CouncilId: 1,
+        EmployeeId: 2,
+        secretary: false,
+        chairman: true,
+        convener: false,
     })
 }).then(() => {
     return UserPositionModel.create({
@@ -194,20 +198,7 @@ sequelize.sync({
         from: new Date('January 13, 2020'),
         till: new Date('October 13, 2020')
     })
-    /*
-     }).then(() => {
-     return CouncilInstanceApplicationModel.create({
-     CouncilInstanceId: 1,
-     UserId: 3,
-     })
-     }).then(() => {
-     return CouncilInstanceApplicationModel.create({
-     CouncilInstanceId: 1,
-     UserId: 4,
-     until: new Date('2017-05-01')
-     })
-     */
-}).then(() => {
+})/*.then(() => {
     return CouncilInstanceModel.findAll(
 
          {
@@ -222,13 +213,26 @@ sequelize.sync({
 }).then((res) => {
     const blabla = res[0].get({plain: true});
     console.log(JSON.stringify(res))
-})
-
-
+})*/
 /*.then(() => {
-        return CouncilModel.findById(1, {
-            include: [{
-                model: CouncilInstanceModel
-            }]
-        })
-    })*/
+    const facultyId = 1;
+    return CouncilModel.findById(1,
+        {
+            include: [
+                {
+                    model: EmployeeModel,
+                }
+                {
+                    model: CouncilInstanceModel,
+                    include: [
+                        {
+                            model: UserModel
+                        }
+                }
+            ]
+        }
+    )
+}).then((res) => {
+    const blabla = res; // [].get({plain: true});
+    console.log(JSON.stringify(blabla, null, 2));
+})*/

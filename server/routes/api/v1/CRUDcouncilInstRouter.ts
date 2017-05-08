@@ -27,9 +27,9 @@ class CRUDCouncilInstRouter {
      */
 
     public getOne(req: Request, res: Response, next: NextFunction) {
-        findOneInst(req.params.councilId, req.params.year)
+        findOneInst(req.params.councilId, req.params.id)
             .then(_.partial(onSuccess, res))
-            .catch(_.partial(onError, res, 'Find councel instance failed'));
+            .catch(_.partial(onError, res, 'Find council instance failed'));
     }
 
     public create(req: Request, res: Response, next: NextFunction) {
@@ -40,22 +40,22 @@ class CRUDCouncilInstRouter {
     }
 
     public delete(req: Request, res: Response, next: NextFunction) {
-        deleteOne(req.params.councilId, CouncilInstanceModel, req.params.year)
+        deleteOne(req.params.id, CouncilInstanceModel)
             .then(_.partial(onSuccess, res))
             .catch(_.partial(onError, res, 'Delete council instance failed'));
     }
 
     public patch(req: Request, res: Response, next: NextFunction) {
-        updateCouncilInst(req.params.councilId, req.body, CouncilInstanceModel, req.params.year)
+        updateCouncilInst(req.params.councilId, req.body, CouncilInstanceModel, req.params.id)
             .then(_.partial(onSuccess, res))
             .catch(_.partial(onError, res, 'Update council instance failed'));
     }
 
     public init() {
-        this.router.get('/:facultyId/:councilId/:year', this.getOne);
+        this.router.get('/:facultyId/:councilId/:id', this.getOne);
         this.router.post('/:facultyId/:councilID', this.create);
-        this.router.delete('/:facultyId/:councilId/:year', this.delete);
-        this.router.patch('/:facultyId/:councilId/:year', this.patch);
+        this.router.delete('/:facultyId/:councilId/:id', this.delete);
+        this.router.patch('/:facultyId/:councilId/:id', this.patch);
     }
 }
 

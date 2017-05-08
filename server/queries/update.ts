@@ -9,12 +9,12 @@ export function update(id: number, props: any, model: any) {
     );
 }
 
-export function updateCouncilInst(councilId: number, props: any, model: any, year: number) {
+export function updateCouncilInst(councilId: number, props: any, model: any, id: number) {
 
     return model.update(
         props,
         {
-            where: {councilId, year}
+            where: {councilId, id}
         }
     );
 }

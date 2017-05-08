@@ -14,7 +14,7 @@ import CRUDcouncilRouter from './routes/api/v1/CRUDcouncilsRouter'
 import CRUDusersRouter from './routes/api/v1/CRUDusersRouter'
 import CRUDemployeesRouter from './routes/api/v1/CRUDemployeeRouter'
 import CRUDcouncilInstRouter from './routes/api/v1/CRUDcouncilInstRouter'
-import CRUDcouncilPosition from './routes/api/v1/CRUDcouncilPositionsRouter'
+import CRUDcouncilPosition from './routes/api/v1/CRUDUserPositionsRouter'
 /**
  * Creates and configures an ExpressJS web server.
  *

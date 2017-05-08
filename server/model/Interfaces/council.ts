@@ -1,3 +1,6 @@
+import {createCouncilInstance, ICouncilInst} from "./councilInst";
+import {createEmployee, Iemployee} from "./employee";
+
 export interface ICouncil {
     readonly id: number,
     name: string,
@@ -5,6 +8,8 @@ export interface ICouncil {
     facultyId: number,
     studentPositions: number,
     phdPositions: number,
+    Employees: Iemployee[],
+    CouncilInstances: ICouncilInst
 }
 
 export interface ICouncilFacultyView {
@@ -14,7 +19,7 @@ export interface ICouncilFacultyView {
     facultyId: number,
 }
 
-export function createCouncil({ id, name, description, facultyId, studentPositions, phdPositions }: any): ICouncil {
+export function createCouncil({id, name, description , facultyId, studentPositions, phdPositions, Employees, CouncilInstances}: any): ICouncil {
     return {
         id,
         name,
@@ -22,6 +27,8 @@ export function createCouncil({ id, name, description, facultyId, studentPositio
         facultyId,
         studentPositions,
         phdPositions,
+        Employees: Employees.map(createEmployee),
+        CouncilInstances: CouncilInstances.map(createCouncilInstance)
     }
 }
 
