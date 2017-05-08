@@ -1,0 +1,40 @@
+.jumbotron {
+  background: $bgc-header;
+  border-radius: 0px;
+  border-top: 5px solid $fgc-primary;
+  margin: 0 auto;
+
+  ul li {
+    font-family: $font-headings;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    a {
+      color: $linkc-tertiary;
+    }
+  }
+}
+
+// Nav buttons
+.nav-pills>li.active>a {
+  background: $linkc-primary;
+}
+
+.nav-pills>li.active>a:hover {
+  background: $linkc-secondary;
+}
+
+.col-md-4 {
+  section {
+    color: $fontc-secondary;
+    padding: 50px;
+  }
+
+  section:nth-child(odd) {
+    background: $fgc-primary;
+  }
+
+  section:nth-child(even) {
+    background: $fgc-secondary;
+  }
+}

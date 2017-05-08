@@ -1,0 +1,22 @@
+.input-group {
+  input, button {
+    border-radius: 0px;
+  }
+
+  input {
+    border: 1px solid $fontc-secondary;
+  }
+
+  button {
+    background: $bgc-footer;
+    border: 1px solid $bgc-footer;
+    color: $fontc-secondary;
+    font-family: $font-headings;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  span {
+    padding-left: 20px;
+  }
+}
