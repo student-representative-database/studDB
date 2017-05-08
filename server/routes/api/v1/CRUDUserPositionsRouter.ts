@@ -31,15 +31,12 @@ class CRUDCouncilPositionsRouter {
             .then(_.partial(onSuccess, res))
             .catch(_.partial(onError, res, 'Find council position instance failed'));
     }
-    // TODO
+
     public create(req: Request, res: Response, next: NextFunction) {
-        findOneInst(req.params.councilId, req.params.year)
-            .then((data: any) => {
-                return createCouncilPosition(CouncilPositionsModel, req.params.councilId, req.params.year, data.id)
-            })
+        create(req.body, UserPositionModel)
             .then(_.partial(onSuccess, res))
             .catch(_.partial(databaseErrorHandler, res))
-            .catch(_.partial(onError, res, `Could not create council position`));
+            .catch(_.partial(onError, res, `Could not create employee`));
     }
 
     public delete(req: Request, res: Response, next: NextFunction) {
