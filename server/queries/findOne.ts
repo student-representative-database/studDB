@@ -1,7 +1,7 @@
 import {createCouncil} from '../model/Interfaces/council';
 import {createEmployee} from '../model/Interfaces/employee';
 import {createFaculty} from '../model/Interfaces/faculty';
-import {createUser} from '../model/Interfaces/user';
+import {createUser, createUserPosition} from '../model/Interfaces/user';
 import { createCouncilInstance} from '../model/Interfaces/councilInst';
 import {
     CouncilModel, FacultyModel, UserModel, EmployeeModel, CouncilInstanceModel,
@@ -91,15 +91,7 @@ export function findOneInst(councilId: number, id: number) {
         .then(createCouncilInstance);
 }
 
-/*export function findOneCouncilPosition(id: number) {
-    return CouncilPositionsModel.findOne({
-        where: { id },
-        include: [{
-            model: UserPositionModel,
-            include: [{
-                model: UserModel
-            }]
-        }]
-    })
-        .then(createCouncilPosition);
-}*/
+export function findOneUserPosition(id: number) {
+    return UserPositionModel.findById(id)
+        .then(createUserPosition);
+}
