@@ -1,6 +1,5 @@
 import * as ORM from 'sequelize';
 import { LoggingOptions, Sequelize } from 'sequelize';
-// tslint:disable-next-line:max-line-length
 import { initCouncilModel, initCouncilInstanceModel } from './DBModel/initCouncilModel';
 import { initFacultyModel } from './DBModel/initFacultyModel';
 import { initUserModel, initUserPositionModel } from './DBModel/initUserModel';
