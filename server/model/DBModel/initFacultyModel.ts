@@ -1,4 +1,3 @@
-
 import * as ORM from 'sequelize';
 import {Sequelize} from 'sequelize';
 
