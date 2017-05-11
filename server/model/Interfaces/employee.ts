@@ -45,6 +45,7 @@ export interface IEmployeePosition {
 }
 
 export function createEmployeePosition({EmployeeId, CouncilId, secretary, chairman, convener}: any): IEmployeePosition {
+    console.log();
     return {
         EmployeeId,
         CouncilId,

@@ -29,7 +29,7 @@ class CRUDCouncilInstRouter {
     public getOne(req: Request, res: Response, next: NextFunction) {
         findOneInst(req.params.councilId, req.params.id)
             .then(_.partial(onSuccess, res))
-            .catch(_.partial(onError, res, 'Find council instance failed'));
+            .catch(_.partial(onError, res, 'Find one council instance failed'));
     }
 
     public create(req: Request, res: Response, next: NextFunction) {

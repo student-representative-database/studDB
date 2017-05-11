@@ -31,12 +31,3 @@ export function createCouncil({id, name, description , facultyId, studentPositio
         CouncilInstances: CouncilInstances.map(createCouncilInstance)
     }
 }
-
-export function createCouncilFacultyView({ id, name, description, facultyId }: any): ICouncilFacultyView {
-    return{
-        id,
-        name,
-        description,
-        facultyId
-    }
-}

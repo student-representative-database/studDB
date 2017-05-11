@@ -4,12 +4,12 @@ import {onError} from './onError';
 import {onSuccess} from './onSuccess';
 import {databaseErrorHandler} from './databaseErrorHandler';
 import {UserPositionModel} from '../../../model/model';
-import {findOneUserPosition, findOneInst} from "../../../queries/findOne";
-import { create, createCouncilPosition } from '../../../queries/create';
-import { deleteOne } from '../../../queries/delete';
-import { update } from '../../../queries/update';
+import {findOneUserPosition} from "../../../queries/findOne";
+import { create} from '../../../queries/create';
+import { deleteUserPosition } from '../../../queries/delete';
+import { updateUserPosition } from '../../../queries/update';
 
-class CRUDCouncilPositionsRouter {
+class CRUDUserPositionsRouter {
     public router: Router;
 
     constructor() {
@@ -18,7 +18,7 @@ class CRUDCouncilPositionsRouter {
     }
 
     /**
-     * /api/v1/faculties/:facultyId/:councilId:/year/:id
+     * /api/v1/faculties/:userId/:posId
      *  GET:
      *    description:  Renders the form for updating a snippet.
      *    responses:    200 - If user is logged in.
@@ -27,37 +27,38 @@ class CRUDCouncilPositionsRouter {
      */
 
     public getOne(req: Request, res: Response, next: NextFunction) {
-        findOneUserPosition(req.params.id)
+        findOneUserPosition(req.params.userId, req.params.councilId)
             .then(_.partial(onSuccess, res))
-            .catch(_.partial(onError, res, 'Find council position instance failed'));
+            .catch(_.partial(onError, res, 'Find user position instance failed'));
     }
 
     public create(req: Request, res: Response, next: NextFunction) {
         create(req.body, UserPositionModel)
             .then(_.partial(onSuccess, res))
             .catch(_.partial(databaseErrorHandler, res))
-            .catch(_.partial(onError, res, `Could not create employee`));
+            .catch(_.partial(onError, res, `Could not create user position`));
     }
 
     public delete(req: Request, res: Response, next: NextFunction) {
-        deleteOne(req.params.id, UserPositionModel)
+        deleteUserPosition(req.params.userId, req.params.councilId, UserPositionModel)
             .then(_.partial(onSuccess, res))
-            .catch(_.partial(onError, res, 'Delete council position failed'));
+            .catch(_.partial(onError, res, 'Delete user position failed'));
     }
-
+    // TODO fix
     public patch(req: Request, res: Response, next: NextFunction) {
-        update(req.params.id, req.body, UserPositionModel)
+        console.log(req.params);
+        updateUserPosition(req.params.userId, req.body, UserPositionModel, req.params.councilId)
             .then(_.partial(onSuccess, res))
-            .catch(_.partial(onError, res, 'Update council position failed'));
+            .catch(_.partial(onError, res, 'Update user position failed'));
     }
 
     public init() {
-        this.router.get('/:userId/:posId', this.getOne);
+        this.router.get('/:userId/:councilId', this.getOne);
         this.router.post('/:userId', this.create);
-        this.router.delete('/:userId/:posId', this.delete);
-        this.router.patch('/:userId/:posId', this.patch);
+        this.router.delete('/:userId/:councilId', this.delete);
+        this.router.patch('/:userId/:councilId', this.patch);
     }
 }
 
-export default new CRUDCouncilPositionsRouter().router
+export default new CRUDUserPositionsRouter().router
 
