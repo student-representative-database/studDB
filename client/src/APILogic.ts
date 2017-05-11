@@ -90,6 +90,14 @@ class APILogic {
 
   // CRUD student/representative/employee
 
+  // VACANT
+  public getAllForSchoolYear() {
+    return fetch(`/api/v1/applications/test`, this.headers.GET)
+        .then((result) => {
+          return result.json()
+        })
+  }
+
   // OTHER
   public sendApplicationForm() {}
 

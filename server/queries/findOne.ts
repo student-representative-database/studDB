@@ -7,8 +7,16 @@ import {
     CouncilModel, FacultyModel, UserModel, EmployeeModel, CouncilInstanceModel,
     UserPositionModel} from '../model/model';
 
-export function findOneCouncil(id: number, facultyId: number, all?: boolean) {
+export function findOneCouncil(id: number, facultyId: number, all?: number) {
     if (all) {
+        const date1 = new Date(all);
+        const date2 = new Date(all);
+        date1.setMonth(date1.getMonth() + 6);
+        date2.setMonth(date2.getMonth() + 18);
+        console.log(all);
+        console.log(date1);
+        console.log(date2);
+
         return CouncilModel.findById(id,
             {
                 include: [
@@ -16,15 +24,15 @@ export function findOneCouncil(id: number, facultyId: number, all?: boolean) {
                         model: EmployeeModel,
                     },
                     {
+                        model: CouncilInstanceModel,
                         where: {
                             from: {
-                                $lt: new Date(),
+                                $lt: date2,
                             },
                             till: {
-                                $gt: new Date(),
+                                $gt: date1,
                             }
                         },
-                        model: CouncilInstanceModel,
                         include: [
                             {
                                 model: UserModel
