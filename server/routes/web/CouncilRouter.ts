@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response, Router } from 'express'
-import * as request from 'request-promise'
+//import * as request from 'request-promise'
+import DAO from '../../utils/DAO'
 
 class CouncilRouter {
   public router: Router;
@@ -8,19 +9,13 @@ class CouncilRouter {
     this.router = Router();
     this.init()
   }
-
   public getCouncil(req: Request, res: Response, next: NextFunction) {
-    console.log(req.params);
-    const options = {
-      uri: 'http://localhost:3000/api/v1/councils/' + req.params.id,
-      json: true
-    }
-    request(options).then((result) => {
-      console.log(JSON.stringify(result, null, 2));
+    DAO.getOneCouncil(req.params.id)
+        .then((result) => {
       res
           .status(200)
-          .render('council', {council: result.payload, test: JSON.stringify(result.payload, null, 2)})
-        });
+          .render('council', {council: result.payload})
+    });
   }
 
   public init() {

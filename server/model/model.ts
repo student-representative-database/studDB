@@ -272,7 +272,7 @@ sequelize.sync({
         till: new Date('may 29, 2017'),
         elected: true
     })
-})
+});
 
 // Remove if not using raw sql query elsewhere
 export {sequelize};
