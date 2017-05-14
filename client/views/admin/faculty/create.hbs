@@ -1,9 +1,11 @@
 <div class="col-md-8" id="create">
-    <form class="col-md-8">
+    <form action="/admin/faculties/create" method="post" id="facultyform">
         <div class="form-group">
-            <label for="name">Namn</label>
-            <input type="text" class="form-control" id="name">
+            <label>Name</label>
+            <input class="form-control" name="name" value="{{title}}" />
+            <!--<input type="hidden" name="_csrf" value="{{csrfToken}}">-->
         </div>
-        <button type="submit" class="btn btn-default">Skapa fakultet</button>
+
     </form>
+    <button type="submit" form="facultyform" class="btn btn-warning btn-lg">Skapa ny fakultet</button>
 </div>

@@ -19,16 +19,14 @@ class DAO {
   public createFaculty(facultyName: string) {
     const data = JSON.stringify({name: facultyName});
 
-    request('/api/v1/faculties', {
+    return request(`${this.path}/api/v1/faculties`, {
       method: 'POST',
       body: data,
       headers: {
         'Content-Type': 'application/json'
       }
     })
-    .then((response) => {
-      console.log(response)
-    })
+    .then((response) => response)
     .catch((err) => {
       console.log(err)
     })
