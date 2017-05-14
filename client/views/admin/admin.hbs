@@ -1,0 +1,11 @@
+<div class="col-md-8" id="admin">
+  Admin panel.
+    {{#each faculties}}
+        <p><a href="/admin/faculties/{{this.id}}">{{this.name}}</a></p>
+        <ul>
+        {{#each this.councils}}
+            <li><a href="/admin/councils/{{this.id}}">{{this.name}}</a></li>
+        {{/each}}
+        </ul>
+    {{/each}}
+</div>

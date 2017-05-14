@@ -12,10 +12,8 @@ class DAO {
 
   // FACULTIES
   public getAllFaculties() {
-    return request('/api/v1/faculties', this.headers.GET)
-    .then((result) => {
-      return result.json()
-    })
+    return request(`${this.path}/api/v1/faculties/`, this.headers.GET)
+    .then((res) => {return res})
   }
 
   public createFaculty(facultyName: string) {
@@ -70,9 +68,9 @@ class DAO {
   }
 
   public getOneFaculty(id: number) {
-    return request(`/api/v1/faculties/${id}`, this.headers.GET)
+    return request(`${this.path}/api/v1/faculties/${id}`, this.headers.GET)
     .then((result) => {
-      return result.json()
+      return result
     })
   }
 
@@ -106,8 +104,6 @@ class DAO {
           return result.json()
         })
   }
-
-
 
   public init() {
     // Setup headers.

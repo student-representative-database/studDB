@@ -8,6 +8,8 @@ import * as path from 'path'
 import HomeRouter from './routes/web/HomeRouter'
 import AdminRouter from './routes/web/AdminRouter'
 import CouncilRouter from './routes/web/CouncilRouter'
+import AdminFacultiesRouter from './routes/web/admin/AdminFacultiesRouter'
+import AdminCouncilsRouter from './routes/web/admin/AdminCouncilsRouter'
 import RegisterRouter from './routes/web/RegisterRouter'
 import CRUDfacultiesRouter from './routes/api/v1/CRUDfacultiesRouter'
 import CRUDcouncilRouter from './routes/api/v1/CRUDcouncilsRouter'
@@ -69,9 +71,13 @@ class App {
       Web routes
      */
     this.express.use('/', HomeRouter)
-    this.express.use('/admin', AdminRouter)
     this.express.use('/council', CouncilRouter)
     this.express.use('/apply', RegisterRouter)
+
+    //Admin
+    this.express.use('/admin', AdminRouter)
+    this.express.use('/admin/faculties', AdminFacultiesRouter)
+    this.express.use('/admin/councils', AdminCouncilsRouter)
 
     /*
       API routes
