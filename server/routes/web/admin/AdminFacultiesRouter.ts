@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response, Router } from 'express'
 import DAO from '../../../utils/DAO'
 
-class FacultiesRouter {
+class AdminFacultiesRouter {
   public router: Router;
 
   constructor() {
@@ -17,6 +17,12 @@ class FacultiesRouter {
     });
   }
 
+  public createFaculty(req: Request, res: Response, next: NextFunction) {
+    res
+        .status(200)
+        .render('./admin/faculty/create', {layout: "admin"})
+  };
+
   public getFaculty(req: Request, res: Response, next: NextFunction) {
     DAO.getOneFaculty(req.params.id)
         .then((result) => {
@@ -27,10 +33,12 @@ class FacultiesRouter {
         });
   }
 
+
   public init() {
     this.router.get('/', this.getFaculties)
+    this.router.get('/create', this.createFaculty)
     this.router.get('/:id', this.getFaculty)
   }
 }
 
-export default new FacultiesRouter().router
+export default new AdminFacultiesRouter().router

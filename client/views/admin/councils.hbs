@@ -1,18 +1,26 @@
-<div class="col-md-8" id="council">
-  <h3>{{council.name}}</h3>
-    <p>{{council.description}}</p>
+<div class="col-md-8" id="councils">
+  <!--<h3>{{council.name}}</h3>-->
+    <!--<p>{{council.description}}</p>-->
 
-    {{#if council.Employees}}
-    <p><strong>Personal:</strong></p>
-    {{#each council.Employees}}
-        <p><a href="/employees/{{this.id}}">{{this.firstName}} {{this.lastName}}</a></p>
+    <!--{{#if council.Employees}}-->
+    <!--<p><strong>Personal:</strong></p>-->
+    <!--{{#each council.Employees}}-->
+        <!--<p><a href="/employees/{{this.id}}">{{this.firstName}} {{this.lastName}}</a></p>-->
+    <!--{{/each}}-->
+    <!--{{/if}}-->
+    <!--<p><strong>Represtanter:</strong></p>-->
+    <!--{{#each council.CouncilInstances}}-->
+        <!--{{#each this.Users}}-->
+            <!--<p><a href="/blabla/{{this.id}}">{{this.firstName}} {{this.lastName}}</a></p>-->
+        <!--{{/each}}-->
+    <!--{{/each}}-->
+    <!--<p><strong>Lediga positioner:</strong></p>-->
+    {{#each faculties}}
+        <p><a href="/admin/faculties/{{this.id}}">{{this.name}}</a></p>
+        <ul>
+            {{#each this.councils}}
+                <li><a href="/admin/councils/{{this.id}}">{{this.name}}</a></li>
+            {{/each}}
+        </ul>
     {{/each}}
-    {{/if}}
-    <p><strong>Represtanter:</strong></p>
-    {{#each council.CouncilInstances}}
-        {{#each this.Users}}
-            <p><a href="/blabla/{{this.id}}">{{this.firstName}} {{this.lastName}}</a></p>
-        {{/each}}
-    {{/each}}
-    <p><strong>Lediga positioner:</strong></p>
 </div>

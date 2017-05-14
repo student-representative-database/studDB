@@ -1,10 +1,6 @@
-<div class="col-md-8" id="council">
+<div class="col-md-8" id="faculties">
+    <strong><p><a href="/admin/faculties/create">Skapa ny fakultet</a></p></strong>
     {{#each faculties}}
-        <p><a href="/admin/faculties/{{this.id}}">{{this.name}}</a></p>
-        <!--<ul>-->
-            <!--{{#each this.councils}}-->
-                <!--<li><a href="/council/{{this.id}}">{{this.name}}</a></li>-->
-            <!--{{/each}}-->
-        <!--</ul>-->
+        <p><a href="/admin/faculties/{{this.id}}">{{this.name}}</a> <a href="/admin/faculties/edit/{{this.id}}">edit</a></p>
     {{/each}}
 </div>
