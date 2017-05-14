@@ -8,14 +8,18 @@ import * as path from 'path'
 import HomeRouter from './routes/web/HomeRouter'
 import AdminRouter from './routes/web/AdminRouter'
 import CouncilRouter from './routes/web/CouncilRouter'
+import AdminFacultiesRouter from './routes/web/admin/AdminFacultiesRouter'
+import AdminCouncilsRouter from './routes/web/admin/AdminCouncilsRouter'
 import RegisterRouter from './routes/web/RegisterRouter'
 import CRUDfacultiesRouter from './routes/api/v1/CRUDfacultiesRouter'
 import CRUDcouncilRouter from './routes/api/v1/CRUDcouncilsRouter'
 import CRUDusersRouter from './routes/api/v1/CRUDusersRouter'
 import CRUDemployeesRouter from './routes/api/v1/CRUDemployeeRouter'
 import CRUDcouncilInstRouter from './routes/api/v1/CRUDcouncilInstRouter'
+import CRUDapplicationRouter from './routes/api/v1/CRUDapplicationRouter'
 import CRUDUserPosition from './routes/api/v1/CRUDUserPositionsRouter'
 import CRUDEmployeePositionRouter from './routes/api/v1/CRUDemployeePositionsRouter'
+
 /**
  * Creates and configures an ExpressJS web server.
  *
@@ -67,20 +71,24 @@ class App {
       Web routes
      */
     this.express.use('/', HomeRouter)
-    this.express.use('/admin', AdminRouter)
     this.express.use('/council', CouncilRouter)
     this.express.use('/apply', RegisterRouter)
+
+    //Admin
+    this.express.use('/admin', AdminRouter)
+    this.express.use('/admin/faculties', AdminFacultiesRouter)
+    this.express.use('/admin/councils', AdminCouncilsRouter)
 
     /*
       API routes
      */
     this.express.use('/api/v1/faculties', CRUDfacultiesRouter);
-    this.express.use('/api/v1/faculties', CRUDcouncilRouter);
-    this.express.use('/api/v1/faculties', CRUDcouncilInstRouter);
-    this.express.use('/api/v1/users', CRUDUserPosition);
+    this.express.use('/api/v1/councils', CRUDcouncilRouter);
+    this.express.use('/api/v1/councilsinst', CRUDcouncilInstRouter);
     this.express.use('/api/v1/users', CRUDusersRouter);
     this.express.use('/api/v1/employees', CRUDemployeesRouter);
-    this.express.use('/api/v1/employees', CRUDEmployeePositionRouter);
+    this.express.use('/api/v1/applications', CRUDapplicationRouter);
+
   }
 }
 

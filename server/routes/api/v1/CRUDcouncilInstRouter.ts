@@ -44,18 +44,18 @@ class CRUDCouncilInstRouter {
             .then(_.partial(onSuccess, res))
             .catch(_.partial(onError, res, 'Delete council instance failed'));
     }
-
+    // needs to be fixed removed req.params.councilId
     public patch(req: Request, res: Response, next: NextFunction) {
-        updateCouncilInst(req.params.councilId, req.body, CouncilInstanceModel, req.params.id)
+        updateCouncilInst(req.body, CouncilInstanceModel, req.params.id)
             .then(_.partial(onSuccess, res))
             .catch(_.partial(onError, res, 'Update council instance failed'));
     }
 
     public init() {
-        this.router.get('/:facultyId/:councilId/:id', this.getOne);
-        this.router.post('/:facultyId/:councilID', this.create);
-        this.router.delete('/:facultyId/:councilId/:id', this.delete);
-        this.router.patch('/:facultyId/:councilId/:id', this.patch);
+        this.router.get('/:id', this.getOne);
+        this.router.post('/', this.create);
+        this.router.delete('/:id', this.delete);
+        this.router.patch('/:id', this.patch);
     }
 }
 

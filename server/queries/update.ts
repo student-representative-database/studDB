@@ -8,11 +8,13 @@ export function update(id: number, props: any, model: any) {
     );
 }
 
-export function updateCouncilInst(councilId: number, props: any, model: any, id: number) {
+
+// Needs to be fixed... removed councilid
+export function updateCouncilInst(props: any, model: any, id: number) {
     return model.update(
         props,
         {
-            where: {councilId, id}
+            where: {id}
         }
     );
 }

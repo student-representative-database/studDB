@@ -52,7 +52,7 @@ class CRUDcouncilsRouter {
 
   public getOne(req: Request, res: Response, next: NextFunction) {
     console.log(req.query.all);
-    findOneCouncil(req.params.councilId, req.params.facultyId, req.query.all)
+    findOneCouncil(req.params.councilId, req.query.all)
       .then(_.partial(onSuccess, res))
       .catch(_.partial(onError, res, 'Get One Council failed!'));
   }
@@ -97,8 +97,7 @@ class CRUDcouncilsRouter {
  *     }
  */
   public create(req: Request, res: Response, next: NextFunction) {
-    const facultyId = req.params.facultyId;
-    create(req.body, CouncilModel, facultyId)
+    create(req.body, CouncilModel)
         .then(_.partial(onSuccess, res))
         .catch(_.partial(databaseErrorHandler, res))
         .catch(_.partial(onError, res, `Could not create council`));
@@ -176,10 +175,10 @@ class CRUDcouncilsRouter {
   }
 
   public init() {
-    this.router.get('/:facultyId/:councilId', this.getOne);
-    this.router.post('/:facultyId', this.create);
-    this.router.delete('/:facultyId/:councilId', this.delete);
-    this.router.patch('/:facultyId/:councilId', this.patch);
+    this.router.get('/:councilId', this.getOne);
+    this.router.post('/', this.create);
+    this.router.delete('/:councilId', this.delete);
+    this.router.patch('/:councilId', this.patch);
   }
 }
 

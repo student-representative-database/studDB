@@ -12,7 +12,7 @@ services:
       - ./.env
     volumes:
       - .:/opt/app
-      - /opt/app/node_modules
+      #- /opt/app/node_modules
     depends_on:
       - postgres
 

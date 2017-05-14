@@ -1,23 +1,25 @@
-class APILogic {
-  private headers
+import * as request from 'request-promise'
+
+class DAO {
+  private headers;
+  private path;
 
   constructor() {
-    this.headers = {}
+    this.headers = {};
+    this.path = "http://localhost:3000";
     this.init()
   }
 
   // FACULTIES
   public getAllFaculties() {
-    return fetch('/api/v1/faculties', this.headers.GET)
-    .then((result) => {
-      return result.json()
-    })
+    return request(`${this.path}/api/v1/faculties/`, this.headers.GET)
+    .then((res) => {return res})
   }
 
   public createFaculty(facultyName: string) {
-    const data = JSON.stringify({name: facultyName})
+    const data = JSON.stringify({name: facultyName});
 
-    fetch('/api/v1/faculties', {
+    request('/api/v1/faculties', {
       method: 'POST',
       body: data,
       headers: {
@@ -33,7 +35,7 @@ class APILogic {
   }
 
   public deleteFaculty(facultyID: number) {
-    fetch(`/api/v1/faculties/${facultyID}`, {
+    request(`/api/v1/faculties/${facultyID}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
@@ -48,9 +50,9 @@ class APILogic {
   }
 
   public updateFaculty(id: number, facultyName: string) {
-    const data = JSON.stringify({name: facultyName})
+    const data = JSON.stringify({name: facultyName});
 
-    fetch(`/api/v1/faculties/${id}`, {
+    request(`/api/v1/faculties/${id}`, {
       method: 'PATCH',
       body: data,
       headers: {
@@ -66,21 +68,26 @@ class APILogic {
   }
 
   public getOneFaculty(id: number) {
-    return fetch(`/api/v1/faculties/${id}`, this.headers.GET)
+    return request(`${this.path}/api/v1/faculties/${id}`, this.headers.GET)
     .then((result) => {
-      return result.json()
+      return result
     })
   }
 
   // COUNCILS
   public getAllCouncils(facultyID: number) {
-    return fetch(`/api/v1/faculties/${facultyID}`, this.headers.GET)
+    return request(`${this.path}/api/v1/councils/${facultyID}`, this.headers.GET)
     .then((result) => {
       return result.json()
     })
   }
 
-  public getOneCouncil() {}
+  public getOneCouncil(councilId: number) {
+    return request(`${this.path}/api/v1/councils/${councilId}`, this.headers.GET)
+        .then((result) => {
+          return result
+        })
+  }
 
   public createCouncil() {}
 
@@ -92,18 +99,11 @@ class APILogic {
 
   // VACANT
   public getAllForSchoolYear() {
-    return fetch(`/api/v1/applications/test`, this.headers.GET)
+    return request(`/api/v1/applications/test`, this.headers.GET)
         .then((result) => {
           return result.json()
         })
   }
-
-  // OTHER
-  public sendApplicationForm() {}
-
-  public login() {}
-
-  public logout() {}
 
   public init() {
     // Setup headers.
@@ -111,9 +111,10 @@ class APILogic {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json'
-      }
+      },
+      json: true
     }
   }
 }
 
-export default new APILogic()
+export default new DAO()
