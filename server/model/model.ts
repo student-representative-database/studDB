@@ -1,5 +1,5 @@
 import * as ORM from 'sequelize';
-import { LoggingOptions, Sequelize } from 'sequelize';
+import {LoggingOptions, Model, Sequelize} from 'sequelize';
 import { initCouncilModel, initCouncilInstanceModel } from './DBModel/initCouncilModel';
 import { initFacultyModel } from './DBModel/initFacultyModel';
 import { initUserModel, initUserPositionModel } from './DBModel/initUserModel';
@@ -104,7 +104,8 @@ sequelize.sync({
         graduationYear: 2018,
         birthDate: new Date('October 10, 1980'),
         program: 'UDM',
-        comments: 'bla'
+        comments: 'bla',
+        phd: false
     })
 }).then(() => {
     return UserModel.create({
@@ -131,7 +132,8 @@ sequelize.sync({
         graduationYear: 2018,
         birthDate: new Date('October 10, 1980'),
         program: 'UDM',
-        comments: 'bla'
+        comments: 'bla',
+        phd: true
     })
 }).then(() => {
     return UserModel.create({
@@ -144,7 +146,8 @@ sequelize.sync({
         graduationYear: 2018,
         birthDate: new Date('October 10, 1980'),
         program: 'hallo',
-        comments: 'bla'
+        comments: 'bla',
+        phd: true
     })
 }).then(() => {
     return EmployeeModel.create({
@@ -188,16 +191,34 @@ sequelize.sync({
         CouncilInstanceId: 1,
         UserId: 1,
         from: new Date('October 13, 2018'),
-        till: new Date('October 13, 2020')
+        till: new Date('October 13, 2020'),
+        elected: true
     })
 }).then(() => {
     return UserPositionModel.create({
         CouncilInstanceId: 2,
         UserId: 2,
         from: new Date('January 13, 2020'),
-        till: new Date('October 13, 2020')
+        till: new Date('October 13, 2020'),
+        elected: true
     })
-})/*.then(() => {
+}).then(() => {
+    return UserPositionModel.create({
+        CouncilInstanceId: 2,
+        UserId: 3,
+        from: new Date('January 13, 2020'),
+        till: new Date('October 13, 2020'),
+        elected: true
+    })
+    }).then(() => {
+            return UserPositionModel.create({
+                CouncilInstanceId: 2,
+                UserId: 4,
+                from: new Date('January 13, 2020'),
+                till: new Date('October 13, 2020'),
+                elected: true
+            })})
+            /*.then(() => {
     return CouncilInstanceModel.findAll(
 
          {
@@ -213,6 +234,59 @@ sequelize.sync({
     const blabla = res[0].get({plain: true});
     console.log(JSON.stringify(res))
 })*/
+/* tslint:disable:max-line-length */
+    .then(() => {
+    return CouncilModel.findAll({
+        attributes: [
+            [sequelize.fn('COUNT', sequelize.col('CouncilInstances.Users.id')), 'UserCount'],
+            [sequelize.fn('COUNT', sequelize.literal('CASE WHEN "CouncilInstances.Users"."phd" = FALSE THEN FALSE ELSE NULL END')), 'StudentCount'],
+            [sequelize.fn('COUNT', sequelize.literal('CASE WHEN "CouncilInstances.Users"."phd" = TRUE THEN TRUE ELSE NULL END')), 'PhdCount']
+        ],
+        include: [
+            {
+                where: {
+                    from: {
+                        $lt: new Date(),
+                    },
+                    till: {
+                        $gt: new Date(),
+                    }
+                },
+                model: CouncilInstanceModel,
+                include: [
+                    {
+                        model: UserModel,
+                        through: {
+                            model: UserPositionModel,
+                        }
+                    }
+                ]
+            }
+        ],
+        group: ['"CouncilInstances"."Users"."id"', '"Council"."id"', '"CouncilInstances"."id"', '"CouncilInstances"."Users"."UserPosition"."UserId"', '"CouncilInstances"."Users"."UserPosition"."CouncilInstanceId"']
+    })
+}).then((res: any) => {
+    // console.log(JSON.stringify(res, null, 2))
+    })
+    .then(() => {
+        return CouncilModel.findAll({
+            where: {
+                $or: [
+                    {
+                        name: {
+                            $iLike: '%hi%',
+                        },
+                    },
+                    {
+                        description: {
+                            $iLike: '%a%',
+                        }
+                    }
+                ]
+            }
+        }
+)}).then((res: any) => {
+    console.log(JSON.stringify(res, null, 2))});
 /*.then(() => {
     const facultyId = 1;
     return CouncilModel.findById(1,
