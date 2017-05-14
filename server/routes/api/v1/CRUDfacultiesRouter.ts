@@ -9,6 +9,7 @@ import { deleteOne } from '../../../queries/delete';
 import { findOneFaculty } from '../../../queries/findOne';
 import { update } from '../../../queries/update';
 import { findAllFaculties } from '../../../queries/findAll';
+import { search } from '../../../queries/search';
 
 class CRUDfacultiesRouter {
   public router: Router;
@@ -91,6 +92,10 @@ class CRUDfacultiesRouter {
  */
 
   public getOne(req: Request, res: Response, next: NextFunction) {
+  search('a').then((value) => {
+    console.log(JSON.stringify(value));
+    // return JSON.stringify(value)
+  });
     findOneFaculty(req.params.id)
       .then(_.partial(onSuccess, res))
       .catch(_.partial(onError, res, 'Find one faculty failed'));

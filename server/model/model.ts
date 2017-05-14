@@ -1,6 +1,5 @@
 import * as ORM from 'sequelize';
-
-import { LoggingOptions, Sequelize } from 'sequelize';
+import {LoggingOptions, Sequelize} from 'sequelize';
 import { initCouncilModel, initCouncilInstanceModel } from './DBModel/initCouncilModel';
 import { initFacultyModel } from './DBModel/initFacultyModel';
 import { initUserModel, initUserPositionModel } from './DBModel/initUserModel';
@@ -108,7 +107,8 @@ sequelize.sync({
         graduationYear: 2018,
         birthDate: new Date('October 10, 1980'),
         program: 'UDM',
-        comments: 'bla'
+        comments: 'bla',
+        phd: false
     })
 }).then(() => {
     return UserModel.create({
@@ -136,7 +136,8 @@ sequelize.sync({
         graduationYear: 2018,
         birthDate: new Date('October 10, 1980'),
         program: 'UDM',
-        comments: 'bla'
+        comments: 'bla',
+        phd: true
     })
 }).then(() => {
     return UserModel.create({
@@ -150,7 +151,8 @@ sequelize.sync({
         graduationYear: 2018,
         birthDate: new Date('October 10, 1980'),
         program: 'hallo',
-        comments: 'bla'
+        comments: 'bla',
+        phd: true
     })
 }).then(() => {
     return UserModel.create({
