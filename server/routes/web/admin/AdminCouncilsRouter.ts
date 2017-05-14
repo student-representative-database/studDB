@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response, Router } from 'express'
 import DAO from '../../../utils/DAO'
 
-class CouncilRouter {
+class AdminCouncilRouter {
   public router: Router;
 
   constructor() {
@@ -14,7 +14,7 @@ class CouncilRouter {
         .then((result) => {
           res
               .status(200)
-              .render('./admin/councils', {councils: result.payload, layout: 'admin'})
+              .render('./admin/councils', {faculties: result.payload , layout: 'admin'});
         });
   }
 
@@ -33,4 +33,4 @@ class CouncilRouter {
   }
 }
 
-export default new CouncilRouter().router
+export default new AdminCouncilRouter().router

@@ -13,7 +13,7 @@ class DAO {
   // FACULTIES
   public getAllFaculties() {
     return request(`${this.path}/api/v1/faculties/`, this.headers.GET)
-    .then((res) => {return res})
+    .then((res) => res)
   }
 
   public createFaculty(facultyName: string) {
@@ -78,7 +78,7 @@ class DAO {
   public getAllCouncils(facultyID: number) {
     return request(`${this.path}/api/v1/councils/${facultyID}`, this.headers.GET)
     .then((result) => {
-      return result.json()
+      return result
     })
   }
 
@@ -95,7 +95,20 @@ class DAO {
 
   public updateCouncil() {}
 
-  // CRUD student/representative/employee
+  // CRUD student/representative
+
+  public getAllStudents() {
+    return request(`${this.path}/api/v1/users/`, this.headers.GET)
+        .then((result) => result
+        )
+  }
+
+  // CRUD Employee
+  public getAllStaff() {
+    return request(`${this.path}/api/v1/employees/`, this.headers.GET)
+        .then((result) => result
+        )
+  }
 
   // VACANT
   public getAllForSchoolYear() {

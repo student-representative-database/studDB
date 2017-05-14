@@ -8,17 +8,19 @@ import * as path from 'path'
 import HomeRouter from './routes/web/HomeRouter'
 import AdminRouter from './routes/web/AdminRouter'
 import CouncilRouter from './routes/web/CouncilRouter'
+import RegisterRouter from './routes/web/RegisterRouter'
+// Admin
 import AdminFacultiesRouter from './routes/web/admin/AdminFacultiesRouter'
 import AdminCouncilsRouter from './routes/web/admin/AdminCouncilsRouter'
-import RegisterRouter from './routes/web/RegisterRouter'
+import AdminStudentsRouter from './routes/web/admin/AdminStudentsRouter'
+import AdminEmployeesRouter from './routes/web/admin/AdminEmployeesRouter'
+// API
 import CRUDfacultiesRouter from './routes/api/v1/CRUDfacultiesRouter'
 import CRUDcouncilRouter from './routes/api/v1/CRUDcouncilsRouter'
 import CRUDusersRouter from './routes/api/v1/CRUDusersRouter'
 import CRUDemployeesRouter from './routes/api/v1/CRUDemployeeRouter'
 import CRUDcouncilInstRouter from './routes/api/v1/CRUDcouncilInstRouter'
 import CRUDapplicationRouter from './routes/api/v1/CRUDapplicationRouter'
-import CRUDUserPosition from './routes/api/v1/CRUDUserPositionsRouter'
-import CRUDEmployeePositionRouter from './routes/api/v1/CRUDemployeePositionsRouter'
 
 /**
  * Creates and configures an ExpressJS web server.
@@ -66,19 +68,20 @@ class App {
   */
   private routes(): void {
     const router = express.Router()
-
     /*
       Web routes
      */
     this.express.use('/', HomeRouter)
     this.express.use('/council', CouncilRouter)
     this.express.use('/apply', RegisterRouter)
-
-    //Admin
+    /*
+     API routes
+     */
     this.express.use('/admin', AdminRouter)
     this.express.use('/admin/faculties', AdminFacultiesRouter)
     this.express.use('/admin/councils', AdminCouncilsRouter)
-
+    this.express.use('/admin/students', AdminStudentsRouter)
+    this.express.use('/admin/employees', AdminEmployeesRouter)
     /*
       API routes
      */
@@ -88,7 +91,6 @@ class App {
     this.express.use('/api/v1/users', CRUDusersRouter);
     this.express.use('/api/v1/employees', CRUDemployeesRouter);
     this.express.use('/api/v1/applications', CRUDapplicationRouter);
-
   }
 }
 
