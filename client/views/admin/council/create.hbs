@@ -1,0 +1,11 @@
+<div class="col-md-8" id="create">
+    <form action="/admin/faculties/create" method="post" id="facultyform">
+        <div class="form-group">
+            <label>Name</label>
+            <input class="form-control" name="name" value="{{title}}" />
+            <!--<input type="hidden" name="_csrf" value="{{csrfToken}}">-->
+        </div>
+
+    </form>
+    <button type="submit" form="facultyform" class="btn btn-warning btn-lg">Skapa ny fakultet</button>
+</div>

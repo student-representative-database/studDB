@@ -32,34 +32,30 @@ class DAO {
     })
   }
 
-  public deleteFaculty(facultyID: number) {
-    request(`/api/v1/faculties/${facultyID}`, {
+  public deleteFaculty(facultyId: number) {
+    return request(`${this.path}/api/v1/faculties/${facultyId}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json'
       }
     })
-    .then((response) => {
-      console.log(response)
-    })
+    .then((response) => response)
     .catch((err) => {
       console.log(err)
     })
   }
 
-  public updateFaculty(id: number, facultyName: string) {
+  public updateFaculty(facultyId: number, facultyName: string) {
     const data = JSON.stringify({name: facultyName});
 
-    request(`/api/v1/faculties/${id}`, {
+    return request(`${this.path}/api/v1/faculties/${facultyId}`, {
       method: 'PATCH',
       body: data,
       headers: {
         'Content-Type': 'application/json'
       }
     })
-    .then((response) => {
-      console.log(response)
-    })
+    .then((response) => response)
     .catch((err) => {
       console.log(err)
     })

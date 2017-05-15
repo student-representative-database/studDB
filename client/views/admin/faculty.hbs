@@ -1,3 +1,10 @@
 <div class="col-md-8" id="faculty">
-    <p>{{faculty.id}} {{faculty.name}}</p>
+    <strong><p><a href="/admin/faculties/{{faculty.id}}/create">Skapa nytt råd</a></p></strong>
+    <p><strong>{{faculty.id}} {{faculty.name}}</strong> <a href="/admin/faculties/edit/{{faculty.id}}">edit</a> <a href="/admin/faculties/delete/{{faculty.id}}">delete</a></p>
+    <ul>
+        {{#each faculty.councils}}
+            <p><a href="/admin/councils/{{this.id}}">{{this.name}}</a> <a href="/admin/councils/edit/{{this.id}}">edit</a> <a href="/admin/councils/delete/{{this.id}}">delete</a></p>
+        {{/each}}
+
+    </ul>
 </div>
