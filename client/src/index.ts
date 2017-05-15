@@ -5,12 +5,12 @@ import { AdminPanel } from './AdminPanel'
 
 //////
 
-import API from './APILogic'
-import alert from './FlashMessage'
+// import API from './APILogic'
+// import alert from './FlashMessage'
 
-setTimeout(() => {
-  alert.displayMessage('Flash messages working! Yay!', 'success')
-}, 1500)
+// setTimeout(() => {
+//   alert.displayMessage('Flash messages working! Yay!', 'success')
+// }, 1500)
 
 // API.createFaculty('Fakulteten för other stuff')
 // API.deleteFaculty(5)
