@@ -37,14 +37,15 @@ export function findOneCouncil(id: number, year?: number) {
                 },
                 {
                     model: CouncilInstanceModel,
+                    required: false,
                     where: {
-                        from: {
-                            $lt: till
-                        },
-                        till: {
-                            $gt: from
-                        }
-                    },
+                                from: {
+                                    $lt: till
+                                },
+                                till: {
+                                    $gt: from
+                                }
+                            },
                     include: [
                         {
                             model: UserModel

@@ -1,4 +1,4 @@
-import { EmployeeModel, FacultyModel, CouncilModel, UserModel } from '../model/model';
+import {EmployeeModel, FacultyModel, CouncilModel, UserModel, CouncilInstanceModel} from '../model/model';
 import { createEmployees } from '../model/Interfaces/employee';
 import {createFaculties} from '../model/Interfaces/faculty';
 import {createUsers} from '../model/Interfaces/user';
@@ -12,7 +12,20 @@ export function findAllFaculties() {
     return FacultyModel.findAll({
         include: [
             {
-                model: CouncilModel
+                model: CouncilModel,
+                include: [
+                    {
+                        model: CouncilInstanceModel,
+                        where: {
+                            from: {
+                                $lt: new Date()
+                            },
+                            till: {
+                                $gt: new Date()
+                            }
+                        }
+                    }
+                ]
             }
         ]
     })

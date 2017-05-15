@@ -92,8 +92,8 @@ sequelize.sync({
 }).then(() => {
     return CouncilInstanceModel.create({
         from: new Date('January 1, 2016'),
-        till: new Date('May 30, 2016'),
-        councilId: 1
+        till: new Date('May 30, 2017'),
+        councilId: 3
     })
 }).then(() => {
     return UserModel.create({

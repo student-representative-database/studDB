@@ -51,7 +51,7 @@ class CRUDcouncilsRouter {
  */
 
   public getOne(req: Request, res: Response, next: NextFunction) {
-    console.log(req.query.all);
+    console.log(req.params.councilId);
     findOneCouncil(req.params.councilId, req.query.all)
       .then(_.partial(onSuccess, res))
       .catch(_.partial(onError, res, 'Get One Council failed!'));
