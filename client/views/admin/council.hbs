@@ -11,8 +11,10 @@
     <p><strong>Represtanter:</strong></p>
     {{#each council.CouncilInstances}}
         {{#each this.Users}}
-            <p><a href="/blabla/{{this.id}}">{{this.firstName}} {{this.lastName}}</a></p>
+            <p><a href="/blabla/{{this.id}}">{{this.firstName}} {{this.lastName}} PHD: {{this.phd}}</a></p>
         {{/each}}
     {{/each}}
     <p><strong>Lediga positioner:</strong></p>
+    <p>Antal lediga doktorand positioner {{free.phd}}</p>
+    <p>Antal lediga student positioner {{free.stud}}</p>
 </div>
