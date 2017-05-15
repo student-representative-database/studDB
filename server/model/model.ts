@@ -107,8 +107,7 @@ sequelize.sync({
         graduationYear: 2018,
         birthDate: new Date('October 10, 1980'),
         program: 'UDM',
-        comments: 'bla',
-        phd: false
+        comments: 'bla'
     })
 }).then(() => {
     return UserModel.create({
@@ -136,8 +135,7 @@ sequelize.sync({
         graduationYear: 2018,
         birthDate: new Date('October 10, 1980'),
         program: 'UDM',
-        comments: 'bla',
-        phd: true
+        comments: 'bla'
     })
 }).then(() => {
     return UserModel.create({
@@ -151,8 +149,7 @@ sequelize.sync({
         graduationYear: 2018,
         birthDate: new Date('October 10, 1980'),
         program: 'hallo',
-        comments: 'bla',
-        phd: true
+        comments: 'bla'
     })
 }).then(() => {
     return UserModel.create({
