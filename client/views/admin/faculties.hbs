@@ -1,6 +1,6 @@
 <div class="col-md-8" id="faculties">
     <strong><p><a href="/admin/faculties/create">Skapa ny fakultet</a></p></strong>
     {{#each faculties}}
-        <p><a href="/admin/faculties/{{this.id}}">{{this.name}}</a> <a href="/admin/faculties/edit/{{this.id}}">edit</a></p>
+        <p><a href="/admin/faculties/{{this.id}}">{{this.name}}</a> <a href="/admin/faculties/edit/{{this.id}}">edit</a> <a href="/admin/faculties/delete/{{this.id}}">delete</a></p>
     {{/each}}
 </div>

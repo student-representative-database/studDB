@@ -1,11 +1,14 @@
 
 export function update(id: number, props: any, model: any) {
-    return model.update(
-        props,
-        {
-            where: {id}
-        }
-    );
+    // return model.update(
+    //     props,
+    //     {
+    //         where: {id}
+    //     }
+    // );
+    return model.findById(id, {})
+        .then((result) => result.update(props))
+        .then((result) => result)
 }
 
 
