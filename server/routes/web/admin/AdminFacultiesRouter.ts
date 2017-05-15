@@ -1,5 +1,6 @@
 import {NextFunction, Request, Response, Router} from 'express'
 import DAO from '../../../utils/DAO'
+import * as _ from 'lodash'
 
 class AdminFacultiesRouter {
     public router: Router;
@@ -32,6 +33,26 @@ class AdminFacultiesRouter {
                 res
                     .status(200)
                     .redirect(`/admin/faculties/${result.payload.id}`)
+            })
+    };
+
+    public createCouncil(req: Request, res: Response, next: NextFunction) {
+        res
+            .status(200)
+            .render('./admin/council/create', {layout: "admin"})
+    };
+
+    public postCreateCouncil(req: Request, res: Response, next: NextFunction) {
+        const body: any = _.pick(req.body, ["name", "studentPositions", "phdPositions", "description"])
+        body.facultyId = req.params.id
+        DAO.createCouncil(body)
+            .then((result) => {
+                console.log(result);
+                result = JSON.parse(result)
+
+                res
+                    .status(200)
+                    .redirect(`/admin/council/${result.payload.id}`)
             })
     };
 
@@ -91,6 +112,8 @@ class AdminFacultiesRouter {
         this.router.post('/edit/:id', this.postEditFaculty)
         this.router.get('/delete/:id', this.deleteFaculty)
         this.router.post('/delete/:id', this.postDeleteFaculty)
+        this.router.get('/:id/create', this.createCouncil)
+        this.router.post('/:id/create', this.postCreateCouncil)
         this.router.get('/:id', this.getFaculty)
     }
 }
