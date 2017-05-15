@@ -1,11 +1,19 @@
 <div class="col-md-8" id="create">
-    <form action="/admin/faculties/create" method="post" id="facultyform">
+    <form action="" method="post" id="councilform">
+
         <div class="form-group">
-            <label>Name</label>
-            <input class="form-control" name="name" value="{{title}}" />
+            <label>Namn</label>
+            <input class="form-control" name="name" value="{{council.name}}" />
+            <label>Studenterplatser</label>
+            <input class="form-control" name="studentPositions" value="{{council.studentPositions}}" />
+            <label>Doktorandplatser</label>
+            <input class="form-control" name="phdPositions" value="{{council.phdPositions}}" />
             <!--<input type="hidden" name="_csrf" value="{{csrfToken}}">-->
         </div>
 
     </form>
-    <button type="submit" form="facultyform" class="btn btn-warning btn-lg">Skapa ny fakultet</button>
+    <label>Beskrivning:</label>
+    <textarea class="form-control" name="description" form="councilform">{{council.description}}{{#unless council.description}}beskrivning här...{{/unless}}</textarea>
+    <br>
+    <button type="submit" form="councilform" class="btn btn-warning btn-lg">Skapa råd</button>
 </div>

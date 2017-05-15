@@ -16,14 +16,14 @@ export function findAllFaculties() {
                 include: [
                     {
                         model: CouncilInstanceModel,
-                        where: {
-                            from: {
-                                $lt: new Date()
-                            },
-                            till: {
-                                $gt: new Date()
-                            }
-                        }
+                        // where: {
+                        //     from: {
+                        //         $lt: new Date()
+                        //     },
+                        //     till: {
+                        //         $gt: new Date()
+                        //     }
+                        // }
                     }
                 ]
             }

@@ -83,7 +83,20 @@ class DAO {
         })
   }
 
-  public createCouncil() {}
+  public createCouncil(data: any) {
+    data = JSON.stringify(data)
+    return request(`${this.path}/api/v1/councils`, {
+      method: 'POST',
+      body: data,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+        .then((response) => response)
+        .catch((err) => {
+          console.log(err)
+        })
+  }
 
   public deleteCouncil() {}
 
