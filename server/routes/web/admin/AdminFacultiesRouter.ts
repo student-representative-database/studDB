@@ -1,6 +1,5 @@
 import {NextFunction, Request, Response, Router} from 'express'
 import DAO from '../../../utils/DAO'
-import * as _ from 'lodash';
 
 class AdminFacultiesRouter {
     public router: Router;
@@ -49,8 +48,6 @@ class AdminFacultiesRouter {
         const name: string = req.body.name
         DAO.updateFaculty(req.params.id, name)
             .then((result) => {
-                console.log("inside post edit");
-                console.log(result);
                 result = JSON.parse(result)
                 res
                     .status(200)
@@ -70,8 +67,6 @@ class AdminFacultiesRouter {
     public postDeleteFaculty(req: Request, res: Response, next: NextFunction) {
         DAO.deleteFaculty(req.params.id)
             .then((result) => {
-                console.log("inside post delete");
-                console.log(result);
                 result = JSON.parse(result)
                 res
                     .status(200)
@@ -82,7 +77,6 @@ class AdminFacultiesRouter {
     public getFaculty(req: Request, res: Response, next: NextFunction) {
         DAO.getOneFaculty(req.params.id)
             .then((result) => {
-                console.log(JSON.stringify(result, null, 2));
                 res
                     .status(200)
                     .render('./admin/faculty', {faculty: result.payload, layout: "admin"})
