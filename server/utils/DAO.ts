@@ -121,6 +121,10 @@ class DAO {
         )
   }
 
+  public getOneStaff(staffID: number) {
+    return request(`${this.path}/api/v1/employees/${staffID}`, this.headers.GET)
+  }
+
   // VACANT
   public getAllForSchoolYear() {
     return request(`/api/v1/applications/test`, this.headers.GET)
