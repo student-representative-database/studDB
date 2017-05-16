@@ -18,8 +18,21 @@ class AdminStudentsRouter {
         });
   }
 
+  public updateStudent(req: Request, res: Response, next: NextFunction) {
+    console.log('Getting one student...')
+    console.log(req.params.id)
+    DAO.getOneStudent(req.params.id)
+        .then((result) => {
+          console.log(result.payload)
+          res
+            .status(200)
+            .render('./admin/students', {student: result.payload , layout: 'admin'});
+        });
+  }
+
   public init() {
     this.router.get('/', this.getStudents)
+    this.router.get('/:id', this.updateStudent)
   }
 }
 

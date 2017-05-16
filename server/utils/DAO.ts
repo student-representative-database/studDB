@@ -110,6 +110,10 @@ class DAO {
         )
   }
 
+  public getOneStudent(studentID: number) {
+    return request(`${this.path}/api/v1/users/${studentID}`, this.headers.GET)
+  }
+
   // CRUD Employee
   public getAllStaff() {
     return request(`${this.path}/api/v1/employees/`, this.headers.GET)
