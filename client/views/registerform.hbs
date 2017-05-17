@@ -1,3 +1,88 @@
 <div class="col-md-8" id="registerform">
-  Form for applying interest.
+  <form>
+    <div class="form-group row">
+      <label for="inputFirstName" class="col-sm-2 col-form-label">Förnamn</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="inputFirstName" placeholder="Anders">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputLastName" class="col-sm-2 col-form-label">Efternamn</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="inputLastName" placeholder="Andersson">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputBirthDate" class="col-sm-2 col-form-label">Födelsedatum</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="inputBirthDate" placeholder="ÅÅMMDD">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputPhone" class="col-sm-2 col-form-label">Telefonnummer</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="inputPhone" placeholder="070-1112233">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputEmail" class="col-sm-2 col-form-label">E-post</label>
+      <div class="col-sm-10">
+        <input type="email" class="form-control" id="inputEmail" placeholder="anders@domain.com">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputExamYear" class="col-sm-2 col-form-label">Examensår</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="inputExamYear" placeholder="2018">
+      </div>
+    </div>
+    <div class="form-group form-check">
+      <label class="form-check-label">
+        Doktorandstudent&nbsp;
+        <input class="form-check-input" id="inputPhd" type="checkbox" value="">
+      </label>
+    </div>
+    <div class="form-group row">
+      <label for="inputProgram" class="col-sm-2 col-form-label">Program</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="inputProgram" placeholder="Ekonomprogrammet">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputFaculty" class="col-sm-2 col-form-label">Fakultet</label>
+      <div class="col-sm-10">
+        <select id="inputFaculty" class="form-control">
+          <option>Välj</option>
+          {{#if faculties}}
+          {{#each faculties}}
+          <option value="{{{this.id}}}">{{{this.name}}}</option>
+          {{/each}}
+          {{/if}}
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputComment" class="col-sm-2 col-form-label">Om dig</label>
+      <div class="col-sm-10">
+        <textarea type="text" class="form-control" id="inputComment" rows="5" placeholder="Kort beskrivning om dig själv"></textarea>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputPassword" class="col-sm-2 col-form-label">Lösenord</label>
+      <div class="col-sm-10">
+        <input type="password" class="form-control" id="inputPassword" placeholder="Välj lösenord">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="inputPasswordConfirm" class="col-sm-2 col-form-label"></label>
+      <div class="col-sm-10">
+        <input type="password" class="form-control" id="inputPasswordConfirm" placeholder="Bekräfta lösenord">
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="offset-sm-2 col-sm-10">
+        <button type="submit" class="btn btn-primary">Skicka anmälan</button>
+      </div>
+    </div>
+  </form>
 </div>
