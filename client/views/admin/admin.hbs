@@ -1,11 +1,33 @@
-<div class="col-md-8" id="admin">
-  Admin panel.
-    {{#each faculties}}
-        <p><a href="/admin/faculties/{{this.id}}">{{this.name}}</a></p>
+<div id="admin">
+  <h1>Administrera</h1>
+  <div class="row">
+    <div class="col-md-3">
+        <h2>Fakultet</h2>
         <ul>
-        {{#each this.councils}}
-            <li><a href="/admin/councils/{{this.id}}">{{this.name}}</a></li>
-        {{/each}}
+            <li>Lägg till fakultet</li>
+            <li>Lista fakulteter</li>
         </ul>
-    {{/each}}
+    </div>
+    <div class="col-md-3">
+        <h2>Råd</h2>
+        <ul>
+            <li>Lägg till råd</li>
+            <li>Lista råd</li>
+        </ul>
+    </div>
+    <div class="col-md-3">
+        <h2>Studenter</h2>
+        <ul>
+            <li>Lägg till student</li>
+            <li>Lista studenter</li>
+        </ul>
+    </div>
+    <div class="col-md-3">
+        <h2>Personal</h2>
+        <ul>
+            <li>Lägg till personal</li>
+            <li>Lista personal</li>
+        </ul>
+    </div>
+    </div>
 </div>
