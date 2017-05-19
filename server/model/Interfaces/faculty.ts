@@ -19,11 +19,25 @@ export function createFaculties(data: any[]): IFaculty[] {
     return data.map(createFaculty);
 }
 
-function createCouncilFromDbModel({id, name, description, facultyId}: any): ICouncilFacultyView {
+function createCouncilFromDbModel({id, name, facultyId, studentPositions, phdPositions, CouncilInstances}: any): ICouncilFacultyView {
+    let from;
+    let till;
+
+    if (CouncilInstances[0]) {
+        from = CouncilInstances[0].from;
+        till = CouncilInstances[0].till;
+    }else {
+        from = null;
+        till = null;
+    }
+
     return {
         id,
         name,
-        description,
+        studentPositions,
+        phdPositions,
+        from,
+        till,
         facultyId,
     }
 }

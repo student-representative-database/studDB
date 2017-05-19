@@ -77,9 +77,9 @@ export function findOneUser(userId: number) {
         .then(createUser);
 }
 
-export function findOneInst(councilId: number, id: number) {
+export function findOneInst(id: number) {
     return CouncilInstanceModel.findOne({
-        where: {councilId, id},
+        where: {id},
         include: [{
             model: UserModel
         }]

@@ -5,6 +5,7 @@
     ],
     "jsRules": {},
     "rules": {
+        "max-line-length": {"options": [240]},
         "quotemark": [true, "avoid-escape"],
         "semicolon": ["never"],
         "trailing-comma": ["never"],

@@ -8,7 +8,9 @@ export function findAllEmployees() {
         .then(createEmployees)
 }
 
-export function findAllFaculties() {
+export function findAllFaculties(show: string) {
+    const bool = (show === 'true');
+
     return FacultyModel.findAll({
         include: [
             {
@@ -16,14 +18,15 @@ export function findAllFaculties() {
                 include: [
                     {
                         model: CouncilInstanceModel,
-                        // where: {
-                        //     from: {
-                        //         $lt: new Date()
-                        //     },
-                        //     till: {
-                        //         $gt: new Date()
-                        //     }
-                        // }
+                        required: bool,
+                        where: {
+                            from: {
+                                $lt: new Date()
+                            },
+                            till: {
+                               $gt: new Date()
+                           }
+                        }
                     }
                 ]
             }

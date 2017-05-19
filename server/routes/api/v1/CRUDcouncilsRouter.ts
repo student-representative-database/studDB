@@ -18,7 +18,7 @@ class CRUDcouncilsRouter {
   }
 
 /**
- * @api {get} /:faculty/:id Get all councils
+ * @api {get} /:faculty/:id Get all councils in a faculty.
  * @apiVersion 0.1.0
  * @apiName GetCouncils
  * @apiGroup Council
@@ -38,7 +38,49 @@ class CRUDcouncilsRouter {
  *     description: "...",
  *     facultyId: 1,
  *     studentPositions: 2,
- *     phdPositions: 2
+ *     phdPositions: 2,
+ *     "Employees": [{
+ *       "id": 1,
+ *       "firstName": "Olga",
+ *       "lastName": "Oc",
+ *       "phone": "0123456-123",
+ *       "email": "oc@gmail.com",
+ *       "facultyId": 1,
+ *       "pro*fileUrl": "kllökök",
+ *       "password": "$2a$08$PhENYMj6bfSaQ1aLRk1DxesMXThlEC/IAtNGil/53uCTJDNLyUe9i",
+ *       "EmployeePosition": {
+ *         "CouncilId": 1,
+ *         "EmployeeId": 1,
+ *         "secretary": false,
+ *         "chairman": true,
+ *         "convener": false,
+ *         "createdAt": "2017-05-17T18:16:40.810Z",
+ *         "updatedAt": "2017-05-17T18:16:40.810Z"
+ *       },
+ *       {...]],
+ *     "CouncilInstances": [
+ *     {
+ *           "id": 1,
+ *           "firstName": "Fredrik",
+ *           "lastName": "Olsson",
+ *           "birthDate": "1980-10-10T00:00:00.000Z",
+ *           "phd": false,
+ *           "phone": "0123456-123",
+ *           "email": "fredriko.olsson@gmail.com",
+ *           "graduationYear": "1970-01-01T00:00:02.018Z",
+ *           "program": "UDM",
+ *           "comments": "bla",
+ *           "UserPosition": {
+ *             "UserId": 1,
+ *             "CouncilInstanceId": 1,
+ *             "from": "2017-01-02T00:00:00.000Z",
+ *             "till": "2017-05-29T00:00:00.000Z",
+ *             "elected": true,
+ *             "createdAt": "2017-05-17T18:16:40.864Z",
+ *             "updatedAt": "2017-05-17T18:16:40.864Z"
+ *           }
+ *         },
+ *         {...}],
  *   }
  * }
  * @apiError CouncilNotFound The id of the Council was not found.
@@ -51,19 +93,21 @@ class CRUDcouncilsRouter {
  */
 
   public getOne(req: Request, res: Response, next: NextFunction) {
-    console.log(req.params.councilId);
     findOneCouncil(req.params.councilId, req.query.all)
       .then(_.partial(onSuccess, res))
       .catch(_.partial(onError, res, 'Get One Council failed!'));
   }
 
 /**
- * @api {post} /:faculty Create council
+ * @api {post} /:councils Create council
  * @apiVersion 0.1.0
  * @apiName CreateCouncil
  * @apiGroup Council
  *
- * @apiParam (uriParams) {Number} faculty Faculty unique ID.
+ * @apiParam {String} name Name of the Council.
+ * @apiParam {String} description Description of the Council.
+ * @apiParam {Number} studentPositions Number of student Positions in the Council.
+ * @apiParam {Number} phdPositions Number of phd Positions in the Council.
  *
  * @apiParamExample {json} Request-Example:
  * {
@@ -104,20 +148,25 @@ class CRUDcouncilsRouter {
   }
 
 /**
- * @api {delete} /:faculty/:id Delete council
+ * @api {delete} /:councils/:id Delete council
  * @apiVersion 0.1.0
  * @apiName DeleteCouncil
  * @apiGroup Council
  *
- * @apiParam (uriParams) {Number} faculty Faculty unique ID.
  * @apiParam (uriParams) {Number} id Council unique ID.
  *
  * @apiSuccessExample Success-Response:
- * { !!!!!!!!!!!!!!!! fix response in our implementation!!!!!!!!!!!!!!
- *   "payload": {
- *     "id": 1,
- *     "name": "Fakulteten för teknik"
- *   }
+ * {
+ * "payload": {
+ *  "id": 1,
+ *   "name": "Utbildningsråd",
+ *   "description": "...",
+ *   "facultyId": 1,
+ *   "studentPositions": 2,
+ *   "phdPositions": 2,
+ *   "createdAt": "2017-05-17T19:25:05.159Z",
+ *   "updatedAt": "2017-05-17T19:25:05.159Z"
+ * }
  * }
  *
  * @apiError NoCouncilWithId No faculty with that id exists
@@ -136,12 +185,11 @@ class CRUDcouncilsRouter {
   }
 
 /**
- * @api {patch} /:faculty/:id Update council
+ * @api {patch} /:councils/:id Update council
  * @apiVersion 0.1.0
  * @apiName UpdateCouncil
  * @apiGroup Council
  *
- * @apiParam (uriParams) {Number} faculty Faculty unique ID.
  * @apiParam (uriParams) {Number} id Council unique ID.
  *
  * @apiParamExample {json} Request-Example:
@@ -153,11 +201,17 @@ class CRUDcouncilsRouter {
  * }
  *
  * @apiSuccessExample Success-Response:
- * { !!!!!!!!!!!!!!!! fix response in our implementation!!!!!!!!!!!!!!
- *   "payload": {
- *     "id": 1,
- *     "name": "Fakulteten för teknik"
- *   }
+ * {
+ * "payload": {
+ *  "id": 1,
+ *  "name": "Utbildningsråd #2",
+ *  "description": "...",
+ *  "facultyId": "1",
+ *  "studentPositions": "2",
+ *  "phdPositions": "2",
+ *  "createdAt": "2017-05-17T19:27:17.342Z",
+ *  "updatedAt": "2017-05-17T19:27:21.199Z"
+ * }
  * }
  *
  * @apiError NoCouncilWithId No faculty with that id exists

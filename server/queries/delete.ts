@@ -1,8 +1,11 @@
-
 export function deleteOne(id: number, model: any) {
-    return model.destroy({
-        where: {id}
-    });
+    let record = null;
+
+    return model.findById(id)
+        .then ( (r) => { record = r; } )
+        .then(() => model.destroy({
+            where: {id}
+        })).then(() => record)
 }
 
 export function deleteUserPosition(UserId: number, CouncilInstanceId: number, model: any) {
