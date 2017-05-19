@@ -20,10 +20,12 @@ class CRUDfacultiesRouter {
   }
 
 /**
- * @api {get} /faculty/ Get all faculties
+ * @api {get} /faculties/ Get all faculties
  * @apiVersion 0.1.0
  * @apiName GetFaculties
  * @apiGroup Faculty
+ *
+ * @apiParam {String} true/false If set to true the Api will only show currently active councils.
  *
  * @apiSuccessExample Success-Response:
  * HTTP/1.1 200 OK
@@ -34,10 +36,13 @@ class CRUDfacultiesRouter {
  *       "name": "Fakulteten för teknik",
  *       "councils": [
  *         {
- *           "id": 1,
- *           "name": "Utbildningsråd",
- *           "description": "...",
- *           "facultyId": 1
+ *            "id": 2,
+ *            "name": "Rådet för de som gillar back-end",
+ *            "studentPositions": 3,
+ *            "phdPositions": 2,
+ *            "from": "2017-01-01T00:00:00.000Z",
+ *            "till": "2017-05-30T00:00:00.000Z",
+ *            "facultyId": 1
  *         }
  *       ]
  *     },
@@ -53,8 +58,9 @@ class CRUDfacultiesRouter {
  *     }
  */
 
-  public getAll(req: Request, res: Response, next: NextFunction) {
-    findAllFaculties()
+public getAll(req: Request, res: Response, next: NextFunction) {
+  // TODO Finish implemntation.
+  findAllFaculties(req.query.showAll)
       .then(_.partial(onSuccess, res))
       .catch(_.partial(onError, res, 'Find all faculties failed'));
   }
@@ -66,7 +72,7 @@ class CRUDfacultiesRouter {
  * @apiGroup Faculty
  *
  * @apiParam (uriParams) {number} id Id of the Faculty.
- * 
+ *
  * @apiSuccessExample Success-Response:
  * HTTP/1.1 200 OK
  * "payload": {
@@ -92,17 +98,13 @@ class CRUDfacultiesRouter {
  */
 
   public getOne(req: Request, res: Response, next: NextFunction) {
-  search('a').then((value) => {
-    console.log(JSON.stringify(value));
-    // return JSON.stringify(value)
-  });
-    findOneFaculty(req.params.id)
+  findOneFaculty(req.params.id)
       .then(_.partial(onSuccess, res))
       .catch(_.partial(onError, res, 'Find one faculty failed'));
   }
 
 /**
- * @api {post} /faculty/:id Create faculty
+ * @api {post} /faculty/ Create faculty
  * @apiVersion 0.1.0
  * @apiName CreateFaculty
  * @apiGroup Faculty

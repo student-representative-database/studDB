@@ -15,7 +15,10 @@ export interface ICouncil {
 export interface ICouncilFacultyView {
     readonly id: number,
     name: string,
-    description: string,
+    studentPositions: number,
+    phdPositions: number,
+    from: Date,
+    till: Date,
     facultyId: number,
 }
 
