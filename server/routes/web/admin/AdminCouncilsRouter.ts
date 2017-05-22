@@ -1,5 +1,6 @@
 import {NextFunction, Request, Response, Router} from 'express'
 import DAO from '../../../utils/DAO'
+import * as _ from 'lodash'
 
 class AdminCouncilRouter {
     public router: Router;
@@ -38,9 +39,20 @@ class AdminCouncilRouter {
             });
     }
 
+    public createCouncil(req: Request, res: Response, next: NextFunction) {
+        console.log(req.query.faculty)
+        DAO.getAllFaculties()
+        .then((result) => {
+            res
+                .status(200)
+                .render('admin/council/create', {faculties: result.payload, selected: req.query.faculty, layout: 'admin'});
+        });
+    };
+
     public init() {
-        this.router.get('/', this.getCouncils)
+        this.router.get('/create', this.createCouncil)
         this.router.get('/:id', this.getCouncil)
+        this.router.get('/', this.getCouncils)
     }
 }
 
