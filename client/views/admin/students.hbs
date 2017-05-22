@@ -1,8 +1,19 @@
 <div class="col-md-8" id="students">
-    <p>Hur ska vi lista dem? alla studenter/aktiva</p>
+    {{#if students}}
     <ul>
     {{#each students}}
-        <li><p><a href="/employees/{{this.id}}">{{this.firstName}} {{this.lastName}}</a></p>
+        <li><p><a href="/admin/students/{{this.id}}">{{this.firstName}} {{this.lastName}}</a></p>
     {{/each}}
     </ul>
+    {{/if}}
+
+    {{#if student}}
+
+    {{student.firstName}} <br>
+    {{student.lastName}} <br>
+    {{student.email}} <br>
+    {{student.program}} <br>
+    {{student.comments}} <br>
+
+    {{/if}}
 </div>

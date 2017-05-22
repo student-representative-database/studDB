@@ -44,7 +44,7 @@ switch (type) {
     break
   case 'admin':
     const admin = new AdminPanel()
-    admin.displayPanel()
+    admin.init()
     break
   case 'login':
     const login = new LoginForm()

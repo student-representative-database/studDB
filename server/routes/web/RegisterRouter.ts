@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response, Router } from 'express'
+import DAO from '../../utils/DAO'
 
 class ApplyRouter {
   public router: Router;
@@ -8,14 +9,26 @@ class ApplyRouter {
     this.init()
   }
 
-  public getApplyForm(req: Request, res: Response, next: NextFunction) {
-    res
+  public getApplicationForm(req: Request, res: Response, next: NextFunction) {
+
+    DAO.getAllFaculties()
+    .then((result) => {
+      res
         .status(200)
-        .render('registerform')
+        .render('registerform', {faculties: result.payload})
+    })
+  }
+
+  public postApplicationForm(req: Request, res: Response, next: NextFunction) {
+    console.log(req.body)
+    res
+      .status(200)
+      .send()
   }
 
   public init() {
-    this.router.get('/', this.getApplyForm)
+    this.router.get('/', this.getApplicationForm)
+    this.router.post('/', this.postApplicationForm)
   }
 }
 

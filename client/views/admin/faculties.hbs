@@ -1,6 +1,24 @@
-<div class="col-md-8" id="faculties">
-    <strong><p><a href="/admin/faculties/create">Skapa ny fakultet</a></p></strong>
-    {{#each faculties}}
-        <p><a href="/admin/faculties/{{this.id}}">{{this.name}}</a> <a href="/admin/faculties/edit/{{this.id}}">edit</a> <a href="/admin/faculties/delete/{{this.id}}">delete</a></p>
-    {{/each}}
+<div class="" id="faculties">
+    <p><strong><a href="/admin/faculties/create">Skapa ny fakultet</a></strong></p>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Fakultet</th>
+                <th>Val</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each faculties}}
+            <tr>
+                <td><a href="/admin/faculties/{{this.id}}">{{this.name}}</a></td>
+                <td>
+                    <a href="/admin/faculties/edit/{{this.id}}" class="btn btn-default">Ändra</a>
+                    <a href="/admin/faculties/delete/{{this.id}}" class="btn btn-default">Ta bort</a>
+                </td>
+            </tr>
+            {{/each}}
+
+        </tbody>
+    </table>
 </div>
