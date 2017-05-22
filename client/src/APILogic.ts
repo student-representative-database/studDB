@@ -80,7 +80,12 @@ class APILogic {
     })
   }
 
-  public getOneCouncil() {}
+  public getOneCouncil(councilID) {
+    return fetch(`/api/v1/councils/${councilID}`, this.headers.GET)
+    .then((result) => {
+      return result.json()
+    })
+  }
 
   public createCouncil() {}
 
