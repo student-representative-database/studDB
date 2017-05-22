@@ -1,4 +1,89 @@
-<div class="col-md-8" id="students">
+<div id="students">
+    {{#if students}}
+    <h3>Representantslista</h3>
+    <p>Begränsa listan:</p>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="col-sm-9">
+                <select id="inputFaculty" class="form-control ">
+                <option value="null">Välj fakultet</option>
+                {{#if faculties}}
+                {{#each faculties}}
+                <option value="{{{this.id}}}">{{{this.name}}}</option>
+                {{/each}}
+                {{/if}}
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="col-sm-9">
+                <select id="inputCouncil" class="form-control">
+                <option value="null">Välj råd</option>
+
+                </select>
+            </div>
+        </div>
+        <div>&nbsp;</div>
+        <div class="col-lg-6">
+            <div class="col-sm-9">
+                <select id="" class="form-control ">
+                <option value="null">Position</option>
+                <option value="">Öppen anmälan</option>
+                <option value="">Nuvarande representant</option>
+                <option value="">Utan ansökan</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="col-sm-9">
+                <select id="" class="form-control">
+                <option value="null">Visa alla</option>
+                <option value="null">Visa bara studenter</option>
+                <option value="null">Visa bara doktorander</option>
+                </select>
+            </div>
+        </div>
+        <div>&nbsp;</div>
+        <div class="col-lg-6">
+            <div class="col-sm-9">
+                <input type="text" class="form-control" placeholder="Fritextsök...">
+                </select>
+            </div>
+        </div>
+    </div><div>&nbsp;</div>
+
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Efternamn</th>
+                <th>Förnamn</th>
+                <th>Program</th>
+                <th>Doktorand</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            {{#each students}}
+            <tr>
+                <td><a href="/admin/students/{{this.id}}">{{this.lastName}}</a></td>
+                <td><a href="/admin/students/{{this.id}}">{{this.firstName}}</a></td>
+                <td>{{this.program}}</td>
+                <td>
+                    {{#if this.phd}}
+                    Ja
+                    {{else}}
+                    Nej
+                    {{/if}}
+                </td>
+            </tr>
+            {{/each}}
+
+
+        </tbody>
+    </table>
+    {{/if}}
+{{!--
     {{#if students}}
     <ul>
     {{#each students}}
@@ -14,6 +99,69 @@
     {{student.email}} <br>
     {{student.program}} <br>
     {{student.comments}} <br>
+
+    {{/if}}--}}
+
+    {{#if student}}
+    <h3>{{student.firstName}} {{student.lastName}}</h3>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Födelsedatum</label>
+      <div class="col-sm-9">
+        {{student.birthDate}}
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Telefonnummer</label>
+      <div class="col-sm-9">
+        {{student.phone}}
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Email</label>
+      <div class="col-sm-9">
+        {{student.email}}
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Program</label>
+      <div class="col-sm-9">
+        {{student.program}}
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Examensår</label>
+      <div class="col-sm-9">
+        {{student.graduationYear}}
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Doktorand</label>
+      <div class="col-sm-9">
+        {{#if student.phd}}
+        Ja
+        {{else}}
+        Nej
+        {{/if}}
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Om personen</label>
+      <div class="col-sm-9">
+        {{student.comments}}
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <div class="offset-sm-2 col-sm-9">
+        <a href="/admin/student/edit/{{student.id}}" class="btn btn-primary" id="btnSubmit">Redigera information</a >
+      </div>
+    </div>
 
     {{/if}}
 </div>
