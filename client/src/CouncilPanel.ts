@@ -6,7 +6,6 @@ export class CouncilPanel {
   public init() {
     const elemFaculty = document.getElementById('inputFaculty')
     const elemCouncil = document.getElementById('inputCouncil')
-    console.log('CouncilPanel')
 
     if (elemFaculty) {
       elemFaculty.addEventListener('change', this.eventFacultySelect.bind(this))
