@@ -1,37 +1,13 @@
 import { RegistryList } from './RegistryList'
 import { LoginForm } from './LoginForm'
 import { RegisterForm } from './RegisterForm'
-import { AdminPanel } from './AdminPanel'
+import { CouncilPanel } from './CouncilPanel'
 
-//////
-
-// import API from './APILogic'
-// import alert from './FlashMessage'
-
-// setTimeout(() => {
-//   alert.displayMessage('Flash messages working! Yay!', 'success')
-// }, 1500)
-
-// API.createFaculty('Fakulteten för other stuff')
-// API.deleteFaculty(5)
-// API.updateFaculty(4, 'Fakulteten för hästar')
-
-// API.getAllFaculties()
-// .then((data) => {
-//   console.log(data['payload'])
-// })
-
-// API.getOneFaculty(2)
-// .then((data) => {
-//   console.log(data['payload'])
-// })
-
-//////
-
+// Get the id of the page.
 const mainElement = document.getElementById('main')
-
 const type = mainElement.firstElementChild.id
 
+// Load module according to page id.
 switch (type) {
   case 'home':
     const target = document.getElementById(type)
@@ -42,8 +18,8 @@ switch (type) {
     const register = new RegisterForm()
     register.displayForm()
     break
-  case 'admin':
-    const admin = new AdminPanel()
+  case 'councilPanel':
+    const admin = new CouncilPanel()
     admin.init()
     break
   case 'login':

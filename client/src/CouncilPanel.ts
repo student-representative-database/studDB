@@ -1,11 +1,12 @@
 import API from './APILogic'
 
-export class AdminPanel {
+export class CouncilPanel {
   private councilList
 
   public init() {
     const elemFaculty = document.getElementById('inputFaculty')
     const elemCouncil = document.getElementById('inputCouncil')
+    console.log('CouncilPanel')
 
     if (elemFaculty) {
       elemFaculty.addEventListener('change', this.eventFacultySelect.bind(this))
