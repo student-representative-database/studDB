@@ -20,6 +20,7 @@ export function createFaculties(data: any[]): IFaculty[] {
 }
 
 function createCouncilFromDbModel({id, name, facultyId, studentPositions, phdPositions, CouncilInstances}: any): ICouncilFacultyView {
+    console.log(CouncilInstances);
     let from;
     let till;
 

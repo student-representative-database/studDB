@@ -65,7 +65,21 @@ export function findOneFaculty(facultyId: number) {
     return FacultyModel.findById(facultyId, {
         include: [
             {
-                model: CouncilModel
+                model: CouncilModel,
+                include: [
+                    {
+                        model: CouncilInstanceModel,
+                        required: false,
+                        where: {
+                            from: {
+                                $lt: new Date()
+                            },
+                            till: {
+                                $gt: new Date()
+                            }
+                        }
+                    }
+                ]
             }
         ]
     })
