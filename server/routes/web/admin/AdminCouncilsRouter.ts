@@ -49,8 +49,29 @@ class AdminCouncilRouter {
         });
     };
 
+    public deleteCouncil(req: Request, res: Response, next: NextFunction) {
+        DAO.getOneCouncil(req.params.id)
+            .then((result) => {
+                console.log(result)
+                res
+                    .status(200).send(result)
+                    // .render('admin/council/delete', {council: result.payload, layout: "admin"})
+            })
+    }
+
+    public postDeleteCouncil(req: Request, res: Response, next: NextFunction) {
+        DAO.deleteCouncil(req.params.id)
+            .then((result) => {
+                result = JSON.parse(result)
+                res
+                    .status(200)
+                    .redirect(`/admin/councils/`)
+            })
+    }
+
     public init() {
         this.router.get('/create', this.createCouncil)
+        this.router.get('/delete/:id', this.deleteCouncil)
         this.router.get('/:id', this.getCouncil)
         this.router.get('/', this.getCouncils)
     }

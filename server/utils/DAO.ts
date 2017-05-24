@@ -98,7 +98,18 @@ class DAO {
         })
   }
 
-  public deleteCouncil() {}
+  public deleteCouncil(councilId: number) {
+    return request(`${this.path}/api/v1/councilinst/${councilId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((response) => response)
+    .catch((err) => {
+      console.log(err)
+    })
+  }
 
   public updateCouncil() {}
 
