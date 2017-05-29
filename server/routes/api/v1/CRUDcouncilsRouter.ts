@@ -18,7 +18,7 @@ class CRUDcouncilsRouter {
   }
 
 /**
- * @api {get} /:faculty/:id Get all councils in a faculty.
+ * @api {get} /councils/:faculty/:id Get all councils in a faculty.
  * @apiVersion 0.1.0
  * @apiName GetCouncils
  * @apiGroup Council
@@ -99,7 +99,7 @@ class CRUDcouncilsRouter {
   }
 
 /**
- * @api {post} /:councils Create council
+ * @api {post} /councils/:councils Create council
  * @apiVersion 0.1.0
  * @apiName CreateCouncil
  * @apiGroup Council
@@ -148,7 +148,7 @@ class CRUDcouncilsRouter {
   }
 
 /**
- * @api {delete} /:councils/:id Delete council
+ * @api {delete} /councils/:councils/:id Delete council
  * @apiVersion 0.1.0
  * @apiName DeleteCouncil
  * @apiGroup Council
@@ -185,7 +185,7 @@ class CRUDcouncilsRouter {
   }
 
 /**
- * @api {patch} /:councils/:id Update council
+ * @api {patch} /councils/:councils/:id Update council
  * @apiVersion 0.1.0
  * @apiName UpdateCouncil
  * @apiGroup Council
