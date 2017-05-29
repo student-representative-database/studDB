@@ -27,8 +27,8 @@
 
 
     <h4>Representanter:</h4>
-    {{#each council.CouncilInstances}}
-        {{#each this.Users}}
+    {{#each council.CouncilInstances.0.Users}}
+        {{!--{{#each this.Users}}--}}
             <h5>
 
                 {{this.firstName}} {{this.lastName}}
@@ -41,7 +41,7 @@
             <p class="about"><strong>Om mig: </strong>{{this.comments}}</p>
             <p class="about"><strong>Epost: </strong><a href="mailto:{{this.email}}">{{this.email}}</a></p>
             <hr>
-        {{/each}}
+        {{!--{{/each}}--}}
     {{/each}}
 
     <h4>Lediga positioner:</h4>
