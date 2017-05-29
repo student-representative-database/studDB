@@ -69,7 +69,9 @@ export class RegistryListItem {
       API.getAllCouncils(this.options.id)
       .then((data) => {
         data['payload'].councils.forEach((element) => {
-          this.element.parentElement.removeChild(this.element.nextElementSibling)
+          if (this.element.nextElementSibling) {
+            this.element.parentElement.removeChild(this.element.nextElementSibling)
+          }
         });
       })
       .catch((err) => {
@@ -91,7 +93,9 @@ export class RegistryListItem {
             callback: null
           })
 
-          this.element.parentElement.insertBefore(item.element, this.element.nextElementSibling)
+          if (element.from) {
+            this.element.parentElement.insertBefore(item.element, this.element.nextElementSibling)
+          }
         });
       })
       .catch((err) => {
