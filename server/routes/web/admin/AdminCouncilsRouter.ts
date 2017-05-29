@@ -49,6 +49,68 @@ class AdminCouncilRouter {
         });
     };
 
+    public postCreateCouncil(req: Request, res: Response, next: NextFunction) {
+        if (req.body.councilName) {
+            // Create new council AND then new instance of that council.
+            const council = {
+                name: req.body.councilName,
+                description: req.body.comments,
+                studentPositions: req.body.students,
+                phdPositions: req.body.phd,
+                facultyId: req.body.faculty
+            }
+            const instance = {
+                councilId: -1,
+                from: req.body.dateFrom,
+                till: req.body.dateTill
+            }
+
+            console.log(council)
+
+            DAO.createCouncil(council)
+            .then((result) => {
+                console.log(result)
+                const created = JSON.parse(result).payload
+                instance.councilId = created.id
+                console.log(instance)
+
+                // TODO:
+                DAO.createCouncilInstance(instance)
+                .then((result) => {
+                    console.log('HEJ OCH HÅ')
+                    console.log(result)
+                    res
+                    .status(200)
+                    .redirect('/admin/councils')
+                })
+            })
+
+
+        } else {
+            // Create new council instance.
+            console.log(req.body)
+            const instance = {
+                councilId: req.body.council,
+                from: req.body.dateFrom,
+                till: req.body.dateTill
+            }
+
+            DAO.createCouncilInstance(instance)
+                .then((result) => {
+                    console.log('HEJ OCH HÅ')
+                    console.log(result)
+                    res
+                    .status(200)
+                    .redirect('/admin/councils')
+                })
+
+            res
+            .status(200)
+            .redirect('/admin/councils')
+        }
+
+    }
+
     public deleteCouncil(req: Request, res: Response, next: NextFunction) {
         DAO.getOneCouncil(req.params.id)
             .then((result) => {
@@ -65,12 +127,13 @@ class AdminCouncilRouter {
                 result = JSON.parse(result)
                 res
                     .status(200)
-                    .redirect(`/admin/councils/`)
+                    .redirect(`/admin/councils`)
             })
     }
 
     public init() {
         this.router.get('/create', this.createCouncil)
+        this.router.post('/create', this.postCreateCouncil)
         this.router.get('/delete/:id', this.deleteCouncil)
         this.router.get('/:id', this.getCouncil)
         this.router.get('/', this.getCouncils)

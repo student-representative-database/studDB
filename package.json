@@ -53,5 +53,8 @@
     "pg": "^6.1.5",
     "request-promise": "^4.2.1",
     "sequelize": "^3.30.4"
+  },
+  "apidoc": {
+    "url" : "/api/v1/"
   }
 }

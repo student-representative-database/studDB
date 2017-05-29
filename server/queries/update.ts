@@ -11,8 +11,8 @@ export function update(id: number, props: any, model: any) {
         .then((result) => result)
 }
 
-export function updateUserPosition(userId: number, props: any, model: any, councilInstanceId: number) {
-    return model.update(
+export function updateUserPosition(UserId: number, props: any, model: any, CouncilInstanceId: number) {
+    /*return model.update(
         props,
         {
             where: {
@@ -20,14 +20,24 @@ export function updateUserPosition(userId: number, props: any, model: any, counc
                 CouncilInstanceId: councilInstanceId
             }
         }
-    );
+    );*/
+
+    return model.findOne({
+        where: {UserId, CouncilInstanceId} })
+        .then((result) => result.update(props))
+        .then((result) => result)
 }
 
 export function updateEmployeePosition(EmployeeId: number, props: any, model: any, CouncilId: number) {
-    return model.update(
+    /*return model.update(
         props,
         {
             where: {EmployeeId, CouncilId}
         }
-    );
+    );*/
+
+    return model.findOne({
+        where: {EmployeeId, CouncilId} })
+        .then((result) => result.update(props))
+        .then((result) => result)
 }
