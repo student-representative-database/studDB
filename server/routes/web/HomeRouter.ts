@@ -14,8 +14,23 @@ class HomeRouter {
         .render('home')
   }
 
+  public getFaq(req: Request, res: Response, next: NextFunction) {
+    res
+        .status(200)
+        .render('faq')
+  }
+
+  public getPosts(req: Request, res: Response, next: NextFunction) {
+    res
+        .status(200)
+        .render('posts')
+  }
+
   public init() {
-    this.router.get('/', this.getHome)
+    this.router.get('/', this.getHome);
+    this.router.get('/faq', this.getFaq);
+    this.router.get('/posts', this.getPosts);
+
   }
 }
 
