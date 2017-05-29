@@ -20,23 +20,38 @@ class AdminCouncilRouter {
     }
 
     public getCouncil(req: Request, res: Response, next: NextFunction) {
-        DAO.getOneCouncil(req.params.id)
-            .then((result) => {
-                // Calculate free positions
-                let i
-                const free = {phd: result.payload.phdPositions, stud: result.payload.studentPositions};
-                for (i = 0; i < result.payload.CouncilInstances[0].Users.length; i++) {
-                    if (result.payload.CouncilInstances[0].Users[i].phd === true) {
-                        free.phd--
-                    } else {
-                        free.stud--
-                    }
+        let dataObject = {
+            Users: []
+        }
+        DAO.getCouncilInstance(req.params.id)
+        .then((result) => {
+            // Calculate free positions
+            // console.log(result)
+            dataObject.Users = result.payload.Users
+            return DAO.getOneCouncil(result.payload.councilId)
+        })
+        .then((result) => {
+            // console.log(result)
+            const returnObject = result.payload
+            returnObject.Users = dataObject.Users
+            let i
+            const free = {phd: result.payload.phdPositions, stud: result.payload.studentPositions};
+            for (i = 0; i < dataObject.Users.length; i++) {
+                if (dataObject.Users[i].phd === true) {
+                    free.phd--
+                } else {
+                    free.stud--
                 }
-                console.log(JSON.stringify(result.payload.CouncilInstances[0].Users, null, 2));
-                res
-                    .status(200)
-                    .render('./admin/council', {council: result.payload, free, layout: 'admin'})
-            });
+            }
+            // console.log(JSON.stringify(result.payload.CouncilInstances[0].Users, null, 2));
+            // console.log(dataObject)
+            res
+                .status(200)
+                .render('./admin/council', {council: returnObject, free, layout: 'admin'})
+            })
+        .catch((error) => {
+            console.log(error)
+        });
     }
 
     public createCouncil(req: Request, res: Response, next: NextFunction) {

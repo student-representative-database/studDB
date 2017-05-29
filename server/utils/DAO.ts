@@ -83,6 +83,13 @@ class DAO {
         })
   }
 
+  public getCouncilInstance(instanceId: number) {
+    return request(`${this.path}/api/v1/councilsinst/${instanceId}`, this.headers.GET)
+        .then((result) => {
+          return result
+        })
+  }
+
   public createCouncil(data: any) {
     data = JSON.stringify(data)
     return request(`${this.path}/api/v1/councils`, {

@@ -122,7 +122,7 @@ export class CouncilPanel {
                             const phdReps = this.countPhdReps(instance.Users)
 
                             html += `<tr>
-                    <td><a href="/admin/councils/${cData.id}">${cData.name}</a></td>
+                    <td><a href="/admin/councils/${instance.id}">${cData.name}</a></td>
                     <td>${from}</td>
                     <td>${till}</td>
                     <td>${studentReps}/${cData.studentPositions}</td>
