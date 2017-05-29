@@ -1,11 +1,37 @@
 import alert from './FlashMessage'
+import API from './APILogic'
 
 export class RegisterForm {
 
   public displayForm() {
-    console.log(`Create and display register form.`)
     const submit = document.getElementById('btnSubmit')
+    const facultyList = document.getElementById('inputFaculty')
+    if (facultyList) {
+      facultyList.addEventListener('change', this.updateCouncilList)
+    }
     submit.addEventListener('click', this.eventHandler.bind(this))
+  }
+
+  private updateCouncilList(event) {
+    const councilList = document.getElementById('inputCouncil')
+    councilList.innerHTML = `<option value="null">Välj</option>`
+    if (event.target.value !== 'null') {
+      API.getAllCouncils(event.target.value)
+      .then((data) => {
+        console.log(data['payload'])
+        let html = `<option value="null">Välj</option>`
+        data['payload'].councils.forEach((element) => {
+          if (element.from) {
+            html += `<option value="${element.id}">${element.name}</option>`
+          }
+        })
+
+        councilList.innerHTML = html
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    }
   }
 
   private validateForm() {
@@ -20,6 +46,7 @@ export class RegisterForm {
         phd: this.getInputData('inputPhd'),
         program: this.getInputData('inputProgram'),
         facultyId: this.getInputData('inputFaculty'),
+        councilId: this.getInputData('inputCouncil'),
         comments: this.getInputData('inputComments'),
         password: this.getInputData('inputPassword')
       }

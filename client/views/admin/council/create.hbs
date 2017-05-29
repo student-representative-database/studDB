@@ -1,10 +1,10 @@
 <div class="col-md-8" id="councilPanel">
-    <form>
+    <form method="POST" action="/admin/councils/create" id="formNewCouncilTerm">
         <h3>Lägg till period för råd</h3>
         <div class="form-group row">
             <label for="inputFaculty" class="col-sm-3 col-form-label">Välj fakultet</label>
             <div class="col-sm-9">
-                <select id="inputFaculty" class="form-control ">
+                <select name="faculty" id="inputFaculty" class="form-control ">
             <option value="null">Välj...</option>
             {{#if faculties}}
             {{#each faculties}}
@@ -17,7 +17,7 @@
         <div class="form-group row">
             <label for="inputCouncil" class="col-sm-3 col-form-label">Välj råd</label>
             <div class="col-sm-9">
-                <select id="inputCouncil" class="form-control">
+                <select name="council" id="inputCouncil" class="form-control">
             <option value="null">Välj...</option>
 
             </select>
@@ -26,89 +26,80 @@
         <div class="form-group row">
             <label for="dateFrom" class="col-sm-3 col-form-label">Från datum</label>
             <div class="col-sm-3">
-                <input type="date" class="form-control" id="dateFrom">
+                <input type="date" name="dateFrom" class="form-control" id="dateFrom">
             </div>
         </div>
         <div class="form-group row">
             <label for="dateTill" class="col-sm-3 col-form-label">Till datum</label>
             <div class="col-sm-3">
-                <input type="date" class="form-control" id="dateTill">
+                <input type="date" name="dateTill" class="form-control" id="dateTill">
             </div>
         </div>
         <div class="form-group row">
             <div class="offset-sm-2 col-sm-9">
-                <button class="btn btn-primary" id="btnAddInstance">Skapa period</button>
+                <button type="submit" form="formNewCouncilTerm" class="btn btn-primary" id="btnAddInstance">Skapa period</button>
             </div>
         </div>
     </form>
 
     <p>&nbsp;</p>
 
-    <form>
+    <form method="POST" action="/admin/councils/create" id="formNewCouncilAndTerm">
         <h3>Skapa period för nytt råd</h3>
+        <div class="form-group row">
+            <label for="inputFaculty2" class="col-sm-3 col-form-label">Välj fakultet</label>
+            <div class="col-sm-9">
+                <select name="faculty" id="inputFaculty2" class="form-control ">
+            <option value="null">Välj...</option>
+            {{#if faculties}}
+            {{#each faculties}}
+            <option value="{{{this.id}}}">{{{this.name}}}</option>
+            {{/each}}
+            {{/if}}
+            </select>
+            </div>
+        </div>
         <div class="form-group row">
             <label for="inputCouncilName" class="col-sm-3 col-form-label">Namn på råd</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" id="inputCouncilName" placeholder="Programråd">
+                <input name="councilName" type="text" class="form-control" id="inputCouncilName" placeholder="Programråd">
             </div>
         </div>
         <div class="form-group row">
             <label for="inputComments" class="col-sm-3 col-form-label">Beskrivning</label>
             <div class="col-sm-9">
-                <textarea type="text" class="form-control" id="inputComments" rows="5" placeholder="Beskriv vad rådet gör"></textarea>
+                <textarea name="comments" type="text" class="form-control" id="inputComments" rows="5" placeholder="Beskriv vad rådet gör"></textarea>
             </div>
         </div>
         <div class="form-group row">
             <label for="inputStudents" class="col-sm-3 col-form-label">Antal önskade studenter</label>
             <div class="col-sm-9">
-                <input type="number" class="form-control" value="0" min="0" max="10" id="inputStudents">
+                <input name="students" type="number" class="form-control" value="0" min="0" max="10" id="inputStudents">
             </div>
         </div>
         <div class="form-group row">
             <label for="inputPhds" class="col-sm-3 col-form-label">Antal doktorander</label>
             <div class="col-sm-9">
-                <input type="number" class="form-control" value="0" min="0" max="10" id="inputPhds">
+                <input name="phd" type="number" class="form-control" value="0" min="0" max="10" id="inputPhds">
             </div>
         </div>
         <div class="form-group row">
             <label for="dateFrom" class="col-sm-3 col-form-label">Från datum</label>
             <div class="col-sm-3">
-                <input type="date" class="form-control" id="dateFrom">
+                <input name="dateFrom" type="date" class="form-control" id="dateFrom">
             </div>
         </div>
         <div class="form-group row">
             <label for="dateTill" class="col-sm-3 col-form-label">Till datum</label>
             <div class="col-sm-3">
-                <input type="date" class="form-control" id="dateTill">
+                <input name="dateTill" type="date" class="form-control" id="dateTill">
             </div>
         </div>
         <div class="form-group row">
             <div class="offset-sm-2 col-sm-9">
-                <button class="btn btn-primary" id="btnAddInstance">Skapa nytt råd och period</button>
+                <button type="submit" form="formNewCouncilAndTerm" class="btn btn-primary" id="btnAddCouncil">Skapa nytt råd och period</button>
             </div>
         </div>
     </form>
 
-    {{!--
-    <div class="row">&nbsp;</div>
-
-    <h3>Skapa nytt råd</h3>
-    <div class="row">
-        <form action="" method="post">
-            <div class="form-group">
-                <label>Namn</label>
-                <input class="form-control" name="name" value="{{council.name}}" />
-                <label>Studenterplatser</label>
-                <input class="form-control" name="studentPositions" value="{{council.studentPositions}}" />
-                <label>Doktorandplatser</label>
-                <input class="form-control" name="phdPositions" value="{{council.phdPositions}}" />
-                <!--<input type="hidden" name="_csrf" value="{{csrfToken}}">-->
-            </div>
-
-        </form>
-        <label>Beskrivning:</label>
-        <textarea class="form-control" name="description" form="councilform">{{council.description}}{{#unless council.description}}beskrivning här...{{/unless}}</textarea>
-        <br>
-        <button type="submit" form="councilform" class="btn btn-warning btn-lg">Skapa råd</button>
-    </div>--}}
 </div>

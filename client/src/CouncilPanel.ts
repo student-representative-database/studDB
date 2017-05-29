@@ -6,6 +6,8 @@ export class CouncilPanel {
   public init() {
     const elemFaculty = document.getElementById('inputFaculty')
     const elemCouncil = document.getElementById('inputCouncil')
+    // const btnAddInstance = document.getElementById('btnAddInstance')
+    // const btnAddCouncil = document.getElementById('btnAddCouncil')
 
     if (elemFaculty) {
       elemFaculty.addEventListener('change', this.eventFacultySelect.bind(this))
@@ -14,6 +16,11 @@ export class CouncilPanel {
     if (elemCouncil) {
       elemCouncil.addEventListener('change', this.eventCouncilSelect.bind(this))
     }
+
+    // if (btnAddInstance) {}
+
+    // if (btnAddCouncil) {}
+
   }
 
   private eventFacultySelect(event) {
@@ -29,7 +36,9 @@ export class CouncilPanel {
       })
     } else {
       const tableBody = document.querySelector('tbody')
-      tableBody.innerHTML = ''
+      if (tableBody) {
+        tableBody.innerHTML = ''
+      }
       this.updateCouncilsDropdown(null)
     }
 
@@ -86,7 +95,9 @@ export class CouncilPanel {
 
       })
       .then(() => {
-        tableBody.innerHTML = html
+        if (tableBody) {
+          tableBody.innerHTML = html
+        }
       })
     })
   }
