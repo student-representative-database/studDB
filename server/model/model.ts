@@ -185,17 +185,17 @@ sequelize.sync({
         phone: '0123456-123',
         email: 'oc@gmail.com',
         facultyId: 1,
-        profileUrl: "kllökök",
+        profileUrl: "www.lnu.se",
         password: 'password',
     })
 }).then(() => {
     return EmployeeModel.create({
-        firstName: 'Olga',
-        lastName: 'Oc',
+        firstName: 'Hans',
+        lastName: 'Andersen',
         phone: '0123456-123',
-        email: 'oc@gmail.com',
+        email: 'ha@gmail.com',
         facultyId: 1,
-        profileUrl: "kllökök",
+        profileUrl: "www.google.com",
         password: 'password',
 
     })
@@ -205,14 +205,14 @@ sequelize.sync({
         EmployeeId: 1,
         secretary: false,
         chairman: true,
-        convener: false,
+        convener: true,
     })
 }).then(() => {
     return EmployeePositionModel.create({
         CouncilId: 1,
         EmployeeId: 2,
-        secretary: false,
-        chairman: true,
+        secretary: true,
+        chairman: false,
         convener: false,
     })
 }).then(() => {
