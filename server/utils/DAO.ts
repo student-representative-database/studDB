@@ -98,6 +98,21 @@ class DAO {
         })
   }
 
+  public createCouncilInstance(data: any) {
+    data = JSON.stringify(data)
+    return request(`${this.path}/api/v1/councilsinst`, {
+      method: 'POST',
+      body: data,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((response) => response)
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+
   public deleteCouncil(councilId: number) {
     return request(`${this.path}/api/v1/councilinst/${councilId}`, {
       method: 'DELETE',

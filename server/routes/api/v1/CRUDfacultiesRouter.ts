@@ -59,14 +59,13 @@ class CRUDfacultiesRouter {
  */
 
 public getAll(req: Request, res: Response, next: NextFunction) {
-  // TODO Finish implemntation.
   findAllFaculties(req.query.showAll)
       .then(_.partial(onSuccess, res))
       .catch(_.partial(onError, res, 'Find all faculties failed'));
   }
 
 /**
- * @api {get} /faculty/:id Get faculty
+ * @api {get} /faculties/:id Get faculty
  * @apiVersion 0.1.0
  * @apiName GetFaculty
  * @apiGroup Faculty
@@ -104,7 +103,7 @@ public getAll(req: Request, res: Response, next: NextFunction) {
   }
 
 /**
- * @api {post} /faculty/ Create faculty
+ * @api {post} /faculties/ Create faculty
  * @apiVersion 0.1.0
  * @apiName CreateFaculty
  * @apiGroup Faculty
@@ -125,7 +124,7 @@ public getAll(req: Request, res: Response, next: NextFunction) {
  *   }
  * }
  *
- * @apiError DuplicateFacultyName There alredy exist a faculty with that name
+ * @apiError DuplicateFacultyName There already exist a faculty with that name
  *
  * @apiErrorExample Error-Response:
  *     HTTP/1.1 400 Bad request
@@ -142,7 +141,7 @@ public getAll(req: Request, res: Response, next: NextFunction) {
   }
 
 /**
- * @api {delete} /faculty/:id Delete faculty
+ * @api {delete} /faculties/:id Delete faculty
  * @apiVersion 0.1.0
  * @apiName DeleteFaculty
  * @apiGroup Faculty
@@ -173,7 +172,7 @@ public getAll(req: Request, res: Response, next: NextFunction) {
   }
 
 /**
- * @api {patch} /faculty/:id Update faculty
+ * @api {patch} /faculties/:id Update faculty
  * @apiVersion 0.1.0
  * @apiName patchFaculty
  * @apiGroup Faculty
