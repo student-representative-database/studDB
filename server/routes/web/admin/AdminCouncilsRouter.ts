@@ -52,13 +52,46 @@ class AdminCouncilRouter {
     public postCreateCouncil(req: Request, res: Response, next: NextFunction) {
         if (req.body.councilName) {
             // Create new council AND then new instance of that council.
+            const council = {
+                name: req.body.councilName,
+                description: req.body.comments,
+                studentPositions: req.body.students,
+                phdPositions: req.body.phd,
+                facultyId: req.body.faculty
+            }
+            const instance = {
+                councilId: -1,
+                from: req.body.dateFrom,
+                till: req.body.dateTill
+            }
+
+            console.log(council)
+
+            DAO.createCouncil(council)
+            .then((result) => {
+                console.log(result)
+                const created = JSON.parse(result).payload
+                instance.councilId = created.id
+                console.log(instance)
+
+                // TODO:
+                DAO.createCouncilInstance(instance)
+                .then(() => {
+                    res
+                    .status(200)
+                    .redirect('/admin/councils')
+                })
+            })
+
+
         } else {
             // Create new council instance.
-        }
 
-        res
+            res
             .status(200)
             .redirect('/admin/councils')
+        }
+
     }
 
     public deleteCouncil(req: Request, res: Response, next: NextFunction) {
