@@ -2,6 +2,7 @@ import { RegistryList } from './RegistryList'
 import { LoginForm } from './LoginForm'
 import { RegisterForm } from './RegisterForm'
 import { CouncilPanel } from './CouncilPanel'
+import { FacultyPanel } from './FacultyPanel'
 
 // Get the id of the page.
 const mainElement = document.getElementById('main')
@@ -19,8 +20,12 @@ switch (type) {
     register.displayForm()
     break
   case 'councilPanel':
-    const admin = new CouncilPanel()
-    admin.init()
+    const council = new CouncilPanel()
+    council.init()
+    break
+  case 'facultyPanel':
+    const faculty = new FacultyPanel()
+    faculty.init()
     break
   case 'login':
     const login = new LoginForm()
