@@ -1,4 +1,4 @@
-[
+define({ "api": [
   {
     "type": "post",
     "url": "/:councils",
@@ -75,7 +75,7 @@
         }
       ]
     },
-    "filename": "routes/api/v1/CRUDcouncilsRouter.ts",
+    "filename": "api/v1/CRUDcouncilsRouter.ts",
     "groupTitle": "Council"
   },
   {
@@ -126,7 +126,7 @@
         }
       ]
     },
-    "filename": "routes/api/v1/CRUDcouncilsRouter.ts",
+    "filename": "api/v1/CRUDcouncilsRouter.ts",
     "groupTitle": "Council"
   },
   {
@@ -207,7 +207,7 @@
         }
       ]
     },
-    "filename": "routes/api/v1/CRUDcouncilsRouter.ts",
+    "filename": "api/v1/CRUDcouncilsRouter.ts",
     "groupTitle": "Council"
   },
   {
@@ -278,7 +278,7 @@
         }
       ]
     },
-    "filename": "routes/api/v1/CRUDcouncilInstRouter.ts",
+    "filename": "api/v1/CRUDcouncilInstRouter.ts",
     "groupTitle": "CouncilInstance"
   },
   {
@@ -329,7 +329,7 @@
         }
       ]
     },
-    "filename": "routes/api/v1/CRUDcouncilInstRouter.ts",
+    "filename": "api/v1/CRUDcouncilInstRouter.ts",
     "groupTitle": "CouncilInstance"
   },
   {
@@ -380,7 +380,7 @@
         }
       ]
     },
-    "filename": "routes/api/v1/CRUDcouncilInstRouter.ts",
+    "filename": "api/v1/CRUDcouncilInstRouter.ts",
     "groupTitle": "CouncilInstance"
   },
   {
@@ -438,7 +438,7 @@
         }
       ]
     },
-    "filename": "routes/api/v1/CRUDcouncilInstRouter.ts",
+    "filename": "api/v1/CRUDcouncilInstRouter.ts",
     "groupTitle": "CouncilInstance"
   },
   {
@@ -496,7 +496,7 @@
         }
       ]
     },
-    "filename": "routes/api/v1/CRUDcouncilsRouter.ts",
+    "filename": "api/v1/CRUDcouncilsRouter.ts",
     "groupTitle": "Council"
   },
   {
@@ -591,7 +591,7 @@
         }
       ]
     },
-    "filename": "routes/api/v1/CRUDemployeeRouter.ts",
+    "filename": "api/v1/CRUDemployeeRouter.ts",
     "groupTitle": "Employee"
   },
   {
@@ -642,7 +642,7 @@
         }
       ]
     },
-    "filename": "routes/api/v1/CRUDemployeeRouter.ts",
+    "filename": "api/v1/CRUDemployeeRouter.ts",
     "groupTitle": "Employee"
   },
   {
@@ -693,7 +693,7 @@
         }
       ]
     },
-    "filename": "routes/api/v1/CRUDemployeeRouter.ts",
+    "filename": "api/v1/CRUDemployeeRouter.ts",
     "groupTitle": "Employee"
   },
   {
@@ -731,7 +731,7 @@
         }
       ]
     },
-    "filename": "routes/api/v1/CRUDemployeeRouter.ts",
+    "filename": "api/v1/CRUDemployeeRouter.ts",
     "groupTitle": "Employee"
   },
   {
@@ -826,7 +826,7 @@
         }
       ]
     },
-    "filename": "routes/api/v1/CRUDemployeeRouter.ts",
+    "filename": "api/v1/CRUDemployeeRouter.ts",
     "groupTitle": "Employee"
   },
   {
@@ -893,7 +893,7 @@
         }
       ]
     },
-    "filename": "routes/api/v1/CRUDfacultiesRouter.ts",
+    "filename": "api/v1/CRUDfacultiesRouter.ts",
     "groupTitle": "Faculty"
   },
   {
@@ -944,7 +944,7 @@
         }
       ]
     },
-    "filename": "routes/api/v1/CRUDfacultiesRouter.ts",
+    "filename": "api/v1/CRUDfacultiesRouter.ts",
     "groupTitle": "Faculty"
   },
   {
@@ -995,7 +995,7 @@
         }
       ]
     },
-    "filename": "routes/api/v1/CRUDfacultiesRouter.ts",
+    "filename": "api/v1/CRUDfacultiesRouter.ts",
     "groupTitle": "Faculty"
   },
   {
@@ -1046,7 +1046,7 @@
         }
       ]
     },
-    "filename": "routes/api/v1/CRUDfacultiesRouter.ts",
+    "filename": "api/v1/CRUDfacultiesRouter.ts",
     "groupTitle": "Faculty"
   },
   {
@@ -1104,7 +1104,7 @@
         }
       ]
     },
-    "filename": "routes/api/v1/CRUDfacultiesRouter.ts",
+    "filename": "api/v1/CRUDfacultiesRouter.ts",
     "groupTitle": "Faculty"
   },
   {
@@ -1219,7 +1219,7 @@
         }
       ]
     },
-    "filename": "routes/api/v1/CRUDusersRouter.ts",
+    "filename": "api/v1/CRUDusersRouter.ts",
     "groupTitle": "User"
   },
   {
@@ -1270,7 +1270,7 @@
         }
       ]
     },
-    "filename": "routes/api/v1/CRUDusersRouter.ts",
+    "filename": "api/v1/CRUDusersRouter.ts",
     "groupTitle": "User"
   },
   {
@@ -1321,7 +1321,7 @@
         }
       ]
     },
-    "filename": "routes/api/v1/CRUDusersRouter.ts",
+    "filename": "api/v1/CRUDusersRouter.ts",
     "groupTitle": "User"
   },
   {
@@ -1359,7 +1359,7 @@
         }
       ]
     },
-    "filename": "routes/api/v1/CRUDusersRouter.ts",
+    "filename": "api/v1/CRUDusersRouter.ts",
     "groupTitle": "User"
   },
   {
@@ -1483,7 +1483,7 @@
         }
       ]
     },
-    "filename": "routes/api/v1/CRUDusersRouter.ts",
+    "filename": "api/v1/CRUDusersRouter.ts",
     "groupTitle": "User"
   }
-]
+] });
