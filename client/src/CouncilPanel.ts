@@ -1,6 +1,6 @@
 import API from './APILogic'
 
-export class AdminPanel {
+export class CouncilPanel {
   private councilList
 
   public init() {

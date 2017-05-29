@@ -19,11 +19,12 @@ class AdminStudentsRouter {
   }
 
   public updateStudent(req: Request, res: Response, next: NextFunction) {
-    console.log('Getting one student...')
-    console.log(req.params.id)
     DAO.getOneStudent(req.params.id)
         .then((result) => {
-          console.log(result.payload)
+          const data = result.payload
+          data.birthDate = result.payload.birthDate.substring(0, 10)
+          data.graduationYear = result.payload.graduationYear.substring(0, 4)
+          console.log(data)
           res
             .status(200)
             .render('./admin/students', {student: result.payload , layout: 'admin'});

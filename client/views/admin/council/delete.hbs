@@ -1,8 +1,9 @@
-<div class="col-md-8" id="create">
-    <p>Vill du verkligen radera {{faculty.name}}...</p>
-    <form action="/admin/faculties/delete/{{faculty.id}}"  method="post" id="facultydelete">
+<div class="col-md-8" id="councilPanel">
+    <p>Vill du verkligen radera {{council.name}}...</p>
+    <form action="/admin/councils/delete/{{council.id}}"  method="post" id="councildelete">
         <!--<input type="hidden" name="_csrf" value="{{csrfToken}}">-->
         <button type="submit" class="btn btn-warning btn-lg">Radera fakultet</button>
     </form>
-
+{{council.id}} -
+{{council.councilId}}
 </div>

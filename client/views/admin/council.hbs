@@ -1,4 +1,4 @@
-<div class="col-md-8" id="council">
+<div class="col-md-8" id="councilPanel">
   <h3>{{council.name}}</h3>
     <p>{{council.description}}</p>
 
@@ -17,4 +17,6 @@
     <p><strong>Lediga positioner:</strong></p>
     <p>Antal lediga doktorand positioner {{free.phd}} / {{council.phdPositions}}</p>
     <p>Antal lediga student positioner {{free.stud}} / {{council.studentPositions}}</p>
+    <a href="/admin/councils/edit/{{council.id}}" class="btn btn-primary" id="">Redigera</a>
+    <a href="/admin/councils/delete/{{council.id}}" class="btn btn-danger" id="">Ta bort</a>
 </div>
