@@ -76,7 +76,9 @@ class AdminCouncilRouter {
 
                 // TODO:
                 DAO.createCouncilInstance(instance)
-                .then(() => {
+                .then((result) => {
+                    console.log('HEJ OCH HÅ')
+                    console.log(result)
                     res
                     .status(200)
                     .redirect('/admin/councils')
@@ -86,6 +88,21 @@ class AdminCouncilRouter {
 
         } else {
             // Create new council instance.
+            console.log(req.body)
+            const instance = {
+                councilId: req.body.council,
+                from: req.body.dateFrom,
+                till: req.body.dateTill
+            }
+
+            DAO.createCouncilInstance(instance)
+                .then((result) => {
+                    console.log('HEJ OCH HÅ')
+                    console.log(result)
+                    res
+                    .status(200)
+                    .redirect('/admin/councils')
+                })
 
             res
             .status(200)
