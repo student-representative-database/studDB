@@ -31,7 +31,10 @@ export class CouncilPanel {
     }
 
     private eventFacultySelect(event) {
-        document.querySelector('tbody').innerHTML = "";
+      const tbody = document.querySelector('tbody')
+        if (tbody) {
+          tbody.innerHTML = "";
+        }
         if (event.target.value !== 'null') {
             this.facultyItem = event.target.value
             API.getAllCouncils(event.target.value)
@@ -108,7 +111,7 @@ export class CouncilPanel {
 
                     cData.CouncilInstances.forEach((instance) => {
                         const date = new Date();
-                        if (this.elemNext.checked) {
+                        if (this.elemNext && this.elemNext.checked) {
                             date.setMonth(date.getMonth() + 6)
                         }
                         if (new Date(instance.from) < date && new Date(instance.till) > date) {
