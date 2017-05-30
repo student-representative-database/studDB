@@ -32,23 +32,43 @@ class AdminStudentsRouter {
     }
 
     public getRepresentativesList(req: Request, res: Response, next: NextFunction) {
+        let returnObject = []
 
         DAO.getAllFaculties()
-            .then((data) => {
-                    console.log(JSON.stringify(data, null, 2))
-                    for (let i = 0; i < data.payload.length; i++) {
-                        DAO.getAllCouncils(data.payload[i].id)
-                            .then((council) => {
-                                //console.log(JSON.stringify(council, null, 2));
-                                //data.payload[i]
-                            })
-                    }
-                }
-            )
+        .then((data) => {
+            returnObject = data['payload']
 
-        res
-            .status(200)
-            .render('./admin/representatives', {layout: 'admin'});
+            const promises = []
+            data['payload'].forEach((faculty) => {
+                faculty.councils.forEach((council) => {
+                    if (council.councilInstanceId) {
+                        promises.push(DAO.getCouncilInstance(council.councilInstanceId))
+                    }
+                })
+            })
+
+            return Promise.all(promises)
+        })
+        .then((data) => {
+            returnObject.forEach((faculty) => {
+                faculty.councils.forEach((council) => {
+                    council.UserPositions = []
+                    data.forEach((payload) => {
+                        payload.payload.Users.forEach((user) => {
+                            if (user.UserPosition.CouncilInstanceId === council.councilInstanceId) {
+                                council.UserPositions.push(user)
+                            }
+                        })
+                    })
+                })
+            })
+        })
+        .then(() => {
+            res
+                .status(200)
+                .render('./admin/representatives', {data: returnObject, layout: 'admin'});
+        })
+
     }
 
     public init() {
