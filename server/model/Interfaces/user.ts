@@ -62,3 +62,7 @@ export function createUserPosition({ UserId, CouncilInstanceId, from, till, elec
 export function createUsers(data: any[]): Iuser[] {
     return data.map(createUser);
 }
+
+export function createUserPositions(data: any[]): IUserPosition[] {
+    return data.map(createUserPosition);
+}

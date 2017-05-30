@@ -8,6 +8,7 @@ import {findOneUserPosition} from "../../../queries/findOne";
 import { create} from '../../../queries/create';
 import { deleteUserPosition } from '../../../queries/delete';
 import { updateUserPosition } from '../../../queries/update';
+import {findAllUserPositions} from "../../../queries/findAll";
 
 class CRUDUserPositionsRouter {
     public router: Router;
@@ -48,6 +49,12 @@ class CRUDUserPositionsRouter {
 
     public getOne(req: Request, res: Response, next: NextFunction) {
         findOneUserPosition(req.params.councilId, req.params.userId)
+            .then(_.partial(onSuccess, res))
+            .catch(_.partial(onError, res, 'Find user position instance failed'));
+    }
+
+    public getAll(req: Request, res: Response, next: NextFunction) {
+        findAllUserPositions()
             .then(_.partial(onSuccess, res))
             .catch(_.partial(onError, res, 'Find user position instance failed'));
     }
@@ -186,6 +193,7 @@ class CRUDUserPositionsRouter {
 
     public init() {
         this.router.get('/:councilId/:userId', this.getOne);
+        this.router.get('/', this.getAll);
         this.router.post('/', this.create);
         this.router.delete('/:councilId/:userId', this.delete);
         this.router.patch('/:councilId/:userId', this.patch);

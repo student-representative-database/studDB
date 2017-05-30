@@ -17,3 +17,7 @@ export function createCouncilInstance({ id, councilId, from, till, Users }: any)
         Users: createUsers(Users)
     }
 }
+
+export function createCouncilInstances(data: any[]): ICouncilInst[] {
+    return data.map(createCouncilInstance);
+}
