@@ -37,13 +37,11 @@ switch (type) {
 
 // Highlight current pages navigation button
 const parts = window.location.pathname.split('/')
-console.log(parts)
 
 let path = '/' + parts[1]
 if (parts[2]) {
   path += '/' + parts[2]
 }
-console.log(path)
 
 let li: any
 switch (path) {
