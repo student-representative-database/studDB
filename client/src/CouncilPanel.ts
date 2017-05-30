@@ -65,7 +65,6 @@ export class CouncilPanel {
     }
 
     private eventReloadOtherPeriod(event) {
-        console.log("fid " + this.facultyItem);
         if (this.facultyItem !== 'null') {
             API.getAllCouncils(this.facultyItem)
                 .then((data) => {
