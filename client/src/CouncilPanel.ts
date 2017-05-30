@@ -141,7 +141,7 @@ export class CouncilPanel {
 
     private countStudentReps(users) {
         const students = users.filter((user) => {
-            return user.phd === false
+            return user.phd === false && user.UserPosition.elected
         })
 
         return students.length
@@ -149,7 +149,7 @@ export class CouncilPanel {
 
     private countPhdReps(users) {
         const students = users.filter((user) => {
-            return user.phd === true
+            return user.phd === true && user.UserPosition.elected
         })
 
         return students.length
