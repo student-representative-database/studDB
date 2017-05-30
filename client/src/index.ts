@@ -65,6 +65,11 @@ switch (path) {
     li = document.getElementById('navApply')
     li.classList.add('active')
     break
+  case '/registry':
+    // Home
+    li = document.getElementById('navRegistry')
+    li.classList.add('active')
+    break
   case '/admin/login':
     // Home
     li = document.getElementById('navAdminLogin')
