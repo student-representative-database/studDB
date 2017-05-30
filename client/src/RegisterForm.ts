@@ -93,7 +93,7 @@ export class RegisterForm {
         facultyId: this.getInputData('inputFaculty'),
         councilId: this.getInputData('inputCouncil'),
         comments: this.getInputData('inputComments'),
-        password: this.getInputData('inputPassword')
+        password: 'randomlyGeneratedPassword'
       }
 
       const button = document.getElementById('btnSubmit') as HTMLInputElement
