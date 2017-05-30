@@ -85,7 +85,7 @@ export class RegistryListItem {
       .then((data) => {
         data['payload'].councils.forEach((element) => {
           const item = new RegistryListItem({
-            id: element.id,
+            id: element.councilInstanceId,
             name: element.name,
             icon: false,
             indent: 2,
