@@ -26,7 +26,7 @@ export class RegistryList {
 
     const topLevel = new RegistryListItem({
       id: null,
-      name: 'Bläddra i registret',
+      name: 'Bläddra i bland råden',
       icon: true,
       indent: null,
       type: 'top',
