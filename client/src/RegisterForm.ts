@@ -63,10 +63,10 @@ export class RegisterForm {
         let html = `<option value="null">Välj</option>`
         data['payload'].councils.forEach((element) => {
           if (element.from) {
-            if (element.id === parseInt(facultyId)) {
-              html += `<option value="${element.id}" selected>${element.name}</option>`
+            if (element.councilInstanceId === parseInt(councilId)) {
+              html += `<option value="${element.councilInstanceId}" selected>${element.name}</option>`
             } else {
-              html += `<option value="${element.id}">${element.name}</option>`
+              html += `<option value="${element.councilInstanceId}">${element.name}</option>`
             }
           }
         })
