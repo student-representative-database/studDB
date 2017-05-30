@@ -125,13 +125,13 @@ export function seed() {
     }).then(() => {
         return CouncilInstanceModel.create({
             from: new Date('January 1, 2017'),
-            till: new Date('May 30, 2017'),
+            till: new Date('June 30, 2017'),
             councilId: 1
         })
     }).then(() => {
         return CouncilInstanceModel.create({
             from: new Date('January 1, 2016'),
-            till: new Date('May 30, 2016'),
+            till: new Date('June 30, 2016'),
             councilId: 1
         })
     }).then(() => {
@@ -149,43 +149,43 @@ export function seed() {
     }).then(() => {
         return CouncilInstanceModel.create({
             from: new Date('January 1, 2017'),
-            till: new Date('May 30, 2017'),
+            till: new Date('June 30, 2017'),
             councilId: 2
         })
     }).then(() => {
         return CouncilInstanceModel.create({
             from: new Date('January 1, 2017'),
-            till: new Date('May 30, 2017'),
+            till: new Date('June 30, 2017'),
             councilId: 3
         })
     }).then(() => {
         return CouncilInstanceModel.create({
             from: new Date('January 1, 2017'),
-            till: new Date('May 30, 2017'),
+            till: new Date('June 30, 2017'),
             councilId: 4
         })
     }).then(() => {
         return CouncilInstanceModel.create({
             from: new Date('January 1, 2017'),
-            till: new Date('May 30, 2017'),
+            till: new Date('June 30, 2017'),
             councilId: 5
         })
     }).then(() => {
         return CouncilInstanceModel.create({
             from: new Date('January 1, 2017'),
-            till: new Date('May 30, 2017'),
+            till: new Date('June 30, 2017'),
             councilId: 6
         })
     }).then(() => {
         return CouncilInstanceModel.create({
             from: new Date('January 1, 2017'),
-            till: new Date('May 30, 2017'),
+            till: new Date('June 30, 2017'),
             councilId: 7
         })
     }).then(() => {
         return CouncilInstanceModel.create({
             from: new Date('January 1, 2017'),
-            till: new Date('May 30, 2017'),
+            till: new Date('June 30, 2017'),
             councilId: 8
         })
     }).then(() => {
@@ -359,7 +359,7 @@ export function seed() {
             CouncilInstanceId: 1,
             UserId: 1,
             from: new Date('januari 2, 2017'),
-            till: new Date('may 29, 2017'),
+            till: new Date('June 29, 2017'),
             elected: true
         })
     }).then(() => {
@@ -367,7 +367,7 @@ export function seed() {
             CouncilInstanceId: 1,
             UserId: 2,
             from: new Date('januari 2, 2017'),
-            till: new Date('may 29, 2017'),
+            till: new Date('June 29, 2017'),
             elected: true
         })
     }).then(() => {
@@ -375,7 +375,7 @@ export function seed() {
             CouncilInstanceId: 1,
             UserId: 3,
             from: new Date('januari 2, 2017'),
-            till: new Date('may 29, 2017'),
+            till: new Date('June 29, 2017'),
             elected: true
         })
     }).then(() => {
@@ -383,7 +383,7 @@ export function seed() {
             CouncilInstanceId: 1,
             UserId: 4,
             from: new Date('januari 2, 2017'),
-            till: new Date('may 29, 2017'),
+            till: new Date('June 29, 2017'),
             elected: true
         })
     }).then(() => {
@@ -391,7 +391,7 @@ export function seed() {
             CouncilInstanceId: 2,
             UserId: 5,
             from: new Date('januari 2, 2017'),
-            till: new Date('may 29, 2017'),
+            till: new Date('June 29, 2017'),
             elected: true
         })
     }).then(() => {
@@ -399,7 +399,7 @@ export function seed() {
             CouncilInstanceId: 2,
             UserId: 6,
             from: new Date('januari 2, 2017'),
-            till: new Date('may 29, 2017'),
+            till: new Date('June 29, 2017'),
             elected: true
         })
     }).then(() => {
@@ -407,7 +407,7 @@ export function seed() {
             CouncilInstanceId: 3,
             UserId: 6,
             from: new Date('januari 2, 2017'),
-            till: new Date('may 29, 2017'),
+            till: new Date('June 29, 2017'),
             elected: true
         })
     }).then(() => {
@@ -415,7 +415,7 @@ export function seed() {
             CouncilInstanceId: 4,
             UserId: 7,
             from: new Date('januari 2, 2017'),
-            till: new Date('may 29, 2017'),
+            till: new Date('June 29, 2017'),
             elected: true
         })
     }).then(() => {
@@ -423,7 +423,7 @@ export function seed() {
             CouncilInstanceId: 4,
             UserId: 8,
             from: new Date('januari 2, 2017'),
-            till: new Date('may 29, 2017'),
+            till: new Date('June 29, 2017'),
             elected: false
         })
     }).then(() => {
@@ -431,7 +431,7 @@ export function seed() {
             CouncilInstanceId: 4,
             UserId: 9,
             from: new Date('januari 2, 2017'),
-            till: new Date('may 29, 2017'),
+            till: new Date('June 29, 2017'),
             elected: false
         })
     }).then(() => {
@@ -439,7 +439,7 @@ export function seed() {
             CouncilInstanceId: 4,
             UserId: 10,
             from: new Date('januari 2, 2017'),
-            till: new Date('may 29, 2017'),
+            till: new Date('June 29, 2017'),
             elected: false
         })
     }).then(() => {
@@ -447,7 +447,7 @@ export function seed() {
             CouncilInstanceId: 4,
             UserId: 11,
             from: new Date('januari 2, 2017'),
-            till: new Date('may 29, 2017'),
+            till: new Date('June 29, 2017'),
             elected: false
         })
     }).then(() => {
@@ -455,7 +455,7 @@ export function seed() {
             CouncilInstanceId: 5,
             UserId: 12,
             from: new Date('januari 2, 2017'),
-            till: new Date('may 29, 2017'),
+            till: new Date('June 29, 2017'),
             elected: false
         })
     }).then(() => {
@@ -463,7 +463,7 @@ export function seed() {
             CouncilInstanceId: 4,
             UserId: 12,
             from: new Date('januari 2, 2017'),
-            till: new Date('may 29, 2017'),
+            till: new Date('June 29, 2017'),
             elected: false
         })
     }).then(() => {
