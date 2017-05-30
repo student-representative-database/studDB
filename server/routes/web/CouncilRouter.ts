@@ -23,10 +23,10 @@ class CouncilRouter {
       let i
       const free = {phd: result.payload.phdPositions, stud: result.payload.studentPositions, open: result.payload.openPositions};
       for (i = 0; i < dataObject.Users.length; i++) {
-        if (dataObject.Users[i].phd === true) {
-          free.phd--
-        } else {
-          free.stud--
+        if (dataObject.Users[i].phd === true && dataObject.Users[i].UserPosition.elected) {
+            free.phd--
+        } else if (dataObject.Users[i].phd === false && dataObject.Users[i].UserPosition.elected) {
+            free.stud--
         }
       }
       if (free.phd + free.stud === 0) {

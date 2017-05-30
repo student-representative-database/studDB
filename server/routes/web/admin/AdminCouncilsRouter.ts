@@ -37,14 +37,14 @@ class AdminCouncilRouter {
                 let i
                 const free = {phd: result.payload.phdPositions, stud: result.payload.studentPositions};
                 for (i = 0; i < dataObject.Users.length; i++) {
-                    if (dataObject.Users[i].phd === true) {
+                    if (dataObject.Users[i].phd === true && dataObject.Users[i].UserPosition.elected) {
                         free.phd--
-                    } else {
+                    } else if (dataObject.Users[i].phd === false && dataObject.Users[i].UserPosition.elected) {
                         free.stud--
                     }
                 }
                 // console.log(JSON.stringify(result.payload.CouncilInstances[0].Users, null, 2));
-                // console.log(dataObject)
+                console.log(returnObject)
                 res
                     .status(200)
                     .render('./admin/council', {council: returnObject, free, layout: 'admin'})
