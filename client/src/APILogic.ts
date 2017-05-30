@@ -87,6 +87,24 @@ class APILogic {
     })
   }
 
+  public getCouncilInstance(instanceId: number) {
+    return fetch(`/api/v1/councilsinst/${instanceId}`, this.headers.GET)
+        .then((result) => {
+          return result
+        })
+  }
+
+  public createUserPosition(data: any) {
+    const bodyData = JSON.stringify(data)
+    return fetch('/api/v1/userPosition', {
+      method: 'POST',
+      body: bodyData,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+  }
+
   public createCouncil() {}
 
   public deleteCouncil() {}
