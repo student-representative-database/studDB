@@ -19,6 +19,8 @@ export interface ICouncilFacultyView {
     phdPositions: number,
     from: Date,
     till: Date,
+    councilInstanceId: number,
+    councilId: number,
     facultyId: number,
 }
 

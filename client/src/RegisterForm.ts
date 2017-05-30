@@ -10,19 +10,64 @@ export class RegisterForm {
       facultyList.addEventListener('change', this.updateCouncilList)
     }
     submit.addEventListener('click', this.eventHandler.bind(this))
+
+    const selectedFaculty = this.getQueryVariable('faculty')
+    const selectedCouncil = this.getQueryVariable('council')
+
+    if (selectedCouncil && selectedFaculty) {
+      this.preSelect(selectedFaculty, selectedCouncil)
+    }
   }
 
-  private updateCouncilList(event) {
+  private preSelect(facultyId, councilId) {
+    const facultyList: any = document.getElementById('inputFaculty')
+    // const facultyList = document.getElementById('inputFaculty')
+
+    // facultyList.getElementsByTagName('option').forEach((element) => {
+    //   console.log(element)
+    // })
+
+    const options = facultyList.getElementsByTagName('option')
+
+    for (let i = 0; i < options.length; i++) {
+      //console.log(options[i].value)
+
+      if (options[i].value === facultyId) {
+        console.log(options[i])
+        console.log('Select this')
+        options[i].selected = true
+        this.updateCouncilList(null, facultyId, councilId)
+      }
+    }
+
+  }
+
+  private getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+            var pair = vars[i].split("=");
+            if(pair[0] == variable){return pair[1];}
+    }
+    return(false);
+  }
+
+  private updateCouncilList(event, facultyId?, councilId?) {
+    const id = event ? event.target.value : facultyId
     const councilList = document.getElementById('inputCouncil')
     councilList.innerHTML = `<option value="null">Välj</option>`
-    if (event.target.value !== 'null') {
-      API.getAllCouncils(event.target.value)
+    if (id !== 'null') {
+      API.getAllCouncils(id)
       .then((data) => {
         console.log(data['payload'])
         let html = `<option value="null">Välj</option>`
         data['payload'].councils.forEach((element) => {
           if (element.from) {
-            html += `<option value="${element.id}">${element.name}</option>`
+            if (element.councilInstanceId === parseInt(councilId)) {
+              html += `<option value="${element.councilInstanceId}" selected>${element.name}</option>`
+            } else {
+              html += `<option value="${element.councilInstanceId}">${element.name}</option>`
+            }
           }
         })
 
@@ -48,7 +93,7 @@ export class RegisterForm {
         facultyId: this.getInputData('inputFaculty'),
         councilId: this.getInputData('inputCouncil'),
         comments: this.getInputData('inputComments'),
-        password: this.getInputData('inputPassword')
+        password: 'randomlyGeneratedPassword'
       }
 
       const button = document.getElementById('btnSubmit') as HTMLInputElement

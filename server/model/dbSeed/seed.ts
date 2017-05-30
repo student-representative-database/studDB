@@ -125,13 +125,13 @@ export function seed() {
     }).then(() => {
         return CouncilInstanceModel.create({
             from: new Date('January 1, 2017'),
-            till: new Date('May 30, 2017'),
+            till: new Date('June 30, 2017'),
             councilId: 1
         })
     }).then(() => {
         return CouncilInstanceModel.create({
             from: new Date('January 1, 2016'),
-            till: new Date('May 30, 2016'),
+            till: new Date('June 30, 2016'),
             councilId: 1
         })
     }).then(() => {
@@ -149,43 +149,43 @@ export function seed() {
     }).then(() => {
         return CouncilInstanceModel.create({
             from: new Date('January 1, 2017'),
-            till: new Date('May 30, 2017'),
+            till: new Date('June 30, 2017'),
             councilId: 2
         })
     }).then(() => {
         return CouncilInstanceModel.create({
             from: new Date('January 1, 2017'),
-            till: new Date('May 30, 2017'),
+            till: new Date('June 30, 2017'),
             councilId: 3
         })
     }).then(() => {
         return CouncilInstanceModel.create({
             from: new Date('January 1, 2017'),
-            till: new Date('May 30, 2017'),
+            till: new Date('June 30, 2017'),
             councilId: 4
         })
     }).then(() => {
         return CouncilInstanceModel.create({
             from: new Date('January 1, 2017'),
-            till: new Date('May 30, 2017'),
+            till: new Date('June 30, 2017'),
             councilId: 5
         })
     }).then(() => {
         return CouncilInstanceModel.create({
             from: new Date('January 1, 2017'),
-            till: new Date('May 30, 2017'),
+            till: new Date('June 30, 2017'),
             councilId: 6
         })
     }).then(() => {
         return CouncilInstanceModel.create({
             from: new Date('January 1, 2017'),
-            till: new Date('May 30, 2017'),
+            till: new Date('June 30, 2017'),
             councilId: 7
         })
     }).then(() => {
         return CouncilInstanceModel.create({
             from: new Date('January 1, 2017'),
-            till: new Date('May 30, 2017'),
+            till: new Date('June 30, 2017'),
             councilId: 8
         })
     }).then(() => {
@@ -213,7 +213,7 @@ export function seed() {
             phd: true,
             graduationYear: 2018,
             birthDate: new Date('October 10, 1980'),
-            program: 'some course',
+            program: 'Interaktionsdesign',
             comments: 'bla'
         })
     }).then(() => {
@@ -241,7 +241,7 @@ export function seed() {
             phd: true,
             graduationYear: 2018,
             birthDate: new Date('October 10, 1980'),
-            program: 'hallo',
+            program: 'Interaktionsdesign',
             comments: 'bla'
         })
     }).then(() => {
@@ -272,11 +272,94 @@ export function seed() {
             comments: 'bla'
         })
     }).then(() => {
+        return UserModel.create({
+            firstName: 'Ola',
+            lastName: 'Bengtsson',
+            phone: '0123456-123',
+            email: 'ola@gmail.com',
+            facultyId: 6,
+            password: 'pswd12345',
+            phd: false,
+            graduationYear: 2018,
+            birthDate: new Date('October 10, 1980'),
+            program: 'UDM',
+            comments: '...'
+        })
+    }).then(() => {
+        return UserModel.create({
+            firstName: 'Carina',
+            lastName: 'Axelsson',
+            phone: '0123456-123',
+            email: 'carina@gmail.com',
+            facultyId: 6,
+            password: 'pswd12345',
+            phd: true,
+            graduationYear: 2018,
+            birthDate: new Date('October 10, 1980'),
+            program: 'Interaktionsdesign',
+            comments: 'bla'
+        })
+    }).then(() => {
+        return UserModel.create({
+            firstName: 'Nils',
+            lastName: 'Gran',
+            phone: '0123456-123',
+            email: 'nille@gmail.com',
+            facultyId: 6,
+            password: 'pswd12345',
+            phd: false,
+            graduationYear: 2019,
+            birthDate: new Date('October 10, 1981'),
+            program: 'UDM',
+            comments: 'bla'
+        })
+    }).then(() => {
+        return UserModel.create({
+            firstName: 'Oliver',
+            lastName: 'Skoog',
+            phone: '0123456-123',
+            email: 'oliver@gmail.com',
+            facultyId: 6,
+            password: 'pswd12345',
+            phd: true,
+            graduationYear: 2018,
+            birthDate: new Date('October 10, 1980'),
+            program: 'WP',
+            comments: 'bla'
+        })
+    }).then(() => {
+        return UserModel.create({
+            firstName: 'Curt',
+            lastName: 'Hackman',
+            phone: '0123456-123',
+            email: 'curre@gmail.com',
+            facultyId: 6,
+            password: 'pswd12345',
+            graduationYear: 2018,
+            birthDate: new Date('October 10, 1980'),
+            program: 'UDM',
+            comments: 'bla'
+        })
+    }).then(() => {
+        return UserModel.create({
+            firstName: 'Nathalie',
+            lastName: 'Persson',
+            phone: '0123456-123',
+            email: 'natta@gmail.com',
+            facultyId: 6,
+            password: 'pswd12345',
+            phd: true,
+            graduationYear: 2020,
+            birthDate: new Date('October 10, 1989'),
+            program: 'UDM',
+            comments: 'bla'
+        })
+    }).then(() => {
         return UserPositionModel.create({
             CouncilInstanceId: 1,
             UserId: 1,
             from: new Date('januari 2, 2017'),
-            till: new Date('may 29, 2017'),
+            till: new Date('June 29, 2017'),
             elected: true
         })
     }).then(() => {
@@ -284,7 +367,7 @@ export function seed() {
             CouncilInstanceId: 1,
             UserId: 2,
             from: new Date('januari 2, 2017'),
-            till: new Date('may 29, 2017'),
+            till: new Date('June 29, 2017'),
             elected: true
         })
     }).then(() => {
@@ -292,7 +375,7 @@ export function seed() {
             CouncilInstanceId: 1,
             UserId: 3,
             from: new Date('januari 2, 2017'),
-            till: new Date('may 29, 2017'),
+            till: new Date('June 29, 2017'),
             elected: true
         })
     }).then(() => {
@@ -300,7 +383,7 @@ export function seed() {
             CouncilInstanceId: 1,
             UserId: 4,
             from: new Date('januari 2, 2017'),
-            till: new Date('may 29, 2017'),
+            till: new Date('June 29, 2017'),
             elected: true
         })
     }).then(() => {
@@ -308,7 +391,7 @@ export function seed() {
             CouncilInstanceId: 2,
             UserId: 5,
             from: new Date('januari 2, 2017'),
-            till: new Date('may 29, 2017'),
+            till: new Date('June 29, 2017'),
             elected: true
         })
     }).then(() => {
@@ -316,7 +399,7 @@ export function seed() {
             CouncilInstanceId: 2,
             UserId: 6,
             from: new Date('januari 2, 2017'),
-            till: new Date('may 29, 2017'),
+            till: new Date('June 29, 2017'),
             elected: true
         })
     }).then(() => {
@@ -324,8 +407,64 @@ export function seed() {
             CouncilInstanceId: 3,
             UserId: 6,
             from: new Date('januari 2, 2017'),
-            till: new Date('may 29, 2017'),
+            till: new Date('June 29, 2017'),
             elected: true
+        })
+    }).then(() => {
+        return UserPositionModel.create({
+            CouncilInstanceId: 4,
+            UserId: 7,
+            from: new Date('januari 2, 2017'),
+            till: new Date('June 29, 2017'),
+            elected: true
+        })
+    }).then(() => {
+        return UserPositionModel.create({
+            CouncilInstanceId: 4,
+            UserId: 8,
+            from: new Date('januari 2, 2017'),
+            till: new Date('June 29, 2017'),
+            elected: false
+        })
+    }).then(() => {
+        return UserPositionModel.create({
+            CouncilInstanceId: 4,
+            UserId: 9,
+            from: new Date('januari 2, 2017'),
+            till: new Date('June 29, 2017'),
+            elected: false
+        })
+    }).then(() => {
+        return UserPositionModel.create({
+            CouncilInstanceId: 4,
+            UserId: 10,
+            from: new Date('januari 2, 2017'),
+            till: new Date('June 29, 2017'),
+            elected: false
+        })
+    }).then(() => {
+        return UserPositionModel.create({
+            CouncilInstanceId: 4,
+            UserId: 11,
+            from: new Date('januari 2, 2017'),
+            till: new Date('June 29, 2017'),
+            elected: false
+        })
+    }).then(() => {
+        return UserPositionModel.create({
+            CouncilInstanceId: 5,
+            UserId: 12,
+            from: new Date('januari 2, 2017'),
+            till: new Date('June 29, 2017'),
+            elected: false
+        })
+    }).then(() => {
+        return UserPositionModel.create({
+            CouncilInstanceId: 4,
+            UserId: 12,
+            from: new Date('januari 2, 2017'),
+            till: new Date('June 29, 2017'),
+            elected: false
         })
     }).then(() => {
         return EmployeeModel.create({

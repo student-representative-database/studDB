@@ -8,6 +8,7 @@ import {findOneUserPosition} from "../../../queries/findOne";
 import { create} from '../../../queries/create';
 import { deleteUserPosition } from '../../../queries/delete';
 import { updateUserPosition } from '../../../queries/update';
+import {findAllUserPositions} from "../../../queries/findAll";
 
 class CRUDUserPositionsRouter {
     public router: Router;
@@ -48,6 +49,41 @@ class CRUDUserPositionsRouter {
 
     public getOne(req: Request, res: Response, next: NextFunction) {
         findOneUserPosition(req.params.councilId, req.params.userId)
+            .then(_.partial(onSuccess, res))
+            .catch(_.partial(onError, res, 'Find user position instance failed'));
+    }
+
+    /**
+     * @api {get} userPosition/ Get all User positions
+     * @apiVersion 0.1.0
+     * @apiName GetUserAllPositions
+     * @apiGroup UserPosition
+     *
+     *
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     * {
+     *  "payload": [
+     *  {
+     *  "UserId": 2,
+     *  "CouncilInstanceId": 2,
+     *  "from": "2017-01-02T00:00:00.000Z",
+     *  "till": "2017-05-29T00:00:00.000Z",
+     *  "elected": false
+     * }
+     *  {...}
+     *  ]
+     *   }
+     * @apiError NoUserPositionFound No User Position found.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 404 Not Found
+     *     {
+     *       "error": "NoUserPositionFound"
+     *     }
+     */
+    public getAll(req: Request, res: Response, next: NextFunction) {
+        findAllUserPositions()
             .then(_.partial(onSuccess, res))
             .catch(_.partial(onError, res, 'Find user position instance failed'));
     }
@@ -186,6 +222,7 @@ class CRUDUserPositionsRouter {
 
     public init() {
         this.router.get('/:councilId/:userId', this.getOne);
+        this.router.get('/', this.getAll);
         this.router.post('/', this.create);
         this.router.delete('/:councilId/:userId', this.delete);
         this.router.patch('/:councilId/:userId', this.patch);

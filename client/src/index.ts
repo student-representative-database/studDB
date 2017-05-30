@@ -34,3 +34,57 @@ switch (type) {
   default:
     break
 }
+
+// Highlight current pages navigation button
+const parts = window.location.pathname.split('/')
+
+let path = '/' + parts[1]
+if (parts[2]) {
+  path += '/' + parts[2]
+}
+
+let li: any
+switch (path) {
+  case '/':
+    // Home
+    li = document.getElementById('navHome')
+    li.classList.add('active')
+    break
+  case '/faq':
+    // Home
+    li = document.getElementById('navFaq')
+    li.classList.add('active')
+    break
+  case '/posts':
+    // Home
+    li = document.getElementById('navPosts')
+    li.classList.add('active')
+    break
+  case '/apply':
+    // Home
+    li = document.getElementById('navApply')
+    li.classList.add('active')
+    break
+  case '/admin/login':
+    // Home
+    li = document.getElementById('navAdminLogin')
+    li.classList.add('active')
+    break
+  case '/admin/faculties':
+    // Home
+    li = document.getElementById('navAdminFaculties')
+    li.classList.add('active')
+    break
+  case '/admin/councils':
+    // Home
+    li = document.getElementById('navAdminCouncils')
+    li.classList.add('active')
+    break
+  case '/admin/students':
+    // Home
+    li = document.getElementById('navAdminStudents')
+    li.classList.add('active')
+    break
+  default:
+    break
+}

@@ -4,34 +4,37 @@
         <div class="col-lg-6">
             <div class="col-sm-9 input-group-lg">
                 <select id="inputFaculty" class="form-control ">
-                <option value="null">Välj fakultet</option>
-                {{#if faculties}}
-                {{#each faculties}}
-                <option value="{{{this.id}}}">{{{this.name}}}</option>
-                {{/each}}
-                {{/if}}
+                    <option value="null">Välj fakultet</option>
+                    {{#if faculties}}
+                        {{#each faculties}}
+                            <option value="{{{this.id}}}">{{{this.name}}}</option>
+                        {{/each}}
+                    {{/if}}
                 </select>
             </div>
         </div>
         <div class="col-lg-6">
             <div class="col-sm-9 input-group-lg">
                 <select id="inputCouncil" class="form-control">
-                <option value="null">Visa alla</option>
-
+                    <option value="null">Visa alla</option>
                 </select>
             </div>
         </div>
     </div>
 
+    <div class="checkboxstyle">
+        <input type="checkbox" id="inputNext" value="next"> Visa nästa period
+    </div>
+
     <table class="table table-hover">
         <thead>
-            <tr>
-                <th>Råd</th>
-                <th>Från</th>
-                <th>Till</th>
-                <th>Studenter</th>
-                <th>Doktorander</th>
-            </tr>
+        <tr>
+            <th>Råd</th>
+            <th>Från</th>
+            <th>Till</th>
+            <th>Studenter</th>
+            <th>Doktorander</th>
+        </tr>
         </thead>
         <tbody>
 
