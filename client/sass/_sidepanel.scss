@@ -19,4 +19,15 @@
   span {
     padding-left: 20px;
   }
+
+}
+
+.side-panel {
+  a {
+    color: $linkc-tertiary;
+  }
+
+  a:hover {
+    color: $fontc-primary;
+  }
 }
