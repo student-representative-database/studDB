@@ -14,7 +14,7 @@ export class RegistryList {
     this.parentElement = document.getElementById('home')
 
     //this.parentElement.insertBefore(this.element, this.parentElement.firstChild)
-    this.parentElement.insertBefore(this.element, this.parentElement.children[2])
+    this.parentElement.insertBefore(this.element, this.parentElement.children[1])
 
   }
 
@@ -38,7 +38,8 @@ export class RegistryList {
 
   private getFaculties = () => {
     if (this.isOpen) {
-      this.parentElement.removeChild(this.parentElement.firstElementChild)
+      // this.parentElement.removeChild(this.parentElement.firstElementChild)
+      this.parentElement.removeChild(this.parentElement.children[1])
       this.init()
       this.appendListTo()
       this.isOpen = false
