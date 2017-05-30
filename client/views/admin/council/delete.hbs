@@ -1,9 +1,12 @@
 <div class="col-md-8" id="councilPanel">
-    <p>Vill du verkligen radera {{council.name}}...</p>
+    <p>Ska {{council.name}} inaktiveras permanent?</p>
     <form action="/admin/councils/delete/{{council.id}}"  method="post" id="councildelete">
         <!--<input type="hidden" name="_csrf" value="{{csrfToken}}">-->
-        <button type="submit" class="btn btn-warning btn-lg">Radera fakultet</button>
+        <button type="submit" class="btn btn-warning btn-lg">Inaktivera rådet</button>
     </form>
-{{council.id}} -
-{{council.councilId}}
+    <p>Ska {{council.name}} inaktiveras för aktuell period?</p>
+    <form action="/admin/councils/councilinst/delete/{{council.id}}"  method="post" id="councildelete">
+        <!--<input type="hidden" name="_csrf" value="{{csrfToken}}">-->
+        <button type="submit" class="btn btn-warning btn-lg">Inaktivera aktuellt råd</button>
+    </form>
 </div>

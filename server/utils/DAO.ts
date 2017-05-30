@@ -133,7 +133,20 @@ class DAO {
     })
   }
 
-  public updateCouncil() {}
+  public updateCouncil(data: any, councilId: number) {
+    data = JSON.stringify(data)
+    return request(`${this.path}/api/v1/councils/${councilId}`, {
+      method: 'PATCH',
+      body: data,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+        .then((response) => response)
+        .catch((err) => {
+          console.log(err)
+        })
+  }
 
   // CRUD student/representative
 
