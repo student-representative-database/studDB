@@ -90,6 +90,11 @@ switch (path) {
     li = document.getElementById('navAdminStudents')
     li.classList.add('active')
     break
+  case '/admin/employees':
+    // Home
+    li = document.getElementById('navAdminEmployees')
+    li.classList.add('active')
+    break
   default:
     break
 }
