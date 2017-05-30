@@ -53,6 +53,35 @@ class CRUDUserPositionsRouter {
             .catch(_.partial(onError, res, 'Find user position instance failed'));
     }
 
+    /**
+     * @api {get} userPosition/ Get all User positions
+     * @apiVersion 0.1.0
+     * @apiName GetUserAllPositions
+     * @apiGroup UserPosition
+     *
+     *
+     * @apiSuccessExample Success-Response:
+     * HTTP/1.1 200 OK
+     * {
+     *  "payload": [
+     *  {
+     *  "UserId": 2,
+     *  "CouncilInstanceId": 2,
+     *  "from": "2017-01-02T00:00:00.000Z",
+     *  "till": "2017-05-29T00:00:00.000Z",
+     *  "elected": false
+     * }
+     *  {...}
+     *  ]
+     *   }
+     * @apiError NoUserPositionFound No User Position found.
+     *
+     * @apiErrorExample Error-Response:
+     *     HTTP/1.1 404 Not Found
+     *     {
+     *       "error": "NoUserPositionFound"
+     *     }
+     */
     public getAll(req: Request, res: Response, next: NextFunction) {
         findAllUserPositions()
             .then(_.partial(onSuccess, res))
