@@ -8,6 +8,7 @@ import { create } from '../../../queries/create';
 import { deleteOne } from '../../../queries/delete';
 import {update} from '../../../queries/update';
 import {CouncilInstanceModel} from '../../../model/model';
+import {findAllCouncilInstances} from "../../../queries/findAll";
 
 class CRUDCouncilInstRouter {
     public router: Router;
@@ -69,6 +70,12 @@ class CRUDCouncilInstRouter {
 
     public getOne(req: Request, res: Response, next: NextFunction) {
         findOneInst(req.params.id)
+            .then(_.partial(onSuccess, res))
+            .catch(_.partial(onError, res, 'Find one council instance failed'));
+    }
+
+    public getAll(req: Request, res: Response, next: NextFunction) {
+        findAllCouncilInstances()
             .then(_.partial(onSuccess, res))
             .catch(_.partial(onError, res, 'Find one council instance failed'));
     }
@@ -192,6 +199,7 @@ class CRUDCouncilInstRouter {
 
     public init() {
         this.router.get('/:id', this.getOne);
+        this.router.get('/', this.getAll);
         this.router.post('/', this.create);
         this.router.delete('/:id', this.delete);
         this.router.patch('/:id', this.patch);
