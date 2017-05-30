@@ -33,8 +33,8 @@ export class RegisterForm {
       //console.log(options[i].value)
 
       if (options[i].value === facultyId) {
-        console.log(options[i])
-        console.log('Select this')
+        // console.log(options[i])
+        // console.log('Select this')
         options[i].selected = true
         this.updateCouncilList(null, facultyId, councilId)
       }
@@ -59,7 +59,7 @@ export class RegisterForm {
     if (id !== 'null') {
       API.getAllCouncils(id)
       .then((data) => {
-        console.log(data['payload'])
+        // console.log(data['payload'])
         let html = `<option value="null">Välj</option>`
         data['payload'].councils.forEach((element) => {
           if (element.from) {
@@ -99,6 +99,14 @@ export class RegisterForm {
       const button = document.getElementById('btnSubmit') as HTMLInputElement
       button.disabled = true
 
+      const userPostion = {
+        UserId: 0,
+        CouncilInstanceId: 0,
+        from: 0,
+        till: 0,
+        elected: false
+      }
+
       fetch('/api/v1/users', {
         method: 'POST',
         body: JSON.stringify(formData),
@@ -107,10 +115,37 @@ export class RegisterForm {
         }
       })
       .then((res) => {
+        return res.json()
+      })
+      .then((res) => {
+        console.log(res)
+        userPostion.UserId = res['payload'].id
+        userPostion.CouncilInstanceId = parseInt(formData.councilId, 10)
+        return API.getCouncilInstance(formData.councilId)
+      })
+      .then((res) => {
+        return res.json()
+      })
+      .then((res) => {
+        console.log(res)
+        userPostion.from = res['payload'].from
+        userPostion.till = res['payload'].till
+      })
+      .then((res) => {
+        console.log(userPostion)
+        return API.createUserPosition(userPostion)
+      })
+      .then((res) => {
+        res.json()
+        .then((result) => {
+          console.log(result)
+        })
+      })
+      .then((res) => {
         alert.displayMessage('Anmälan skickad. Du skickas snart vidare...', 'success')
-        setTimeout(() => {
-          window.location.replace('/')
-        }, 5000)
+        // setTimeout(() => {
+        //   window.location.replace('/')
+        // }, 5000)
       })
     } catch (e) {
       alert.displayMessage(e.message, 'danger')
