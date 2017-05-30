@@ -13,7 +13,9 @@ export class RegistryList {
   public appendListTo() {
     this.parentElement = document.getElementById('home')
 
-    this.parentElement.insertBefore(this.element, this.parentElement.firstChild)
+    //this.parentElement.insertBefore(this.element, this.parentElement.firstChild)
+    this.parentElement.insertBefore(this.element, this.parentElement.children[2])
+
   }
 
   private init = () => {
