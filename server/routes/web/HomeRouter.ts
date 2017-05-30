@@ -26,11 +26,17 @@ class HomeRouter {
         .render('posts')
   }
 
+  public getRegistry(req: Request, res: Response, next: NextFunction) {
+    res
+        .status(200)
+        .render('registry')
+  }
+
   public init() {
     this.router.get('/', this.getHome);
     this.router.get('/faq', this.getFaq);
     this.router.get('/posts', this.getPosts);
-
+    this.router.get('/registry', this.getRegistry);
   }
 }
 
