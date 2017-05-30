@@ -34,6 +34,7 @@ class CouncilRouter {
       } else {
         free.open = true
       }
+      console.log(returnObject.Users)
       res
       .status(200)
       .render('council', {council: returnObject, free})

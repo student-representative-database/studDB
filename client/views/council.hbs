@@ -28,6 +28,7 @@
 
     <h4>Representanter:</h4>
     {{#each council.Users}}
+    {{#if this.UserPosition.elected}}
         {{!--{{#each this.Users}}--}}
             <h5>
 
@@ -42,6 +43,7 @@
             <p class="about"><strong>Epost: </strong><a href="mailto:{{this.email}}">{{this.email}}</a></p>
             <hr>
         {{!--{{/each}}--}}
+    {{/if}}
     {{/each}}
 
     <h4>Lediga positioner:</h4>
