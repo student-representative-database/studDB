@@ -33,7 +33,7 @@ export class CouncilPanel {
     private eventFacultySelect(event) {
       const tbody = document.querySelector('tbody')
         if (tbody) {
-          tbody.innerHTML = "";
+            tbody.innerHTML = "";
         }
         if (event.target.value !== 'null') {
             this.facultyItem = event.target.value
