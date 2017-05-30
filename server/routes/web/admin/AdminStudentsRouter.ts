@@ -31,9 +31,16 @@ class AdminStudentsRouter {
         });
   }
 
+  public getRepresentativesList(req: Request, res: Response, next: NextFunction) {
+    res
+      .status(200)
+      .render('./admin/representatives', {layout: 'admin'});
+  }
+
   public init() {
-    this.router.get('/', this.getStudents)
+    this.router.get('/representatives', this.getRepresentativesList)
     this.router.get('/:id', this.updateStudent)
+    this.router.get('/', this.getStudents)
   }
 }
 
