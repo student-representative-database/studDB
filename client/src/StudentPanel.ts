@@ -12,7 +12,10 @@ export class StudentPanel {
   }
 
   private eventHandler(event) {
-    event.preventDefault()
+    if (event.target.type === 'a') {
+      event.preventDefault()
+    }
+
     if (event.target.type === 'submit') {
       if (event.target.classList.contains('glyphicon-remove-sign')) {
         event.target.classList.toggle('icon-red')

@@ -25,7 +25,7 @@
 
           {{#each this.Users}}
             <div class="list-group-item thinner">
-              <a class="">{{this.firstName}} {{this.lastName}}</a>
+              <a href="/admin/students/{{this.id}}">{{this.firstName}} {{this.lastName}}</a>
               {{#if this.phd}}
                 <span class="label label-default">Phd</span>
               {{/if}}
