@@ -52,11 +52,11 @@ class AdminStudentsRouter {
         .then((data) => {
             returnObject.forEach((faculty) => {
                 faculty.councils.forEach((council) => {
-                    council.UserPositions = []
+                    council.Users = []
                     data.forEach((payload) => {
                         payload.payload.Users.forEach((user) => {
                             if (user.UserPosition.CouncilInstanceId === council.councilInstanceId) {
-                                council.UserPositions.push(user)
+                                council.Users.push(user)
                             }
                         })
                     })

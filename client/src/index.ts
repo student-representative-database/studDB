@@ -3,6 +3,7 @@ import { LoginForm } from './LoginForm'
 import { RegisterForm } from './RegisterForm'
 import { CouncilPanel } from './CouncilPanel'
 import { FacultyPanel } from './FacultyPanel'
+import { StudentPanel } from './StudentPanel'
 
 // Get the id of the page.
 const mainElement = document.getElementById('main')
@@ -26,6 +27,10 @@ switch (type) {
   case 'facultyPanel':
     const faculty = new FacultyPanel()
     faculty.init()
+    break
+  case 'studentPanel':
+    const student = new StudentPanel()
+    student.init()
     break
   case 'login':
     const login = new LoginForm()

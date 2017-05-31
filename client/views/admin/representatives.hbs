@@ -4,65 +4,48 @@
 
     <div class="list-group">
 
-      <div class="list-group-item">
-        <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
-        Fakulteten för saker
-      </div>
+      {{#each data}}
+        <div class="list-group-item">
+          <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+          {{this.name}}
+        </div>
 
-      <div class="list-group-item">
-        <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
-        Fakulteten för ljud
-      </div>
+        {{#each this.councils}}
+          <div class="list-group-item thin">
+            <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+            {{this.name}}
+            <span class="badge">Sökande: {{this.Users.length}}</span>
+            <span class="badge">
+              Doktorander: <span class="numPhd">0</span>/{{this.phdPositions}}
+            </span>
+            <span class="badge">
+              Studenter: <span class="numStud">0</span>/{{this.studentPositions}}
+            </span>
+          </div>
 
-      <div class="list-group-item thin">
-        <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
-        Rådet för nötter
-        <span class="badge">Sökande: 3</span>
-        <span class="badge">Invalda: 1/4</span>
-      </div>
+          {{#each this.Users}}
+            <div class="list-group-item thinner">
+              <a class="">{{this.firstName}} {{this.lastName}}</a>
+              {{#if this.phd}}
+                <span class="label label-default">Phd</span>
+              {{/if}}
+              {{!--<span class="label label-default icon-red">Aktiv i: 4</span>--}}
+              {{#if this.UserPosition.elected}}
+                <button class="glyphicon glyphicon-remove-sign pull-right" aria-hidden="true"></button>
+                <button class="glyphicon glyphicon-ok-sign pull-right icon-green" aria-hidden="true"></button>
+              {{else}}
+                <button class="glyphicon glyphicon-remove-sign pull-right icon-red" aria-hidden="true"></button>
+                <button class="glyphicon glyphicon-ok-sign pull-right" aria-hidden="true"></button>
+              {{/if}}
+              <span class="pull-right">Lägg till/ta bort: &nbsp;</span>
+            </div>
+          {{/each}}
 
-      <div class="list-group-item thinner">
-        <a class="">Konstig Människa</a>
-        <span class="label label-default icon-red">Aktiv i: 4</span>
-        <button class="glyphicon glyphicon-remove-sign pull-right " aria-hidden="true"></button>
-        <button class="glyphicon glyphicon-ok-sign pull-right icon-green" aria-hidden="true"></button>
-        <span class="pull-right">Lägg till/ta bort: &nbsp;</span>
-      </div>
+        {{/each}}
 
-      <div class="list-group-item thinner">
-        <a class="">Annan Människa</a>
-        <span class="label label-default">Aktiv i: 2</span>
-        <button class="glyphicon glyphicon-remove-sign pull-right icon-red" aria-hidden="true"></button>
-        <button class="glyphicon glyphicon-ok-sign pull-right" aria-hidden="true"></button>
-        <span class="pull-right">Lägg till/ta bort: &nbsp;</span>
-      </div>
-
-      <div class="list-group-item thinner">
-        <a class="">Tredje Människa</a>
-        <span class="label label-default">Aktiv i: 1</span>
-        <button class="glyphicon glyphicon-remove-sign pull-right icon-red" aria-hidden="true"></button>
-        <button class="glyphicon glyphicon-ok-sign pull-right" aria-hidden="true"></button>
-        <span class="pull-right">Lägg till/ta bort: &nbsp;</span>
-      </div>
-
-      <div class="list-group-item">
-        <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
-        Fakulteten för öl
-      </div>
-
-      <div class="list-group-item">
-        <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
-        Icke rådsspecifika sökande
-        <span class="badge">Sökande: 8</span>
-      </div>
-
-      <div class="list-group-item thinner">
-        Konstig Människa
-      </div>
-
-      <div class="list-group-item thinner">
-        Annan Människa
-      </div>
+      {{/each}}
+      <p>&nbsp;</p>
+      <button type="button" class="btn btn-primary">Slutför valen</button>
 
     </div>
 
